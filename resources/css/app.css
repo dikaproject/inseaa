@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* chart styles */
+.apexcharts-tooltip {
+    background-color: #fff;
+    color: #8e8e93; /* Ubah ke warna teks yang sesuai */
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(149, 157, 165, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-title {
+    padding: 0.5rem 1rem;
+    background-color: #f4f5f7; /* Ubah ke warna latar yang sesuai */
+    border-bottom: 1px solid #d1d5db; /* Ubah ke warna border yang sesuai */
+}
+
+.apexcharts-xaxistooltip {
+    color: #8e8e93; /* Ubah ke warna teks yang sesuai */
+    border: 0;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(149, 157, 165, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-text-y-value {
+    color: #fff; /* Ubah ke warna teks yang sesuai */
+}
+
+/* Lanjutkan untuk aturan CSS lainnya */
+
+  /* feed styles */
+
+  @media (min-width: 1280px) {
+    .feed-container {
+      height: calc(100vh - 4rem);
+    }
+  }
