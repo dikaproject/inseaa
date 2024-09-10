@@ -248,48 +248,6 @@
         </div>
     </div>
 
-    <!-- rn stastic area -->
-    <div class="rn-statistick-area rn-section-gapTop">
-        <div class="container">
-            <div class="row mb--30">
-                <div class="col-12 text-center">
-                    <h3>Inseaa Statistics</h3>
-                </div>
-            </div>
-            <div class="row g-5">
-                <div class="offset-lg-2 col-lg-4 col-md-6">
-                    <div class="single-counter-up text-center">
-                        <h3 class="counter"><span class="odometer" data-count="309">00</span>
-                        </h3>
-                        <div class="botton-title">Inseaa All NFT's</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-counter-up text-center">
-                        <h3 class="counter"><span class="odometer" data-count="508">00</span>
-                        </h3>
-                        <div class="botton-title">All Creators</div>
-                    </div>
-                </div>
-                <div class="offset-lg-2 col-lg-4 col-md-6">
-                    <div class="single-counter-up text-center">
-                        <h3 class="counter"><span class="odometer" data-count="1032">00</span>
-                        </h3>
-                        <div class="botton-title">Inseaa Earning</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-counter-up text-center">
-                        <h3 class="counter"><span class="odometer" data-count="650">00</span>
-                        </h3>
-                        <div class="botton-title">Level One Seller</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- rn stastic area -->
-
     <!-- call to action area -->
     <div class="rn-callto-action rn-section-gapTop">
         <div class="container-fluid about-fluidimg-cta">

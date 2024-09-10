@@ -11,18 +11,18 @@
                         <!-- Start Mainmanu Nav -->
                         <ul class="mainmenu">
                             <li class="has-menu-child-item">
-                                <a href="{{ url('/') }}">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
-                            <li><a href="{{ url('/about') }}">About</a>
-                            </li>
-                            <li class="has-menu-child-item">
-                                <a href="{{ url('/allproduct') }}">Product</a>
+                            <li><a href="{{url('/about')}}">About</a>
                             </li>
                             <li class="has-menu-child-item">
+                                <a href="{{url('/allproduct')}}">Product</a>
                             </li>
-                            <li><a href="{{ url('/contact') }}">Contact</a></li>
                             <li class="has-menu-child-item">
-                                <a href="{{ url('/blog') }}">Blog</a>
+                            </li>
+                            <li><a href="{{url('/contact')}}">Contact</a></li>
+                            <li class="has-menu-child-item">
+                                <a href="{{url('/blog')}}">Blog</a>
                             </li>
                         </ul>
                         <!-- End Mainmanu Nav -->
@@ -32,14 +32,12 @@
             <div class="header-right">
                 <div class="setting-option d-none d-lg-block">
                     <form class="search-form-wrapper" action="#">
-                        <input type="search" id="search-input" placeholder="Search Here" aria-label="Search">
+                        <input type="search" placeholder="Search Here" aria-label="Search">
                         <div class="search-icon">
-                            <button type="button"><i class="feather-search"></i></button>
+                            <button><i class="feather-search"></i></button>
                         </div>
-                        <div id="search-results" class="dropdown-menu" style="display: none;"></div>
                     </form>
                 </div>
-
                 <div class="setting-option rn-icon-list d-block d-lg-none">
                     <div class="icon-box search-mobile-icon">
                         <button><i class="feather-search"></i></button>
@@ -53,13 +51,7 @@
                 </div>
                 <div class="setting-option rn-icon-list notification-badge">
                     <div class="icon-box">
-                        <a href="#" onclick="alert('System dan Fitur dalam tahap pengembangan')"><i
-                                class="feather-bell"></i><span class="badge">6</span></a>
-                    </div>
-                </div>
-                <div class="setting-option rn-icon-list notification-badge">
-                    <div class="icon-box">
-                        <a href="#"><i class="feather-shopping-cart"></i><span class="badge">6</span></a>
+                        <a href="activity.html"><i class="feather-shopping-cart"></i><span class="badge">6</span></a>
                     </div>
                 </div>
 
@@ -76,9 +68,7 @@
                                     <ul class="product-list">
                                         <li class="single-product-list">
                                             <div class="thumbnail">
-                                                <a href="product-details.html"><img
-                                                        src="assets/images/portfolio/portfolio-07.jpg"
-                                                        alt="Nft Product Images"></a>
+                                                <a href="product-details.html"><img src="assets/images/portfolio/portfolio-07.jpg" alt="Nft Product Images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6 class="title"><a href="product-details.html">Balance</a></h6>
@@ -88,9 +78,7 @@
                                         </li>
                                         <li class="single-product-list">
                                             <div class="thumbnail">
-                                                <a href="product-details.html"><img
-                                                        src="assets/images/portfolio/portfolio-01.jpg"
-                                                        alt="Nft Product Images"></a>
+                                                <a href="product-details.html"><img src="assets/images/portfolio/portfolio-01.jpg" alt="Nft Product Images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6 class="title"><a href="product-details.html">Balance</a></h6>

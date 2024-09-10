@@ -27,6 +27,25 @@
                 </li>
                 <li><a href="about.html">About</a>
                 </li>
+                <li class="has-droupdown">
+                    <a class="nav-link its_new" href="#">Explore</a>
+                    <ul class="submenu">
+                        <li><a href="explore-one.html">Explore Filter<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-two.html">Explore Isotop<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-three.html">Explore Carousel<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-four.html">Explore Simple<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-five.html">Explore Place Bid<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-six.html">Place Bid With Filter<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-seven.html">Place Bid With Isotop<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-eight.html">Place Bid With Carousel<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-list-style.html">Explore Style List<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-list-column-two.html">Explore List Col-Two<i class="feather-fast-forward"></i></a></li>
+                        <li><a href="explore-left-filter.html">Explore Left Filter<i class="feather-fast-forward"></i></a></li>
+                        <li><a class="live-expo" href="explore-live.html">Live Explore</a></li>
+                        <li><a class="live-expo" href="explore-live-two.html">Live Explore Carousel</a></li>
+                        <li><a class="live-expo" href="explore-live-three.html">Live With Place Bid</a></li>
+                    </ul>
+                </li>
                 <li class="with-megamenu">
                     <a class="nav-link its_new" href="#">Pages</a>
                     <div class="rn-megamenu">
@@ -127,7 +146,7 @@
                             <a href="#" class="avatar" data-tooltip="Import United"><img src="assets/images/import.png" alt="wallet_image"></a>
                             <a href="#" class="avatar" data-tooltip="Bea Cukai"><img src="assets/images/bea cukai.png" alt="wallet_image"></a>
                             <a href="#" class="avatar" data-tooltip="Inbis"><img src="assets/images/inbis.png" alt="wallet_image"></a>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -145,8 +164,9 @@
 
 </div>
 <!-- End banner area -->
+<!-- End banner area -->
 <!-- start banner area -->
-<div class="banner-area banner_xii bg_image--24 bg_image with-down-shadow">
+<div class="banner-area banner_xii with-down-shadow">
     <div class="container">
         <div class="row g-5 d-flex align-items-center flex-wrap">
             <!-- banner left -->
@@ -277,98 +297,59 @@
 </div>
 <!-- End service area -->
  <!-- start service area -->
- <div class="rn-service-area rn-section-gapTop">
+ <div class="image-area rn-section-gapTop">
     <div class="container">
-        <div class="row">
-            <div class="col-12 mb--50">
-                <h3 class="title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">How to order at Inseaa
-                </h3>
+        <div class="row mb--40">
+            <div class="title-area text-center">
+                <h3 class="title mb--15">How to order at inseaa</h3>
+                <p class="subtitle">Following are the procedures for ordering at Inseaa. For those of you who want to buy products at Inseaa but don't understand the process, you can check below</p>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7">
+                <!-- Start image wrapper with border and padding -->
+                <div class="border p-3 bg-light">
+                    <img src="{{asset('assets/images/fc3.png')}}" alt="Nuron" class="img-fluid">
+                </div>
+                <!-- End image wrapper -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- collection area Start -->
+<div class="rn-collection-area rn-section-gapTop">
+    <div class="container">
+        <div class="row mb--50 align-items-center">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Top Collection</h3>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
+                <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                    <a class="btn-transparent" href="#">VIEW ALL<i data-feather="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-5">
-            <!-- start single service -->
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800" class="rn-service-one color-shape-7">
-                    <div class="inner">
-                        <div class="icon">
-                            <img src="assets/images/icons/shape-7.png" alt="Shape">
+            @foreach ($categories as $category)
+            <!-- start single collention -->
+            <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800" class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
+                <a href="product-details.html" class="rn-collection-inner-one">
+                    <div class="collection-wrapper">
+                        <div class="collection-big-thumbnail">
+                            <img src="{{ asset('category_images/' . $category->image ) }}" alt="Nft_Profile">
                         </div>
-                        <div class="subtitle">Step-01</div>
-                        <div class="content">
-                            <h4 class="title"><a href="#">Search for the product</a></h4>
-                            <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <a class="over-link" href="#"></a>
-                </div>
-            </div>
-            <!-- End single service -->
-            <!-- start single service -->
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div data-sal="slide-up" data-sal-delay="200" data-sal-duration="800" class="rn-service-one color-shape-1">
-                    <div class="inner">
-                        <div class="icon">
-                            <img src="assets/images/icons/shape-1.png" alt="Shape">
-                        </div>
-                        <div class="subtitle">Step-02</div>
-                        <div class="content">
-                            <h4 class="title"><a href="#">Add product to cart</a></h4>
-                            <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a>
+                        <div class="collection-deg">
+                            <h6 class="title">{{ $category->name }}</h6>
+                            <span class="items">{{ $category->products->count() }} Items</span>
                         </div>
                     </div>
-                    <a class="over-link" href="#"></a>
-                </div>
+                </a>
             </div>
-            <!-- End single service -->
-            <!-- start single service -->
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div data-sal="slide-up" data-sal-delay="250" data-sal-duration="800" class="rn-service-one color-shape-5">
-                    <div class="inner">
-                        <div class="icon">
-                            <img src="assets/images/icons/shape-5.png" alt="Shape">
-                        </div>
-                        <div class="subtitle">Step-03</div>
-                        <div class="content">
-                            <h4 class="title"><a href="#"> Request a quote / fill the form</a></h4>
-                            <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <a class="over-link" href="#"></a>
-                </div>
-            </div>
-            <!-- End single service -->
-            <!-- start single service -->
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div data-sal="slide-up" data-sal-delay="300" data-sal-duration="800" class="rn-service-one color-shape-6">
-                    <div class="inner">
-                        <div class="icon">
-                            <img src="assets/images/icons/shape-6.png" alt="Shape">
-                        </div>
-                        <div class="subtitle">Step-04</div>
-                        <div class="content">
-                            <h4 class="title"><a href="#"> You will talk to our  representative.</a></h4>
-                            <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <a class="over-link" href="#"></a>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div data-sal="slide-up" data-sal-delay="300" data-sal-duration="800" class="rn-service-one color-shape-6">
-                    <div class="inner">
-                        <div class="icon">
-                            <img src="{{asset('assets/images/mobil3.png')}}" alt="Shape">
-                        </div>
-                        <div class="subtitle">Step-05</div>
-                        <div class="content">
-                            <h4 class="title"><a href="#"> Product ready to a shipment.</a></h4>
-                            <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <a class="over-link" href="#"></a>
-                </div>
-            </div>
-            <!-- End single service -->
+            <!-- End single collention -->
+            @endforeach
+
         </div>
     </div>
 </div>
@@ -377,7 +358,7 @@
     <div class="container">
         <div class="row mb--50 align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Newest Items</h3>
+                <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Popular Items</h3>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                 <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
@@ -497,42 +478,7 @@
     </div>
 </div>
 <!-- end product area -->
-<!-- collection area Start -->
-<div class="rn-collection-area rn-section-gapTop">
-    <div class="container">
-        <div class="row mb--50 align-items-center">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Top Collection</h3>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
-                <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <a class="btn-transparent" href="#">VIEW ALL<i data-feather="arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
 
-        <div class="row g-5">
-            @foreach ($categories as $category)
-            <!-- start single collention -->
-            <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800" class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
-                <a href="product-details.html" class="rn-collection-inner-one">
-                    <div class="collection-wrapper">
-                        <div class="collection-big-thumbnail">
-                            <img src="{{ asset('category_images/' . $category->image ) }}" alt="Nft_Profile">
-                        </div>
-                        <div class="collection-deg">
-                            <h6 class="title">{{ $category->name }}</h6>
-                            <span class="items">{{ $category->products->count() }} Items</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!-- End single collention -->
-            @endforeach
-
-        </div>
-    </div>
-</div>
 <!-- collection area End -->
 <!-- Modal -->
 <div class="rn-popup-modal share-modal-wrapper modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
