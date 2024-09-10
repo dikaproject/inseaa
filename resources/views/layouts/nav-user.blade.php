@@ -16,7 +16,7 @@
                             <li><a href="{{url('/about')}}">About</a>
                             </li>
                             <li class="has-menu-child-item">
-                                <a href="{{url('/allproduct')}}">Product</a>
+                                <a href="{{ route('view.products.index') }}">Product</a>
                             </li>
                             <li class="has-menu-child-item">
                             </li>
@@ -51,7 +51,16 @@
                 </div>
                 <div class="setting-option rn-icon-list notification-badge">
                     <div class="icon-box">
-                        <a href="activity.html"><i class="feather-shopping-cart"></i><span class="badge">6</span></a>
+                        <a href="#" onclick="alert('System dan Fitur dalam tahap pengembangan')"><i
+                                class="feather-bell"></i><span class="badge">6</span></a>
+                    </div>
+                </div>
+                <div class="setting-option rn-icon-list notification-badge">
+                    <div class="icon-box">
+                        <a href="{{ route('cart.view') }}">
+                            <i class="feather-shopping-cart"></i>
+                            <span class="badge">{{ count(session('cart', [])) }}</span>
+                        </a>
                     </div>
                 </div>
 

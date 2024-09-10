@@ -151,10 +151,14 @@
                     </div>
 
                     <!-- Add to Cart Button -->
-                    <div class="add-to-cart-btn mt-4">
-                        <button class="btn btn-primary btn-lg w-100">Add to Cart</button>
-                    </div>
-                    <!-- End of Add to Cart Button -->
+<div class="add-to-cart-btn mt-4">
+    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary btn-lg w-100">Add to Cart</button>
+    </form>
+</div>
+<!-- End of Add to Cart Button -->
+
 
                 </div>
             </div>

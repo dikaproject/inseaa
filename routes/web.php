@@ -198,18 +198,9 @@ Route::get("about",function(){
     return view('layouts.about', compact('categories', 'blogs'));
 });
 
-Route::get("allproduct",function(Request $request){
-    $categories = App\Models\Category::all();
+// Route untuk menampilkan semua produk dengan filter kategori
+Route::get('allproduct', [ProductController::class, 'view'])->name('view.products.index');
 
-    // Cek apakah ada request untuk filter kategori
-    if ($request->has('category')) {
-        $products = App\Models\Product::where('category_id', $request->category)->get();
-    } else {
-        $products = App\Models\Product::all();
-    }
-    $products = App\Models\Product::all();
-    return view('products.allproducts', compact('categories', 'products'));
-});
 
 Route::get('/testing', function () {
     return view('testing');
@@ -297,6 +288,12 @@ Route::get('/search-product', [ProductController::class, 'searchProduct'])->name
 
 
 //  New feature system
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+// Route untuk menambah produk ke cart
+Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+// Route untuk melihat isi cart
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+// Route untuk checkout dan kirim form
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+

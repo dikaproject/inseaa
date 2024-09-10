@@ -156,6 +156,20 @@ class ProductController extends Controller
         return view('products.show', compact('product', 'attachments', 'categories', 'products'));
     }
 
+    public function view(Request $request)
+    {
+        $categories = Category::all();
+
+        // Cek apakah ada request untuk filter kategori
+        if ($request->has('category') && $request->category != '') {
+            $products = Product::where('category_id', $request->category)->get();
+        } else {
+            $products = Product::all();
+        }
+
+        return view('products.allproducts', compact('categories', 'products'));
+    }
+
     public function destroy(Product $product)
     {
         // Hapus gambar terkait
