@@ -25,61 +25,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/feature.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/odometer.css') }}">
-    <style>
-        #search-results {
-            position: absolute;
-            background: white;
-            border: 1px solid #ddd;
-            max-height: 300px;
-            overflow-y: auto;
-            width: 100%;
-            z-index: 1000;
-            padding: 10px;
-        }
-
-        .search-result-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .search-result-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .search-result-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-result-image {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .search-result-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-name {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .product-category {
-            font-size: 12px;
-            color: #888;
-        }
-    </style>
 
     <!-- Style css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -95,58 +40,6 @@
     <!-- Header End -->
 
 
-
-    <!-- Content Layouting Page -->
-    {{-- <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-end">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @if ($cartItems->isEmpty())
-                        <p>Your cart is empty.</p>
-                    @else
-                        <ul class="list-group">
-                            @foreach ($cartItems as $cartItem)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <img src="{{ asset('images/' . $cartItem->product->images) }}"
-                                        alt="{{ $cartItem->product->alt_text }}"
-                                        style="width: 50px; height: 50px; object-fit: cover;">
-                                    <div>
-                                        <h6>{{ $cartItem->product->name }}</h6>
-                                        <p>Category: {{ $cartItem->product->category->name }}</p>
-                                    </div>
-                                    <span class="badge bg-primary">{{ $cartItem->quantity }}</span>
-                                    <!-- Form untuk mengupdate quantity -->
-                                    <form action="{{ route('cart.update', $cartItem->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <input type="number" name="quantity" value="{{ $cartItem->quantity }}"
-                                            min="1" class="form-control form-control-sm d-inline w-auto">
-                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                    </form>
-                                    <!-- Form untuk menghapus item dari cart -->
-                                    <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                                    </form>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="#" class="btn btn-primary">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     @yield('landing-page')
     @yield('about')
     @yield('allcategory')
@@ -156,6 +49,7 @@
     @yield('blog')
     @yield('blogdetail')
     @yield('detailcategory')
+    @yield('cart')
 
 
 
@@ -240,49 +134,6 @@
                 document.getElementById('search-results').style.display =
                     'none'; // Sembunyikan dropdown jika input kosong
             }
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cartIcon = document.querySelector('.feather-shopping-cart .badge');
-
-            // Fungsi untuk memperbarui jumlah item di cart
-            function updateCartCount() {
-                fetch('/cart')
-                    .then(response => response.json())
-                    .then(data => {
-                        cartIcon.innerText = data.cartCount;
-                    });
-            }
-
-            // Menambahkan item ke cart
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const productId = this.dataset.productId;
-
-                    fetch('/cart/add', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector(
-                                    'meta[name="csrf-token"]').getAttribute('content')
-                            },
-                            body: JSON.stringify({
-                                product_id: productId
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                updateCartCount();
-                            }
-                        });
-                });
-            });
-
-            // Inisialisasi jumlah item di cart saat halaman dimuat
-            updateCartCount();
         });
     </script>
 

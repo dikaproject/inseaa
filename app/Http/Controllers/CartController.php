@@ -2,37 +2,100 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\CartItem;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderPlaced;
+use App\Models\Category;
 
 class CartController extends Controller
 {
-    public function add(Request $request)
+    public function addToCart(Request $request, $id)
     {
-        $user = auth()->user();
-        $product = Product::findOrFail($request->product_id);
+        $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
 
-        $cartItem = CartItem::updateOrCreate(
-            ['user_id' => $user->id, 'product_id' => $product->id],
-            ['quantity' => DB::raw('quantity + 1')]
-        );
+        $cart = session()->get('cart', []);
+
+        // Jika cart sudah memiliki produk ini, tambahkan quantity
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            // Jika belum ada, tambahkan ke cart
+            $cart[$id] = [
+                'name' => $product->name,
+                'description' => $product->description, // Menambahkan deskripsi produk
+                'quantity' => 1,
+                'image' => $product->images, // Pastikan field image ada di tabel products
+            ];
+        }
+
+        session()->put('cart', $cart); // Simpan cart ke session
+
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function viewCart()
+    {
+        $cart = session()->get('cart', []);
+        $categories = Category::all();
+
+        return view('cart.index', compact('cart', 'categories'));
+    }
+
+    public function removeFromCart($id)
+    {
+        $cart = session()->get('cart');
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart.view')->with('success', 'Item removed from cart.');
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = max(1, $request->input('quantity')); // Minimum quantity 1
+            session()->put('cart', $cart);
+        }
 
         return response()->json(['success' => true]);
     }
 
-    public function index()
-    {
-        $user = auth()->user();
-        $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
+    public function checkout(Request $request)
+{
+    $cart = session()->get('cart', []);
 
-        return view('cart.index', compact('cartItems'));
+    // Simpan data order ke database
+    $order = Order::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'subject' => $request->subject,
+        'message' => $request->message,
+    ]);
+
+    // Simpan item cart ke order_items
+    foreach ($cart as $productId => $details) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $productId,
+            'quantity' => $details['quantity'],
+        ]);
     }
 
-    public function remove($id)
-    {
-        CartItem::findOrFail($id)->delete();
-        return redirect()->route('cart.index');
-    }
+    // Hapus session cart
+    session()->forget('cart');
+
+    // Kirim email konfirmasi
+    Mail::to($request->email)->send(new OrderPlaced($order));
+
+    return redirect()->route('products')->with('success', 'Your order has been placed! Please check your email.');
+}
+
 }

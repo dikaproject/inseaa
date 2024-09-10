@@ -22,6 +22,12 @@ class Product extends Model
         return $this->hasMany(Attachment::class);
     }
 
+    // Relasi dengan order_items
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
