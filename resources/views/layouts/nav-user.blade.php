@@ -50,10 +50,7 @@
                     </form>
                 </div>
                 <div class="setting-option rn-icon-list notification-badge">
-                    <div class="icon-box">
-                        <a href="#" onclick="alert('System dan Fitur dalam tahap pengembangan')"><i
-                                class="feather-bell"></i><span class="badge">6</span></a>
-                    </div>
+
                 </div>
                 <div class="setting-option rn-icon-list notification-badge">
                     <div class="icon-box">

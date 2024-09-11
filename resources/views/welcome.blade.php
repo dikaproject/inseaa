@@ -97,8 +97,8 @@
                                 </div>
                                 <div class="col-lg-3 single-mega-item">
                                     <ul class="mega-menu-item">
-                                        <li><a href="about.html">About Us<i data-feather="award"></i></a></li>
-                                        <li><a href="contact.html">Contact <i data-feather="headphones"></i></a></li>
+                                        <li><a href="{{url('/about')}}">About Us<i data-feather="award"></i></a></li>
+                                        <li><a href="{{url('/contact')}}">Contact <i data-feather="headphones"></i></a></li>
                                         <li><a href="support.html">Support/FAQ <i data-feather="help-circle"></i></a></li>
                                         <li><a href="terms-condition.html">Terms & Condition <i data-feather="list"></i></a></li>
                                         <li><a href="coming-soon.html">Coming Soon <i data-feather="clock"></i></a></li>
@@ -110,15 +110,8 @@
                         </div>
                     </div>
                 </li>
-                <li class="has-droupdown has-menu-child-item">
-                    <a class="nav-link its_new" href="blog.html">Blog</a>
-                    <ul class="submenu">
-                        <li><a href="blog-single-col.html">Blog Single Column<i class="feather-fast-forward"></i></a></li>
-                        <li><a href="blog-col-two.html">Blog Two Column<i class="feather-fast-forward"></i></a></li>
-                        <li><a href="blog-col-three.html">Blog Three Column<i class="feather-fast-forward"></i></a></li>
-                        <li><a href="blog.html">Blog Four Column<i class="feather-fast-forward"></i></a></li>
-                        <li><a href="blog-details.html">Blog Details<i class="feather-fast-forward"></i></a></li>
-                    </ul>
+                <li class=>
+                    <a class="nav-link its_new" href="{{url('/blog')}}">Blog</a>
                 </li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>

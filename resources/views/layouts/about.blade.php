@@ -23,27 +23,10 @@
                     <li class="has-droupdown">
                         <a class="nav-link its_new" href="#">Home</a>
                         <ul class="submenu">
-                            <li><a href="index.html">Home page - 01 <i class="feather-home"></i></a></li>
-                            <li><a href="index-two.html">Home page - 02<i class="feather-home"></i></a></li>
-                            <li><a href="index-three.html">Home page - 03<i class="feather-home"></i></a></li>
-                            <li><a href="index-four.html">Home page - 04<i class="feather-home"></i></a></li>
-                            <li><a href="index-five.html">Home page - 05<i class="feather-home"></i></a></li>
-                            <li><a href="index-six.html">Home page - 06<i class="feather-home"></i></a></li>
-                            <li><a href="index-seven.html">Home page - 07<i class="feather-home"></i></a></li>
-                            <li><a href="index-eight.html">Home page - 08<i class="feather-home"></i></a></li>
-                            <li><a href="index-nine.html">Home page - 09<i class="feather-home"></i></a></li>
-                            <li><a href="index-ten.html">Home page - 10<i class="feather-home"></i></a></li>
-                            <li><a href="index-eleven.html">Home page - 11<i class="feather-home"></i></a></li>
-                            <li><a href="index-twelve.html">Home page - 12<i class="feather-home"></i></a></li>
-                            <li><a href="index-thirteen.html">Home page - 13<i class="feather-home"></i></a></li>
-                            <li><a href="index-fourteen.html">Home page - 14<i class="feather-home"></i></a></li>
-                            <li><a href="index-fifteen.html">Home page - 15<i class="feather-home"></i></a></li>
-                            <li><a href="index-sixteen.html">Home page - 16<i class="feather-home"></i></a></li>
-                            <li><a href="index-seventeen.html">Home page - 17<i class="feather-home"></i></a></li>
-                            <li><a href="index-eighteen.html">Home page - 18<i class="feather-home"></i></a></li>
+                           
                         </ul>
                     </li>
-                    <li><a href="about.html">About</a>
+                    <li><a href="{{url('/about')}}">About</a>
                     </li>
                     <li class="has-droupdown">
                         <a class="nav-link its_new" href="#">Explore</a>
@@ -180,7 +163,7 @@
         <div class="container-fluid about-fluidimg ">
             <div class="row">
                 <div class="img-wrapper">
-                    <div class="bg_image--22 bg_image">
+                    <div class="bg_image bg-image-border" style="background-image: url('{{ asset('assets/images/about1.png') }}'); background-size: cover; background-position: center;"">
                         <img src="" alt="">
                     </div>
                 </div>
@@ -253,7 +236,8 @@
         <div class="container-fluid about-fluidimg-cta">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="bg_image--6 bg_image bg-image-border" data-black-overlay="7">
+                    <div class="bg_image bg-image-border" style="background-image: url('{{ asset('assets/images/about.png') }}'); background-size: cover; background-position: center;" data-black-overlay="7">
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="call-to-action-wrapper">
