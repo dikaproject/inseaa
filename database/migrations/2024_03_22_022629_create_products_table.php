@@ -21,6 +21,11 @@ class CreateProductsTable extends Migration
             $table->string('alt_text')->nullable();
             $table->string('images')->nullable(); // nama file gambar (png / jpeg)
             $table->unsignedBigInteger('category_id'); // Kunci asing ke tabel kategori
+            // Tambahkan seller_id sebagai foreign key ke tabel users
+            $table->unsignedBigInteger('seller_id')->nullable();
+            $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
+            // Tambahkan kolom status dengan default 'pending'
+            $table->string('status')->default('pending');
             $table->string('pdf')->nullable();
             $table->timestamps();
 

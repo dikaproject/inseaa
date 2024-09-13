@@ -160,11 +160,12 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        // Cek apakah ada request untuk filter kategori
         if ($request->has('category') && $request->category != '') {
-            $products = Product::where('category_id', $request->category)->get();
+            $products = Product::where('category_id', $request->category)
+                ->where('status', 'approved')
+                ->get();
         } else {
-            $products = Product::all();
+            $products = Product::where('status', 'approved')->get();
         }
 
         return view('products.allproducts', compact('categories', 'products'));
@@ -198,5 +199,29 @@ class ProductController extends Controller
 
         // Redirect back to the product's page with a success message
         return redirect()->back()->with('success', 'All attachments deleted successfully.');
+    }
+
+    public function pending()
+    {
+        $products = Product::where('status', 'pending')->get();
+        return view('admin.products.pending', compact('products'));
+    }
+
+    public function approve($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->status = 'approved';
+        $product->save();
+
+        return redirect()->route('admin.products.pending')->with('success', 'Produk berhasil disetujui.');
+    }
+
+    public function reject($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->status = 'rejected';
+        $product->save();
+
+        return redirect()->route('admin.products.pending')->with('success', 'Produk berhasil ditolak.');
     }
 }

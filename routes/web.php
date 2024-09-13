@@ -12,7 +12,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SellerProductController;
 use App\Http\Controllers\TestimonialController;
 use Spatie\Analytics\Facades\Analytics;
 use Illuminate\Http\Request;
@@ -145,6 +147,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
     Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    Route::get('admin/products-pending', [ProductController::class, 'pending'])->name('products.pending');
+    Route::post('admin/products/{id}/approve', [ProductController::class, 'approve'])->name('products.approve');
+    Route::post('admin/products/{id}/reject', [ProductController::class, 'reject'])->name('products.reject');
 });
 
 
@@ -297,3 +302,25 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
 
+
+
+
+//  seller
+Route::prefix('seller')->name('seller.')->group(function () {
+    Route::get('register', [SellerAuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [SellerAuthController::class, 'register']);
+
+    Route::get('login', [SellerAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [SellerAuthController::class, 'login']);
+
+    Route::middleware(['auth', 'role:seller'])->group(function () {
+        Route::get('dashboard', [SellerAuthController::class, 'dashboard'])->name('dashboard');
+        // Tambahkan route lain yang diperlukan untuk seller
+    });
+
+    Route::post('logout', [SellerAuthController::class, 'logout'])->name('logout');
+});
+
+Route::group(['middleware' => ['auth', 'role:seller'], 'prefix' => 'seller', 'as' => 'seller.'], function () {
+    Route::resource('products', SellerProductController::class);
+});
