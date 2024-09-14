@@ -40,7 +40,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/', function () {
-    $products = App\Models\Product::all();
+    $products = Product::with('images')->where('status', 'approved')->get();
     $sliders = App\Models\Slider::all();
     $testimonials = App\Models\Testimonial::all();
     $categories = App\Models\Category::all();
@@ -150,6 +150,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/products-pending', [ProductController::class, 'pending'])->name('products.pending');
     Route::post('admin/products/{id}/approve', [ProductController::class, 'approve'])->name('products.approve');
     Route::post('admin/products/{id}/reject', [ProductController::class, 'reject'])->name('products.reject');
+    Route::delete('admin/products/{product}/images/{image}', [ProductController::class, 'destroyImage'])->name('admin.products.destroyImage');
 });
 
 
@@ -323,4 +324,5 @@ Route::prefix('seller')->name('seller.')->group(function () {
 
 Route::group(['middleware' => ['auth', 'role:seller'], 'prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::resource('products', SellerProductController::class);
+    Route::delete('products/{product}/images/{image}', [SellerProductController::class, 'destroyImage'])->name('products.destroyImage');
 });

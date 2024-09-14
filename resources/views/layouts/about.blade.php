@@ -23,7 +23,7 @@
                     <li class="has-droupdown">
                         <a class="nav-link its_new" href="#">Home</a>
                         <ul class="submenu">
-                           
+
                         </ul>
                     </li>
                     <li><a href="{{url('/about')}}">About</a>
@@ -183,7 +183,7 @@
                                     necessitatibus libero minima vitae esse ea consequatur in. Possimus fugiat cum esse
                                     consectetur. Eius eum suscipit autem corporis!
                                 </p>
-                                <a href="blog.html" class="btn btn-primary-alta btn-large sal-animate mt--20"
+                                <a href="{{ url('blog') }}" class="btn btn-primary-alta btn-large sal-animate mt--20"
                                     data-sal="slide-up" data-sal-duration="800" data-sal-delay="150">See Our Blog</a>
                             </div>
                         </div>
@@ -249,8 +249,8 @@
                                         tremendous, and according to Pymnts.com, the total sales volume </p>
                                     <div class="callto-action-btn-wrapper" data-sal="slide-up" data-sal-duration="800"
                                         data-sal-delay="150">
-                                        <a href="create.html" class="btn btn-primary btn-large">Create</a>
-                                        <a href="contact.html" class="btn btn-primary-alta btn-large">Contact Us</a>
+                                        <a href="{{ route('seller.register') }}" class="btn btn-primary btn-large">Join</a>
+                                        <a href="{{ url('contact') }}" class="btn btn-primary-alta btn-large">Contact Us</a>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +273,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <a class="btn-transparent" href="#">VIEW ALL<i data-feather="arrow-right"></i></a>
+                        <a class="btn-transparent" href="{{ url('blog') }}">VIEW ALL<i data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>

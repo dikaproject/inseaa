@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->longText('details_product')->nullable();
             $table->string('slug')->unique();
             $table->string('alt_text')->nullable();
-            $table->string('images')->nullable(); // nama file gambar (png / jpeg)
             $table->unsignedBigInteger('category_id'); // Kunci asing ke tabel kategori
             // Tambahkan seller_id sebagai foreign key ke tabel users
             $table->unsignedBigInteger('seller_id')->nullable();

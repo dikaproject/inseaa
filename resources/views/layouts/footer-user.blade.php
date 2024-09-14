@@ -42,11 +42,11 @@
                 <div class="footer-widget widget-information">
                     <h6 class="widget-title">Information</h6>
                     <ul class="footer-list-one">
-                        <li class="single-list"><a href="#">Home</a></li>
-                        <li class="single-list"><a href="#">About</a></li>
-                        <li class="single-list"><a href="#">Product</a></li>
-                        <li class="single-list"><a href="#">Contact</a></li>
-                        <li class="single-list"><a href="#">Blog</a></li>
+                        <li class="single-list"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="single-list"><a href="{{ url('about') }}">About</a></li>
+                        <li class="single-list"><a href="{{ route('view.products.index') }}">Product</a></li>
+                        <li class="single-list"><a href="{{ url('contact') }}">Contact</a></li>
+                        <li class="single-list"><a href="{{ url('blog') }}">Blog</a></li>
                     </ul>
                 </div>
             </div>

@@ -45,6 +45,12 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    // Relasi dengan product_images
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

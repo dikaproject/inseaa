@@ -49,8 +49,13 @@
                         class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="product-style-one no-overlay">
                             <div class="card-thumbnail">
-                                <a href="{{ route('products.show', $product) }}"><img
-                                        src="{{ asset('images/' . $product->images) }}" alt="{{ $product->alt_text }}"></a>
+                                <a href="{{ route('products.show', $product) }}">
+                                    @if($product->images->isNotEmpty())
+                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}" alt="{{ $product->images->first()->alt_text }}">
+                                    @else
+                                        <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
+                                    @endif
+                                </a>
                             </div>
                             <div class="product-share-wrapper">
 

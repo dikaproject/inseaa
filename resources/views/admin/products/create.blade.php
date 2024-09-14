@@ -65,8 +65,9 @@
                                 <input type="text" name="alt_text" id="alt_text" class="form-control" placeholder="Alt Text" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="images">Upload File Product</label>
-                                <input type="file" name="images" id="images" class="form-control" required accept="image/png, image/jpeg">
+                                <label class="form-label" for="images">Unggah Gambar Produk</label>
+                                <input type="file" name="images[]" id="images" class="form-control" required accept="image/png, image/jpeg" multiple>
+                                <small class="text-muted">Anda dapat mengunggah lebih dari satu gambar.</small>
                             </div>
                             <div class="mb-3">
                                 <label for="pdf" class="form-label">Upload PDF</label>

@@ -66,8 +66,26 @@
                                 <input value="{{ $product->alt_text }}" type="text" name="alt_text" id="alt_text" class="form-control" placeholder="ALT Text Images" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="images">Upload File Product</label>
-                                <input type="file" name="images" id="images" class="form-control" accept="image/png, image/jpeg">
+                                <label class="form-label" for="images">Unggah Gambar Produk (Jika ingin mengganti)</label>
+                                <input type="file" name="images[]" id="images" class="form-control" accept="image/png, image/jpeg" multiple>
+                                <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
+                            </div>
+                            <!-- Tampilkan gambar saat ini -->
+                            <div class="mb-3">
+                                <label class="form-label">Gambar Saat Ini:</label>
+                                <div class="row">
+                                    @foreach($product->images as $image)
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->alt_text }}" class="img-thumbnail">
+                                            <!-- Jika ingin menambahkan fitur hapus gambar individual -->
+                                            <form action="{{ route('admin.products.destroyImage', [$product->id, $image->id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Hapus</button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="category" class="form-label">Category</label>
