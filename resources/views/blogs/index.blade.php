@@ -71,24 +71,10 @@
             <div class="row">
                 <div class="col-lg-12" data-sal="slide-up" data-sal-delay="550" data-sal-duration="800">
                     <nav class="pagination-wrapper" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
+                        {{ $blogs->links('vendor.pagination.default') }}
                     </nav>
                 </div>
             </div>
-            <script>
-                document.querySelectorAll('.page-link').forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        alert('Fitur dalam tahap pengembangan');
-                    });
-                });
-            </script>
             </div>
         </div>
     </div>

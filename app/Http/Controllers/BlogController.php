@@ -98,7 +98,8 @@ class BlogController extends Controller
     function show(Blog $blog)
     {
         $categories = Category::all();
-        return view('blogs.detail', compact('blog', 'categories'));
+        $blogs = Blog::all();
+        return view('blogs.detail', compact('blog', 'categories', 'blogs'));
     }
 
     function destroy(Blog $blog)

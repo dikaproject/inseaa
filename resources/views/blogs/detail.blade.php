@@ -170,71 +170,18 @@
             <div class="col-xl-8 col-lg-8">
                 <div class="rn-blog-listen">
                     <div class="blog-content-top">
-                        <h2 class="title">Digital Marketo to Their New Office.</h2>
-                        <span class="date">2 Aug, 2022</span>
+                        <h2 class="title">{{ $blog->title }}</h2>
+                        <span class="date">{{ $blog->created_at->format('d F Y') }}</span>
                     </div>
                     <div class="bd-thumbnail">
                         <div class="large-img mb--30">
-                            <img class="w-100" src="assets/images/blog/lg/blog-01.jpg" alt="Blog Images">
+                            <img class="w-100" src="{{ asset('blog_images/' . $blog->image) }}" alt="{{ $blog->slug }}">
                         </div>
                     </div>
                     <div class="news-details">
-
-                        <p>Nobis eleifend option congue nihil imperdiet doming id quod mazim placerat
-                            facer
-                            possim assum.
-                            Typi non
-                            habent claritatem insitam; est usus legentis in iis qui facit eorum
-                            claritatem.
-                            Investigationes
-                            demonstraverunt
-                            lectores legere me lius quod ii legunt saepius. Claritas est etiam processus
-                            dynamicus, qui
-                            sequitur
-                            mutationem consuetudium lectorum.</p>
-                        <h4>Nobis eleifend option conguenes.</h4>
-                        <p>Mauris tempor, orci id pellentesque convallis, massa mi congue eros, sed
-                            posuere
-                            massa nunc quis
-                            dui.
-                            Integer ornare varius mi, in vehicula orci scelerisque sed. Fusce a massa
-                            nisi.
-                            Curabitur sit
-                            amet
-                            suscipit nisl. Sed eget nisl laoreet, suscipit enim nec, viverra eros. Nunc
-                            imperdiet risus
-                            leo,
-                            in rutrum erat dignissim id.</p>
-                        <p>Ut rhoncus vestibulum facilisis. Duis et lorem vitae ligula cursus venenatis.
-                            Class aptent
-                            taciti sociosqu
-                            ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vitae
-                            nisi
-                            tortor. Morbi
-                            leo
-                            nulla, posuere vel lectus a, egestas posuere lacus. Fusce eleifend hendrerit
-                            bibendum. Morbi
-                            nec
-                            efficitur ex.</p>
-                        <h4>Mauris tempor, orci id pellentesque.</h4>
-                        <p>Nulla non ligula vel nisi blandit egestas vel eget leo. Praesent fringilla
-                            dapibus dignissim.
-                            Pellentesque
-                            quis quam enim. Vestibulum ultrices, leo id suscipit efficitur, odio lorem
-                            rhoncus dolor, a
-                            facilisis
-                            neque mi ut ex. Quisque tempor urna a nisi pretium, a pretium massa
-                            tristique.
-                            Nullam in
-                            aliquam
-                            diam. Maecenas at nibh gravida, ornare eros non, commodo ligula. Sed
-                            efficitur
-                            sollicitudin
-                            auctor.
-                            Quisque nec imperdiet purus, in ornare odio. Quisque odio felis, vestibulum
-                            et.</p>
+                        <p>{!! $blog->content !!}</p>
                     </div>
-                    <div class="comments-wrapper pt--40">
+                    {{-- <div class="comments-wrapper pt--40">
                         <div class="comments-area">
                             <div class="trydo-blog-comment">
                                 <h5 class="comment-title mb--40">9 replies on “Have You Heard?
@@ -406,12 +353,12 @@
                                 <!-- End Coment List  -->
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- comment form area Start -->
 
                     <!-- Start Contact Form Area  -->
-                    <div class="rn-comment-form pt--60">
+                    {{-- <div class="rn-comment-form pt--60">
                         <div class="inner">
                             <div class="section-title">
                                 <span class="subtitle">Have a Comment?</span>
@@ -437,88 +384,38 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End Contact Form Area  -->
 
                     <!-- comment form area End -->
                     <div class="row g-5 pt--60">
                         <div class="col-lg-12">
-                            <h3 class="title">Related Post</h3>
+                            <h3 class="title">New Post</h3>
                         </div>
-                        <!-- start single blog -->
+                @foreach ($blogs as $blog)
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                             <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-02.jpg" alt="Personal Portfolio Images">
+                                        <a href="{{ route('blogs.show', $blog) }}">
+                                            <img src="{{ asset('blog_images/' . $blog->image) }}" alt="{{ $blog->slug }}">
                                         </a>
                                     </div>
                                     <div class="content">
                                         <div class="category-info">
                                             <div class="category-list">
-                                                <a href="blog-details.html">Development</a>
+                                                <a href="{{ route('blogs.show', $blog) }}">{{ $blog->author }}</a>
                                             </div>
                                             <div class="meta">
-                                                <span><i class="feather-clock"></i> 2 hour read</span>
+                                                <span><i class="feather-clock"></i>{{ $blog->created_at->format('d F Y') }}</span>
                                             </div>
                                         </div>
-                                        <h4 class="title"><a href="blog-details.html">The services provide for
-                                                design <i class="feather-arrow-up-right"></i></a></h4>
+                                        <h4 class="title"><a href="{{ route('blogs.show', $blog) }}">{{ $blog->title }} <i class="feather-arrow-up-right"></i></a></h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end single blog -->
-                        <!-- start single blog -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
-                                <div class="inner">
-                                    <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-03.jpg" alt="Personal Portfolio Images">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <div class="category-info">
-                                            <div class="category-list">
-                                                <a href="blog-details.html">Design</a>
-                                            </div>
-                                            <div class="meta">
-                                                <span><i class="feather-clock"></i> 5 min read</span>
-                                            </div>
-                                        </div>
-                                        <h4 class="title"><a href="blog-details.html">More important feature for
-                                                designer<i class="feather-arrow-up-right"></i></a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end single blog -->
-                        <!-- start single blog -->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
-                                <div class="inner">
-                                    <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-04.jpg" alt="Personal Portfolio Images">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <div class="category-info">
-                                            <div class="category-list">
-                                                <a href="blog-details.html">Marketing</a>
-                                            </div>
-                                            <div class="meta">
-                                                <span><i class="feather-clock"></i> 10 min read</span>
-                                            </div>
-                                        </div>
-                                        <h4 class="title"><a href="blog-details.html">Inavalide purpose classes &
-                                                motivation.<i class="feather-arrow-up-right"></i></a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <!-- end single blog -->
                     </div>
                 </div>
@@ -532,39 +429,10 @@
                         <h3 class="title">Recent Posts</h3>
                         <div class="inner">
                             <ul>
-                                <li><a class="d-block" href="#">Best Corporate Tips You Will
-                                        Read This Year.</a><span class="cate">Development</span></li>
-                                <li><a class="d-block" href="#">Should Fixing Corporate Take
-                                        100 Steps.</a><span class="cate">UX Design</span></li>
-                                <li><a class="d-block" href="#">The Next 100 Things To
-                                        Immediately Do About.</a><span class="cate">Development</span></li>
-                                <li><a class="d-block" href="#">Top 5 Lessons About
-                                        Corporate
-                                        To Learn Before.</a><span class="cate">Marketing</span></li>
+                                @foreach ($blogs as $blog)
+                                <li><a class="d-block" href="#">{{ $blog->short_description }}</a><span class="cate">By {{ $blog->author }}</span></li>
+                                @endforeach
                             </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="rbt-single-widget widget_tag_cloud mt--40">
-                        <h3 class="title">Tags</h3>
-                        <div class="inner mt--20">
-                            <div class="tagcloud">
-                                <a href="#">Digital Art</a>
-                                <a href="#">Crypto</a>
-                                <a href="#">NFT</a>
-                                <a href="#">Digital Image</a>
-                                <a href="#">Bit Coin</a>
-                                <a href="#">Coin Base</a>
-                                <a href="#">Development</a>
-                                <a href="#">App Art</a>
-                                <a href="#">Startup</a>
-                                <a href="#">Images</a>
-                                <a href="#">Music</a>
-                                <a href="#">Non-Replacable</a>
-                                <a href="#">Art</a>
-                                <a href="#">Magic</a>
-                            </div>
                         </div>
                     </div>
                 </aside>

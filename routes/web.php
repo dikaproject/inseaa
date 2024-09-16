@@ -245,7 +245,7 @@ Route::middleware(['admin'])->group(function () {
 Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('/blog', function () {
-    $blogs = App\Models\Blog::all();
+    $blogs = App\Models\Blog::paginate(10);
     $sliders = App\Models\Slider::all();
     $categories = App\Models\Category::all();
     return view('blogs.index', compact('blogs', 'sliders', 'categories'));
