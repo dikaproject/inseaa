@@ -265,7 +265,7 @@ class ProductController extends Controller
         $product->status = 'approved';
         $product->save();
 
-        return redirect()->route('admin.products.pending')->with('success', 'Produk berhasil disetujui.');
+        return redirect()->route('products.pending')->with('success', 'Produk berhasil disetujui.');
     }
 
     public function reject($id)
@@ -274,6 +274,6 @@ class ProductController extends Controller
         $product->status = 'rejected';
         $product->save();
 
-        return redirect()->route('admin.products.pending')->with('success', 'Produk berhasil ditolak.');
+        return redirect()->route('products.pending')->with('success', 'Produk berhasil ditolak.');
     }
 }
