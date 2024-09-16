@@ -149,13 +149,13 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 col-12">
-                <h5 class="title text-center text-md-start">Blog Details</h5>
+                <h5 class="title text-center text-md-start">{{ $blog->short_description }}</h5>
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <ul class="breadcrumb-list">
-                    <li class="item"><a href="index.html">Home</a></li>
+                    <li class="item"><a href="{{ url('blog') }}">Home</a></li>
                     <li class="separator"><i class="feather-chevron-right"></i></li>
-                    <li class="item current">Blog Details</li>
+                    <li class="item current">{{ $blog->short_description }}</li>
                 </ul>
             </div>
         </div>

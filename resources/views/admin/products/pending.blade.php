@@ -25,13 +25,13 @@
                                 <td>{{ $product->seller->name }}</td>
                                 <td>
                                     <!-- Form untuk Setujui dengan method POST -->
-                                    <form action="{{ route('admin.products.approve', $product->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('products.approve', $product->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-info btn-sm">Setujui</button>
                                     </form>
 
                                     <!-- Form untuk Tolak dengan method POST dan konfirmasi -->
-                                    <form action="{{ route('admin.products.reject', $product->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to reject this product?');">
+                                    <form action="{{ route('products.reject', $product->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to reject this product?');">
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
