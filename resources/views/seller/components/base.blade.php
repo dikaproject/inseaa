@@ -73,7 +73,7 @@
         @yield('permissions')
         @yield('roles')
         @yield('content')
-
+        
         {{-- footer --}}
         @include('seller.components.footer')
     </main>

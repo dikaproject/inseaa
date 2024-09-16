@@ -101,13 +101,13 @@
                             <div class="d-flex align-items-start justify-content-between mb-4">
                                 <div class="d-flex gap-4 align-items-center">
                                     <div class="avatar-text avatar-lg bg-gray-200">
-                                        <i class="feather-user-x"></i>
+                                        <i class="feather-dollar-sign"></i>
                                     </div>
                                     <div>
                                         <div class="fs-4 fw-bold text-dark">
                                             <span class="counter">0</span>
                                         </div>
-                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Trafffic Website</h3>
+                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Items Sold</h3>
                                     </div>
                                 </div>
                                 <a href="javascript:void(0);" class="">
@@ -126,13 +126,13 @@
                             <div class="d-flex align-items-start justify-content-between mb-4">
                                 <div class="d-flex gap-4 align-items-center">
                                     <div class="avatar-text avatar-lg bg-gray-200">
-                                        <i class="feather-bar-chart"></i>
+                                        <i class="feather-box"></i>
                                     </div>
                                     <div>
                                         <div class="fs-4 fw-bold text-dark">
                                             <span class="counter">3</span>
                                         </div>
-                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Active Users</h3>
+                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Products</h3>
                                     </div>
                                 </div>
                                 <a href="javascript:void(0);" class="">
@@ -145,62 +145,7 @@
                 </div>
                 <!-- [Converted Leads] end -->
                 <!-- [Projects In Progress] start -->
-                <div class="col-xxl-3 col-md-6">
-                    <div class="card stretch stretch-full">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between mb-4">
-                                <div class="d-flex gap-4 align-items-center">
-                                    <div class="avatar-text avatar-lg bg-gray-200">
-                                        <i class="feather-book"></i>
-                                    </div>
-                                    <div>
-                                        <div class="fs-4 fw-bold text-dark">
-                                            <span class="counter">2</span>
-                                        </div>
-                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Popular Page</h3>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0);" class="">
-                                    <i class="feather-more-vertical"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- [Projects In Progress] end -->
-                <!-- [Conversion Rate] start -->
-                <div class="col-xxl-3 col-md-6">
-                    <div class="card stretch stretch-full">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between mb-4">
-                                <div class="d-flex gap-4 align-items-center">
-                                    <div class="avatar-text avatar-lg bg-gray-200">
-                                        <i class="feather-download"></i>
-                                    </div>
-                                    <div>
-                                        <div class="fs-4 fw-bold text-dark">
-                                            <span class="counter">5</span>
-                                        </div>
-                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">All Views Users</h3>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0);" class="">
-                                    <i class="feather-more-vertical"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- [Conversion Rate] end -->
-                <!-- [Payment Records] start -->
-
-                <!-- [Payment Records] end -->
-                <!-- [Total Sales] start -->
-
-                <!-- [Total Sales] end !-->
-                <!-- [Mini] start -->
+               
 
 
 
@@ -222,6 +167,118 @@
                 <!--! END: [Team Progress] !-->
             </div>
         </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-xxl-4 col-xl-6">
+                    <div class="card stretch stretch-full">
+                        <div class="card-body">
+                            <div class="mb-4 text-center">
+                                <div class="wd-150 ht-150 mx-auto mb-3 position-relative">
+                                    <div class="avatar-image wd-150 ht-150 border border-5 border-gray-3">
+                                        <img src="{{ asset('assets/images/avatar/1.png') }}" alt="Avatar" class="img-fluid">
+                                    </div>
+                                    <div class="wd-10 ht-10 text-success rounded-circle position-absolute translate-middle" style="top: 76%; right: 10px">
+                                        <i class="bi bi-patch-check-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <a href="javascript:void(0);" class="fs-14 fw-bold d-block">Seller</a>
+                                    <a href="javascript:void(0);" class="fs-12 fw-normal text-muted d-block">Seller@gmail.com</a>
+                                </div>
+                                <div class="fs-12 fw-normal text-muted text-center d-flex flex-wrap gap-3 mb-4">
+                                    
+                                </div>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="hstack justify-content-between mb-4">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-mail"></i>Email</span>
+                                    <a href="javascript:void(0);" class="float-end"></a>
+                                </li>
+                                <!-- Display last login information -->
+                                <li class="hstack justify-content-between mb-4">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-clock"></i>Last Login Time</span>
+                                    <a href="javascript:void(0);" class="float-end"></a>
+                                </li>
+                                <li class="hstack justify-content-between mb-4">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-map"></i>Last Login IP</span>
+                                    <a href="javascript:void(0);" class="float-end"></a>
+                                </li>
+                                <li class="hstack justify-content-between mb-4">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-smartphone"></i>Last Device Used</span>
+                                    <a href="javascript:void(0);" class="float-end"></a>
+                                </li>
+                                <li class="hstack justify-content-between mb-0">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-globe"></i>Last Browser Used</span>
+                                    <a href="javascript:void(0);" class="float-end"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-8 col-xl-6">
+                    <div class="card border-top-0">
+                        <div class="card-header p-0">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs flex-wrap w-100 text-center customers-nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item flex-fill border-top" role="presentation">
+                                    <a href="javascript:void(0);" class="nav-link active" data-bs-toggle="tab" data-bs-target="#overviewTab" role="tab">Overview</a>
+                                </li>
+    
+                                <li class="nav-item flex-fill border-top" role="presentation">
+                                    <a href="javascript:void(0);" class="nav-link" data-bs-toggle="tab" data-bs-target="#activityTab" role="tab">Activity</a>
+                                </li>
+    
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active p-4" id="overviewTab" role="tabpanel">
+                                <div class="profile-details mb-5">
+                                    <div class="mb-4 d-flex align-items-center justify-content-between">
+                                        <h5 class="fw-bold mb-0">Profile Details:</h5>
+                                    </div>
+                                    <div class="row g-0 mb-4">
+                                        <div class="col-sm-6 text-muted">Full Name:</div>
+                                        <div class="col-sm-6 fw-semibold"></div>
+                                    </div>
+                                    <div class="row g-0 mb-4">
+                                        <div class="col-sm-6 text-muted">Email Address:</div>
+                                        <div class="col-sm-6 fw-semibold"></div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="tab-pane fade" id="activityTab" role="tabpanel">
+                                <div class="recent-activity p-4 pb-0">
+                                    <div class="mb-4 pb-2 d-flex justify-content-between">
+                                        <h5 class="fw-bold">Recent Activity:</h5>
+                                      
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-light-brand">View All</a>
+                                     
+                                            <span class="text-muted">No activities yet</span>
+                                     
+                                    </div>
+                                    <ul class="list-unstyled activity-feed">
+                                        
+                                            <li class="d-flex justify-content-between feed-item">
+                                                <div>
+                                                    <span class="text-truncate-1-line lead_date"> <span class="date"></span></span>
+                                                    <span class="text"></span>
+                                                </div>
+                                                <div class="ms-3 d-flex gap-2 align-items-center">
+                                                    <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" title="More Options"><i class="feather feather-more-vertical"></i></a>
+                                                </div>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
         <!-- [ Main Content ] end -->
     </div>
 @endsection

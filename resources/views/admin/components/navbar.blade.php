@@ -27,10 +27,14 @@
 
                     <!-- Product -->
                     <li class="nxl-item nxl-hasmenu">
-                        <a href="{{ url('products') }}" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-box"></i></span>
-                            <span class="nxl-mtext">Product</span>
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Product</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ url('products') }}">Add Product</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{route('products.pending')}}">Product Pending</a></li>
+                        </ul>
                     </li>
 
                     <!-- Slider -->
