@@ -18,6 +18,7 @@ use App\Http\Controllers\SellerProductController;
 use App\Http\Controllers\TestimonialController;
 use Spatie\Analytics\Facades\Analytics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,8 +188,7 @@ Route::put('/category/{category}', [CategoryController::class, 'update'])->name(
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 });
 
-// Contact Form Route
-Route::post('/', [ContactController::class, 'store'])->name('contact.store');
+
 
 // Contact Delete Route
 Route::middleware(['admin'])->group(function () {
@@ -326,3 +326,8 @@ Route::group(['middleware' => ['auth', 'role:seller'], 'prefix' => 'seller', 'as
     Route::resource('products', SellerProductController::class);
     Route::delete('products/{product}/images/{image}', [SellerProductController::class, 'destroyImage'])->name('products.destroyImage');
 });
+
+// Contact Form Route
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+

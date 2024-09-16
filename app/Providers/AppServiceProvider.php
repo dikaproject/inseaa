@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Analytics\Analytics;
 use Spatie\Analytics\AnalyticsClientFactory;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading();
+        if (app()->isProduction()) {
+            Model::preventLazyLoading();
+        }
+        Paginator::useBootstrap();
     }
 }

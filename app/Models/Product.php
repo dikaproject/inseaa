@@ -15,7 +15,6 @@ class Product extends Model
         'description',
         'details_product',
         'category_id',
-        'images',
         'pdf',
         'alt_text',
         'slug',
@@ -50,6 +49,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+    
 
     protected static function boot()
     {

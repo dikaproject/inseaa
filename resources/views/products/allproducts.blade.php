@@ -43,7 +43,7 @@
             </div>
 
             <div class="row g-5">
-                @foreach ($products->take(15) as $product)
+                @foreach ($products as $product)
                     <!-- start single product -->
                     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
                         class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -96,13 +96,7 @@
             <div class="row">
                 <div class="col-lg-12" data-sal="slide-up" data-sal-delay="550" data-sal-duration="800">
                     <nav class="pagination-wrapper" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
+                        {{ $products->links('vendor.pagination.default') }}
                     </nav>
                 </div>
             </div>

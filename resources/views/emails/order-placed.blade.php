@@ -44,9 +44,13 @@
         <p>Dear {{ $order->name }},</p>
         <p>Thank you for your order. Below are the details of your purchase:</p>
 
-        @foreach ($orderItems as $item)
+        @foreach($order->items as $item)
             <div class="product">
-                <img src="http://localhost:8000/images/{{ $item->product->images }}" alt="{{ $item->product->name }}">
+                @if($item->product->images->isNotEmpty())
+                <img src="{{ asset('images/' . $item->product->images->first()->image_path) }}" alt="{{ $item->product->name }}" style="max-width: 200px;">
+            @else
+                <img src="{{ asset('images/placeholder.png') }}" alt="No image available" style="max-width: 200px;">
+            @endif
                 <p><strong>Product Name:</strong> {{ $item->product->name }}</p>
                 <p><strong>Description:</strong> {{ $item->product->description }}</p>
                 <p><strong>Quantity:</strong> {{ $item->quantity }}</p>

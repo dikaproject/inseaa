@@ -187,19 +187,23 @@ class ProductController extends Controller
     }
 
     public function view(Request $request)
-    {
-        $categories = Category::all();
+{
+    $categories = Category::all();
 
-        if ($request->has('category') && $request->category != '') {
-            $products = Product::where('category_id', $request->category)
-                ->where('status', 'approved')
-                ->get();
-        } else {
-            $products = Product::where('status', 'approved')->get();
-        }
-
-        return view('products.allproducts', compact('categories', 'products'));
+    if ($request->has('category') && $request->category != '') {
+        $products = Product::with('images')
+            ->where('category_id', $request->category)
+            ->where('status', 'approved')
+            ->paginate(15);
+    } else {
+        $products = Product::with('images')
+            ->where('status', 'approved')
+            ->paginate(15);
     }
+
+    return view('products.allproducts', compact('categories', 'products'));
+}
+
 
     public function destroy(Product $product)
     {

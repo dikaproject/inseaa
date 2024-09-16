@@ -97,29 +97,39 @@
             <div class="col-lg-6" data-sal="slide-up" data-sal-delay="200" data-sal-duration="800">
                 <div class="form-wrapper-one registration-area">
                     <h3 class="mb--30">Contact Us</h3>
-                    <form class="rwt-dynamic-form" id="contact-form" method="POST" action="mail.php">
+                    <form id="contact-form" method="POST" action="{{ route('contact.store') }}">
+                        @csrf
                         <div class="mb-5">
-                            <label for="contact-name" class="form-label">Your Name</label>
-                            <input name="contact-name" id="contact-name" type="text">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input name="first_name" id="first_name" type="text" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input name="last_name" id="last_name" type="text" required>
                         </div>
                         <div class="mb-5">
                             <label for="contact-email" class="form-label">Email</label>
-                            <input id="contact-email" name="contact-email" type="email">
+                            <input id="contact-email" name="email" type="email" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="phone_number" class="form-label">Phone Number (Optional)</label>
+                            <input id="phone_number" name="phone_number" type="text">
                         </div>
                         <div class="mb-5">
                             <label for="subject" class="form-label">Subject</label>
-                            <input id="subject" name="subject" type="text">
+                            <input id="subject" name="subject" type="text" required>
                         </div>
                         <div class="mb-5">
                             <label for="contact-message" class="form-label">Write Message</label>
-                            <textarea name="contact-message" id="contact-message" rows="3"></textarea>
+                            <textarea name="message" id="contact-message" rows="3" required></textarea>
                         </div>
                         <div class="mb-5 rn-check-box">
-                            <input id="condition" type="checkbox" class="rn-check-box-input">
-                            <label for="condition" class="rn-check-box-label">Allow to all tearms & condition</label>
+                            <input id="condition" name="condition" type="checkbox" class="rn-check-box-input" required>
+                            <label for="condition" class="rn-check-box-label">I agree to all terms & conditions</label>
                         </div>
-                        <button name="submit" type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -137,6 +147,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

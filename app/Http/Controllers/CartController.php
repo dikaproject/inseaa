@@ -14,9 +14,11 @@ class CartController extends Controller
 {
     public function addToCart(Request $request, $id)
     {
-        $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
+        $product = Product::with('images')->findOrFail($id); // Mengambil produk berdasarkan ID
 
         $cart = session()->get('cart', []);
+
+        $imagePath = $product->images->first()->image_path ?? 'placeholder.png';
 
         // Jika cart sudah memiliki produk ini, tambahkan quantity
         if (isset($cart[$id])) {
@@ -27,7 +29,7 @@ class CartController extends Controller
                 'name' => $product->name,
                 'description' => $product->description, // Menambahkan deskripsi produk
                 'quantity' => 1,
-                'image' => $product->images, // Pastikan field image ada di tabel products
+                'image' => $imagePath, // Pastikan field image ada di tabel products
             ];
         }
 
@@ -89,13 +91,16 @@ class CartController extends Controller
         ]);
     }
 
+    // Reload the order with items and products and their images
+    $order->load('items.product.images');
+
     // Hapus session cart
     session()->forget('cart');
 
     // Kirim email konfirmasi
     Mail::to($request->email)->send(new OrderPlaced($order));
 
-    return redirect()->route('products')->with('success', 'Your order has been placed! Please check your email.');
+    return redirect()->route('view.products.index')->with('success', 'Your order has been placed! Please check your email.');
 }
 
 }
