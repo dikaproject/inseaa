@@ -111,7 +111,7 @@
                            
                         </div>
                         <div class="mt-4 text-center">
-                            <a href="sign-up.html" class="btn btn-secondary">Login</a>
+                            <a href="{{route('seller.login')}}" class="btn btn-secondary">Login</a>
                         </div>
                     </div>
                 </div>

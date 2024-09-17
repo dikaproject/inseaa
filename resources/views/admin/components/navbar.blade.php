@@ -37,6 +37,13 @@
                         </ul>
                     </li>
 
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="{{ route('admin.sellers.index') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-user"></i></span>
+                            <span class="nxl-mtext">Seller Management</span>
+                        </a>
+                    </li>
+
                     <!-- Slider -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="{{ url('sliders') }}" class="nxl-link">

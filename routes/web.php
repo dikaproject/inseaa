@@ -14,6 +14,7 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SellerManageController;
 use App\Http\Controllers\SellerProductController;
 use App\Http\Controllers\TestimonialController;
 use Spatie\Analytics\Facades\Analytics;
@@ -51,6 +52,7 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.login');
 });
+
 
 // Route::get('/home', function () {
 //     $products = App\Models\Product::all();
@@ -138,6 +140,18 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/settings', function () {
         return view('admin.user.settings');
     });
+    // Route untuk halaman manajemen seller
+    Route::get('/admin/sellers', [SellerManageController::class, 'index'])->name('admin.sellers.index');
+
+    // Route untuk melihat detail seller
+    Route::get('/admin/sellers/{seller}', [SellerManageController::class, 'show'])->name('admin.sellers.show');
+
+    // Route untuk mengedit seller (optional)
+    Route::get('/admin/sellers/{seller}/edit', [SellerManageController::class, 'edit'])->name('admin.sellers.edit');
+    Route::post('/admin/sellers/{seller}', [SellerManageController::class, 'update'])->name('admin.sellers.update');
+
+    // Route untuk menghapus seller
+    Route::delete('/admin/sellers/{seller}', [SellerManageController::class, 'destroy'])->name('admin.sellers.destroy');
 });
 
 // Product CRUD Routes

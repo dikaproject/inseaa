@@ -18,6 +18,7 @@
             </div>
         </div>
     </div>
+
     <!-- start page title area -->
     <div class="rn-breadcrumb-inner ptb--30">
         <div class="container">
@@ -69,6 +70,7 @@
                 </div>
                 <!-- product image area end -->
 
+                <!-- product details area -->
                 <div class="col-lg-5 col-md-12 col-sm-12 mt_md--50 mt_sm--60">
                     <div class="rn-pd-content-area">
                         <div class="pd-title-area">
@@ -95,6 +97,15 @@
                         <h6 class="title-name">
                             {!! $product->details_product !!}
                         </h6>
+
+                        <!-- Nama penjual dan deskripsi lengkap -->
+                        <div class="seller-info mt-4">
+                            <h6 class="pd-property-title">Seller Name:</h6>
+                            <p>{{ $product->seller_name }}</p>
+
+                            <h6 class="pd-property-title">Product Description:</h6>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat doloribus quis, earum reiciendis vitae omnis esse quia ducimus, modi laboriosam rerum! Qui, quo ut minima nihil culpa dolor accusantium laborum fugiat unde autem. Consectetur, omnis culpa laudantium nisi nihil fugit!</p>
+                        </div>
 
                         <div class="rn-bid-details">
                             <div class="tab-wrapper-one">
@@ -140,12 +151,10 @@
                         <!-- End of Add to Cart Button -->
                     </div>
                 </div>
+                <!-- end product details area -->
             </div>
         </div>
     </div>
-
-
-    <!-- End product details area -->
 
 
     <!-- New items Start -->
