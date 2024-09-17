@@ -1,10 +1,12 @@
+<!-- resources/views/seller/auth/login.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login Seller|| Inseaa</title>
+    <title>Login Seller || Inseaa</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description"
         content="INSEAA (Indonesian Student Exporters Association in Australia) is an independent
@@ -31,7 +33,6 @@
 </head>
 <body>
     <!-- Header Start -->
-   
     <!-- Header End -->
 
     <!-- Page Title Area Start -->
@@ -43,7 +44,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-list">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li><i class="feather-chevron-right"></i></li>
                         <li class="current">Inseaa Seller Login</li>
                     </ul>
@@ -54,48 +55,64 @@
     <!-- Page Title Area End -->
 
     <!-- Login Form Start -->
-<div class="login-area rn-section-gapTop d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="container">
-        <div class="row g-5 justify-content-center">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="form-wrapper-one">
-                    <h4>Login</h4>
-                    <form action="{{ route('seller.login') }}" method="POST">
-                        @csrf
-                        <div class="mb-5">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" id="email" name="email" class="form-label" placeholder="Masukkan Email Anda" required>
-                        </div>
-                        <div class="mb-5">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" name="password" class="form-label" placeholder="Masukkan Password Anda" required>
-                        </div>
-                        <div class="mb-5 d-flex justify-content-between">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
-                                <label class="form-check-label" for="rememberMe">Remember Me</label>
+    <div class="login-area rn-section-gapTop d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="container">
+            <div class="row g-5 justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-wrapper-one">
+                        <h4>Login</h4>
+                        <form id="login-form" action="{{ route('seller.login') }}" method="POST">
+                            @csrf
+                            <!-- Tampilkan pesan error jika ada -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan Email Anda" required value="{{ old('email') }}">
                             </div>
-                            <a href="#" class="text-primary">Forgot Password?</a>
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan Password Anda" required>
+                            </div>
+                            <div class="mb-4 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                                </div>
+                                <a href="{{ route('password.request') }}" class="text-primary">Forgot Password?</a>
+                            </div>
+                            <!-- Hidden Fields -->
+                            <input type="hidden" name="timezone" id="timezone">
+                            <input type="hidden" name="device_info" id="device_info">
+                            <input type="hidden" name="latitude" id="latitude">
+                            <input type="hidden" name="longitude" id="longitude">
+                            <button type="submit" class="btn btn-primary w-100">Log In</button>
+                        </form>
+                        <div class="mt-4 text-center">
+                            <span>Or</span>
+                            <div class="d-flex justify-content-center gap-2 mt-2">
+                                <!-- Tambahkan opsi login lain jika diperlukan -->
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Log In</button>
-                    </form>
-                    <div class="mt-4 text-center">
-                        <span>Or</span>
-                        <div class="d-flex justify-content-center gap-2 mt-2">
-                            
+                        <div class="mt-4 text-center">
+                            <a href="{{ route('seller.register') }}" class="btn btn-secondary">Sign Up</a>
                         </div>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <a href="sign-up.html" class="btn btn-secondary">Sign Up</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Login Form End -->
+    <!-- Login Form End -->
 
-    
+    <!-- Footer Start -->
     <div class="rn-footer-one rn-section-gap bg-color--1 mt--100 mt_md--80 mt_sm--80">
         <div class="container">
             <div class="row gx-5">
@@ -103,8 +120,8 @@
                     <div class="widget-content-wrapper">
                         <div class="footer-left">
                             <div class="logo-thumbnail logo-custom-css">
-                                <a class="logo-light" href="index.html"><img src="{{asset('assets/images/logoinseaa.png')}}" alt="nft-logo"></a>
-                                <a class="logo-dark" href="index.html"><img src="{{asset('assets/images/logoinseaa.png')}}" alt="nft-logo"></a>
+                                <a class="logo-light" href="{{ url('/') }}"><img src="{{ asset('assets/images/logoinseaa.png') }}" alt="nft-logo"></a>
+                                <a class="logo-dark" href="{{ url('/') }}"><img src="{{ asset('assets/images/logoinseaa.png') }}" alt="nft-logo"></a>
                             </div>
                             <p class="rn-footer-describe">
                                 Created with the collaboration of over 60 of the world's best Inseaa Artists.
@@ -113,7 +130,7 @@
                         <div class="widget-bottom mt--40 pt--40">
                             <h6 class="title">Get The Latest Inseaa Updates </h6>
                             <div class="input-group">
-                                <input type="text" class="form-control bg-color--2" placeholder="Your username" aria-label="Recipient's username">
+                                <input type="email" class="form-control bg-color--2" placeholder="Your email" aria-label="Recipient's email" required>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary-alta btn-outline-secondary" type="button">Subscribe</button>
                                 </div>
@@ -124,14 +141,14 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt_mobile--40">
                     <div class="footer-widget widget-quicklink">
                         <h6 class="widget-title">Inseaa Category</h6>
-                       
+                        <!-- Tambahkan link kategori jika ada -->
                     </div>
                 </div>
-    
+
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt_md--40 mt_sm--40">
                     <div class="footer-widget widget-information">
                         <h6 class="widget-title">Information</h6>
@@ -144,13 +161,13 @@
                         </ul>
                     </div>
                 </div>
-    
-    
+
             </div>
         </div>
     </div>
     <!-- End Footer Area -->
-    <!-- Start Footer Area -->
+
+    <!-- Copy Right Area -->
     <div class="copy-right-one ptb--20 bg-color--1">
         <div class="container">
             <div class="row align-items-center">
@@ -158,8 +175,8 @@
                     <div class="copyright-left">
                         <span>©2024 Inseaa, Inc. All rights reserved.</span>
                         <ul class="privacy">
-                            <li><a href="terms-condition.html">Terms</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="{{ url('terms-condition') }}">Terms</a></li>
+                            <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -177,7 +194,8 @@
             </div>
         </div>
     </div>
-    <!-- End Footer Area -->
+    <!-- End Copy Right Area -->
+
     <div class="mouse-cursor cursor-outer"></div>
     <div class="mouse-cursor cursor-inner"></div>
     <!-- Start Top To Bottom Area  -->
@@ -186,8 +204,9 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
     </div>
-    
 
+
+    <!-- JavaScript Files -->
     <script src="{{ asset('assets/js/vendors.min.js') }}"></script>
     <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
@@ -212,11 +231,51 @@
     <script src="{{ asset('assets/js/vendor/savePopup.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/vanilla.tilt.js') }}"></script>
 
-    <!-- main JS -->
+    <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <!-- Meta Mask  -->
     <script src="{{ asset('assets/js/vendor/web3.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/maralis.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/nft.js') }}"></script>
 
+    <!-- Geolocation and Form Handling Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mendapatkan Zona Waktu
+            var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById('timezone').value = timezone;
+
+            // Mendapatkan Informasi Perangkat
+            var deviceInfo = navigator.userAgent;
+            document.getElementById('device_info').value = deviceInfo;
+
+            // Mendapatkan Lokasi GPS (Latitude dan Longitude)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                }, function(error) {
+                    alert('Akses lokasi diperlukan untuk login.');
+                    // Menonaktifkan form jika lokasi tidak diizinkan
+                    document.getElementById('login-form').submit = function() {
+                        return false;
+                    };
+                });
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+
+            // Validasi sebelum submit
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                // Pastikan lokasi sudah diisi
+                if (!document.getElementById('latitude').value || !document.getElementById('longitude').value) {
+                    e.preventDefault();
+                    alert('Akses lokasi diperlukan untuk login.');
+                }
+            });
+        });
+    </script>
+
+
 </body>
+</html>

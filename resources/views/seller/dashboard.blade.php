@@ -101,11 +101,35 @@
                             <div class="d-flex align-items-start justify-content-between mb-4">
                                 <div class="d-flex gap-4 align-items-center">
                                     <div class="avatar-text avatar-lg bg-gray-200">
+                                        <i class="feather-check-circle"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fs-4 fw-bold text-dark">
+                                            <span class="counter">{{ $approvedProductsCount }}</span>
+                                        </div>
+                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Approved Products</h3>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menampilkan jumlah produk yang telah dibeli -->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card stretch stretch-full">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start justify-content-between mb-4">
+                                <div class="d-flex gap-4 align-items-center">
+                                    <div class="avatar-text avatar-lg bg-gray-200">
                                         <i class="feather-dollar-sign"></i>
                                     </div>
                                     <div>
                                         <div class="fs-4 fw-bold text-dark">
-                                            <span class="counter">0</span>
+                                            <span class="counter">{{ $soldProductsCount }}</span>
                                         </div>
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Items Sold</h3>
                                     </div>
@@ -114,38 +138,12 @@
                                     <i class="feather-more-vertical"></i>
                                 </a>
                             </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- [Invoices Awaiting Payment] end -->
-                <!-- [Converted Leads] start -->
-                <div class="col-xxl-3 col-md-6">
-                    <div class="card stretch stretch-full">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between mb-4">
-                                <div class="d-flex gap-4 align-items-center">
-                                    <div class="avatar-text avatar-lg bg-gray-200">
-                                        <i class="feather-box"></i>
-                                    </div>
-                                    <div>
-                                        <div class="fs-4 fw-bold text-dark">
-                                            <span class="counter">3</span>
-                                        </div>
-                                        <h3 class="fs-13 fw-semibold text-truncate-1-line">Products</h3>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0);" class="">
-                                    <i class="feather-more-vertical"></i>
-                                </a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
                 <!-- [Converted Leads] end -->
                 <!-- [Projects In Progress] start -->
-               
+
 
 
 
@@ -182,36 +180,42 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <a href="javascript:void(0);" class="fs-14 fw-bold d-block">Seller</a>
-                                    <a href="javascript:void(0);" class="fs-12 fw-normal text-muted d-block">Seller@gmail.com</a>
+                                    <a href="javascript:void(0);" class="fs-14 fw-bold d-block">{{ Auth::user()->name }}</a>
+                                    <a href="javascript:void(0);" class="fs-12 fw-normal text-muted d-block">{{ Auth::user()->email }}</a>
                                 </div>
                                 <div class="fs-12 fw-normal text-muted text-center d-flex flex-wrap gap-3 mb-4">
-                                    
+
                                 </div>
                             </div>
                             <ul class="list-unstyled mb-4">
                                 <li class="hstack justify-content-between mb-4">
                                     <span class="text-muted fw-medium hstack gap-3"><i class="feather-mail"></i>Email</span>
-                                    <a href="javascript:void(0);" class="float-end"></a>
+                                    <span class="float-end">{{ Auth::user()->email }}</span>
                                 </li>
-                                <!-- Display last login information -->
+                                <li class="hstack justify-content-between mb-4">
+                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-phone"></i>Nomer HP</span>
+                                    <span class="float-end">{{ Auth::user()->sellerProfile->no_telepon ?? 'N/A' }}</span>
+                                </li>
                                 <li class="hstack justify-content-between mb-4">
                                     <span class="text-muted fw-medium hstack gap-3"><i class="feather-clock"></i>Last Login Time</span>
-                                    <a href="javascript:void(0);" class="float-end"></a>
+                                    <span class="float-end">
+                                        {{ session('last_login_time') ?? 'N/A' }}
+                                        ({{ session('last_location') ?? 'Unknown City' }})
+                                    </span>
                                 </li>
                                 <li class="hstack justify-content-between mb-4">
                                     <span class="text-muted fw-medium hstack gap-3"><i class="feather-map"></i>Last Login IP</span>
-                                    <a href="javascript:void(0);" class="float-end"></a>
+                                    <span class="float-end">{{ session('last_login_ip') ?? 'N/A' }}</span>
                                 </li>
                                 <li class="hstack justify-content-between mb-4">
                                     <span class="text-muted fw-medium hstack gap-3"><i class="feather-smartphone"></i>Last Device Used</span>
-                                    <a href="javascript:void(0);" class="float-end"></a>
-                                </li>
-                                <li class="hstack justify-content-between mb-0">
-                                    <span class="text-muted fw-medium hstack gap-3"><i class="feather-globe"></i>Last Browser Used</span>
-                                    <a href="javascript:void(0);" class="float-end"></a>
+                                    <span class="float-end text-wrap" style="word-break: break-word; max-width: 300px;">
+                                        {{ session('last_device_used') ?? 'N/A' }}
+                                    </span>
                                 </li>
                             </ul>
+
+
                         </div>
                     </div>
                 </div>
@@ -223,11 +227,11 @@
                                 <li class="nav-item flex-fill border-top" role="presentation">
                                     <a href="javascript:void(0);" class="nav-link active" data-bs-toggle="tab" data-bs-target="#overviewTab" role="tab">Overview</a>
                                 </li>
-    
+
                                 <li class="nav-item flex-fill border-top" role="presentation">
                                     <a href="javascript:void(0);" class="nav-link" data-bs-toggle="tab" data-bs-target="#activityTab" role="tab">Activity</a>
                                 </li>
-    
+
                             </ul>
                         </div>
                         <div class="tab-content">
@@ -246,29 +250,36 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="tab-pane fade" id="activityTab" role="tabpanel">
                                 <div class="recent-activity p-4 pb-0">
                                     <div class="mb-4 pb-2 d-flex justify-content-between">
                                         <h5 class="fw-bold">Recent Activity:</h5>
-                                      
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-light-brand">View All</a>
-                                     
-                                            <span class="text-muted">No activities yet</span>
-                                     
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-light-brand">View All</a>
                                     </div>
                                     <ul class="list-unstyled activity-feed">
-                                        
+                                        @forelse($activities as $activity)
                                             <li class="d-flex justify-content-between feed-item">
                                                 <div>
-                                                    <span class="text-truncate-1-line lead_date"> <span class="date"></span></span>
-                                                    <span class="text"></span>
+                                                    <span class="text-truncate-1-line">
+                                                        <span class="date">{{ $activity->created_at->format('Y-m-d H:i') }}</span>
+                                                        - Uploaded Product: <strong>{{ $activity->name }}</strong>
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Status: {{ $activity->status == 'approved' ? 'Approved' : ($activity->status == 'rejected' ? 'Rejected' : 'Pending') }}
+                                                    </span>
                                                 </div>
                                                 <div class="ms-3 d-flex gap-2 align-items-center">
                                                     <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" title="More Options"><i class="feather feather-more-vertical"></i></a>
                                                 </div>
                                             </li>
-                                        
+                                        @empty
+                                            <li class="d-flex justify-content-between feed-item">
+                                                <div>
+                                                    <span class="text-muted">No activities yet</span>
+                                                </div>
+                                            </li>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>

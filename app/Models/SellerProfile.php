@@ -15,6 +15,13 @@ class SellerProfile extends Model
         'user_id',
         'no_telepon',
         'alamat',
+        'timezone',
+        'device_info',
+        'latitude',
+        'longitude',
+        'last_login_time',
+        'last_login_ip',
+        'last_location',
     ];
 
     // Relasi ke user
