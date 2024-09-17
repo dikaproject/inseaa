@@ -180,6 +180,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $product->load('seller');
+        
         $attachments = $product->attachments()->get();
         $categories = Category::all();
         $products = Product::all();

@@ -100,8 +100,8 @@
 
                         <!-- Nama penjual dan deskripsi lengkap -->
                         <div class="seller-info mt-4">
-                            <h6 class="pd-property-title">Seller Name:</h6>
-                            <p>{{ $product->seller_name }}</p>
+                            <h6 class="pd-property-title">Seller:</h6>
+                            <p>{{ $product->seller->name }}</p>
 
                             <h6 class="pd-property-title">Product Description:</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat doloribus quis, earum reiciendis vitae omnis esse quia ducimus, modi laboriosam rerum! Qui, quo ut minima nihil culpa dolor accusantium laborum fugiat unde autem. Consectetur, omnis culpa laudantium nisi nihil fugit!</p>
