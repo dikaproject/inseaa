@@ -25,8 +25,8 @@ class ProductController extends Controller
     {
         $searchTerm = $request->get('term');
 
-        // Cari produk yang cocok dengan input pencarian
-        $products = Product::with('category')
+        // Fetch products with category, images, and seller
+        $products = Product::with(['category', 'images', 'seller'])
             ->where('name', 'LIKE', '%' . $searchTerm . '%')
             ->get();
 
@@ -42,15 +42,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'            => 'required|string|max:255',
-            'description'     => 'required|string',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'details_product' => 'nullable|string',
-            'category_id'     => 'required|exists:categories,id',
-            'images'          => 'required',
-            'images.*'        => 'image|mimes:jpeg,png|max:1024',
-            'pdf'             => 'nullable|file|mimes:pdf|max:2048',
-            'alt_text'        => 'nullable|string|max:255',
-            'slug'            => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png|max:1024',
+            'pdf' => 'nullable|file|mimes:pdf|max:2048',
+            'alt_text' => 'nullable|string|max:255',
+            'slug' => 'nullable|string|max:255',
         ]);
 
         // Proses upload PDF (jika ada)
@@ -63,13 +63,13 @@ class ProductController extends Controller
 
         // Simpan data produk
         $product = new Product();
-        $product->name            = $request->name;
-        $product->description     = $request->description;
+        $product->name = $request->name;
+        $product->description = $request->description;
         $product->details_product = $request->details_product;
-        $product->category_id     = $request->category_id;
-        $product->pdf             = $pdfName;
-        $product->alt_text        = $request->alt_text;
-        $product->status          = 'approved'; // Status langsung 'approved' untuk admin
+        $product->category_id = $request->category_id;
+        $product->pdf = $pdfName;
+        $product->alt_text = $request->alt_text;
+        $product->status = 'approved'; // Status langsung 'approved' untuk admin
 
         if ($request->filled('slug')) {
             $product->slug = Str::slug($request->slug);
@@ -89,7 +89,7 @@ class ProductController extends Controller
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $imageName,
-                    'alt_text'   => $request->alt_text, // Anda bisa menyesuaikan alt text untuk setiap gambar jika diperlukan
+                    'alt_text' => $request->alt_text, // Anda bisa menyesuaikan alt text untuk setiap gambar jika diperlukan
                 ]);
             }
         }
@@ -106,15 +106,15 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name'            => 'required|string|max:255',
-            'description'     => 'required|string',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'details_product' => 'nullable|string',
-            'category_id'     => 'required|exists:categories,id',
-            'images'          => 'nullable',
-            'images.*'        => 'image|mimes:jpeg,png|max:1024',
-            'pdf'             => 'nullable|file|mimes:pdf|max:2048',
-            'alt_text'        => 'nullable|string|max:255',
-            'slug'            => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'images' => 'nullable',
+            'images.*' => 'image|mimes:jpeg,png|max:1024',
+            'pdf' => 'nullable|file|mimes:pdf|max:2048',
+            'alt_text' => 'nullable|string|max:255',
+            'slug' => 'nullable|string|max:255',
         ]);
 
         // Proses upload PDF (jika ada)
@@ -132,12 +132,12 @@ class ProductController extends Controller
         }
 
         // Update data produk
-        $product->name            = $request->name;
-        $product->description     = $request->description;
+        $product->name = $request->name;
+        $product->description = $request->description;
         $product->details_product = $request->details_product;
-        $product->category_id     = $request->category_id;
-        $product->pdf             = $pdfName;
-        $product->alt_text        = $request->alt_text;
+        $product->category_id = $request->category_id;
+        $product->pdf = $pdfName;
+        $product->alt_text = $request->alt_text;
 
         if ($request->filled('slug')) {
             $product->slug = Str::slug($request->slug);
@@ -170,7 +170,7 @@ class ProductController extends Controller
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $imageName,
-                    'alt_text'   => $request->alt_text,
+                    'alt_text' => $request->alt_text,
                 ]);
             }
         }
@@ -189,23 +189,20 @@ class ProductController extends Controller
     }
 
     public function view(Request $request)
-{
-    $categories = Category::all();
+    {
+        $categories = Category::all();
 
-    if ($request->has('category') && $request->category != '') {
-        $products = Product::with('images')
-            ->where('category_id', $request->category)
-            ->where('status', 'approved')
-            ->paginate(15);
-    } else {
-        $products = Product::with('images')
-            ->where('status', 'approved')
-            ->paginate(15);
+        if ($request->has('category') && $request->category != '') {
+            $products = Product::with('images')
+                ->where('category_id', $request->category)
+                ->where('status', 'approved')
+                ->paginate(15);
+        } else {
+            $products = Product::with('images')->where('status', 'approved')->paginate(15);
+        }
+
+        return view('products.allproducts', compact('categories', 'products'));
     }
-
-    return view('products.allproducts', compact('categories', 'products'));
-}
-
 
     public function destroy(Product $product)
     {
@@ -229,21 +226,22 @@ class ProductController extends Controller
     }
 
     public function destroyImage($productId, $imageId)
-{
-    $product = Product::findOrFail($productId);
-    $image = ProductImage::where('id', $imageId)->where('product_id', $product->id)->firstOrFail();
+    {
+        $product = Product::findOrFail($productId);
+        $image = ProductImage::where('id', $imageId)
+            ->where('product_id', $product->id)
+            ->firstOrFail();
 
-    // Hapus file gambar
-    $imagePath = public_path('../../images/' . $image->image_path);
-    if (File::exists($imagePath)) {
-        File::delete($imagePath);
+        // Hapus file gambar
+        $imagePath = public_path('../../images/' . $image->image_path);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Gambar berhasil dihapus.');
     }
-
-    $image->delete();
-
-    return redirect()->back()->with('success', 'Gambar berhasil dihapus.');
-}
-
 
     public function deleteAllAttachments($productId)
     {

@@ -109,7 +109,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content share-wrapper">
                 <div class="modal-header share-area">
-                    <h5 class="modal-title">Share this NFT</h5>
+                    <h5 class="modal-title">Share this Product</h5>
                 </div>
                 <div class="modal-body">
                     <ul class="social-share-default">
