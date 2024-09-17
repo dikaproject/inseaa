@@ -327,6 +327,8 @@ Route::group(['middleware' => ['auth', 'role:seller'], 'prefix' => 'seller', 'as
     Route::delete('products/{product}/images/{image}', [SellerProductController::class, 'destroyImage'])->name('products.destroyImage');
 });
 
+Route::post('/ask-ai', [SellerProductController::class, 'askAI'])->name('ask-ai');
+
 // Contact Form Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

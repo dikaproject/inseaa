@@ -39,36 +39,37 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Edit Produk <b>({{ $product->name }})</b></h5>
+                            <h5>Edit Product <b>({{ $product->name }})</b></h5>
                         </div>
                         <div class="card-body">
+                            <!-- Form untuk mengedit product -->
                             <form action="{{ route('seller.products.update', $product->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Produk</label>
+                                    <label for="name" class="form-label">Name</label>
                                     <input value="{{ $product->name }}" type="text" name="name" id="name"
                                         class="form-control" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Deskripsi Singkat</label>
+                                    <label for="description" class="form-label">Short Description</label>
                                     <input value="{{ $product->description }}" type="text" name="description"
                                         id="description" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="details_product" class="form-label">Deskripsi Lengkap Produk</label>
+                                    <label for="details_product" class="form-label">Details Full Product</label>
                                     <textarea name="details_product" id="tinymce" class="form-control">{{ $product->details_product }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="slug" class="form-label">Slug Produk</label>
+                                    <label for="slug" class="form-label">Slug Product</label>
                                     <input value="{{ $product->slug }}" type="text" name="slug" id="slug"
-                                        class="form-control" placeholder="Slug Produk">
+                                        class="form-control" placeholder="Slug Product">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="alt_text" class="form-label">Alt Text</label>
+                                    <label for="alt_text" class="form-label">Alt Text Product</label>
                                     <input value="{{ $product->alt_text }}" type="text" name="alt_text" id="alt_text"
-                                        class="form-control" placeholder="Alt Text" required>
+                                        class="form-control" placeholder="ALT Text Images" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="images">Unggah Gambar Produk (Jika ingin
@@ -77,38 +78,9 @@
                                         accept="image/png, image/jpeg" multiple>
                                     <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
                                 </div>
-                                <!-- Tampilkan gambar saat ini -->
-                                <div class="mb-3">
-                                    <label class="form-label">Gambar Saat Ini:</label>
-                                    <div class="row">
-                                        @foreach ($product->images as $image)
-                                            <div class="col-md-3">
-                                                <img src="{{ asset('images/' . $image->image_path) }}"
-                                                    alt="{{ $image->alt_text }}" class="img-thumbnail">
-                                                <form
-                                                    action="{{ route('seller.products.destroyImage', [$product->id, $image->id]) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm mt-2">Hapus</button>
-                                                </form>
-                                            </div>
-                                        @endforeach
-                                    </div>
 
-                                </div>
                                 <div class="mb-3">
-                                    <label for="pdf" class="form-label">Unggah PDF (Opsional)</label>
-                                    <input type="file" name="pdf" id="pdf" class="form-control"
-                                        accept="application/pdf">
-                                    @if ($product->pdf)
-                                        <p class="mt-2">File PDF saat ini: <a href="{{ asset('pdfs/' . $product->pdf) }}"
-                                                target="_blank">{{ $product->pdf }}</a></p>
-                                    @endif
-                                </div>
-                                <div class="mb-3">
-                                    <label for="category" class="form-label">Kategori</label>
+                                    <label for="category" class="form-label">Category</label>
                                     <select name="category_id" id="category" class="form-select" required>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
@@ -117,10 +89,36 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Perbarui Produk</button>
+
+                                <button type="submit" class="btn btn-primary">Confirm Edit Product</button>
                             </form>
                         </div>
                     </div>
+
+                    <!-- Tampilkan gambar saat ini -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5>Gambar Produk Saat Ini</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                @foreach ($product->images as $image)
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('images/' . $image->image_path) }}"
+                                            alt="{{ $image->alt_text }}" class="img-thumbnail mb-2">
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            onclick="deleteImage({{ $product->id }}, {{ $image->id }})">Hapus</button>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form untuk menghapus gambar produk -->
+                    <form id="deleteImageForm" action="" method="POST" style="display:none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
             </div>
         </div>
@@ -165,4 +163,15 @@
             @endforeach
         </script>
     @endif
+
+    <!-- Tambahkan script untuk handle delete gambar -->
+    <script>
+        function deleteImage(productId, imageId) {
+            if (confirm('Apakah Anda yakin ingin menghapus gambar ini?')) {
+                const form = document.getElementById('deleteImageForm');
+                form.action = `/admin/products/${productId}/images/${imageId}`;
+                form.submit();
+            }
+        }
+    </script>
 @endsection

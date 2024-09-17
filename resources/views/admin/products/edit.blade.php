@@ -42,6 +42,7 @@
                         <h5>Edit Product <b>({{ $product->name }})</b></h5>
                     </div>
                     <div class="card-body">
+                        <!-- Form untuk mengedit product -->
                         <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -70,23 +71,7 @@
                                 <input type="file" name="images[]" id="images" class="form-control" accept="image/png, image/jpeg" multiple>
                                 <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
                             </div>
-                            <!-- Tampilkan gambar saat ini -->
-                            <div class="mb-3">
-                                <label class="form-label">Gambar Saat Ini:</label>
-                                <div class="row">
-                                    @foreach($product->images as $image)
-                                        <div class="col-md-3">
-                                            <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->alt_text }}" class="img-thumbnail">
-                                            <!-- Jika ingin menambahkan fitur hapus gambar individual -->
-                                            <form action="{{ route('admin.products.destroyImage', [$product->id, $image->id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Hapus</button>
-                                            </form>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
+
                             <div class="mb-3">
                                 <label for="category" class="form-label">Category</label>
                                 <select name="category_id" id="category" class="form-select" required>
@@ -95,10 +80,34 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Confirm Edit Product</button>
                         </form>
                     </div>
                 </div>
+
+                <!-- Tampilkan gambar saat ini -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Gambar Produk Saat Ini</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($product->images as $image)
+                                <div class="col-md-3">
+                                    <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->alt_text }}" class="img-thumbnail mb-2">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteImage({{ $product->id }}, {{ $image->id }})">Hapus</button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form untuk menghapus gambar produk -->
+                <form id="deleteImageForm" action="" method="POST" style="display:none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
             </div>
         </div>
     </div>
@@ -116,13 +125,16 @@
         height: 300,
         plugins: [
             'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-            'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'emoticons', 'template', 'help'
+            'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+            'media', 'table', 'emoticons', 'template', 'help'
         ],
         toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
             'forecolor backcolor emoticons | help',
-        menubar: 'file edit view insert format tools table help',
+        menu: {
+            favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+        },
+        menubar: 'favs file edit view insert format tools table help',
     });
 </script>
 @endsection
@@ -142,4 +154,15 @@
     @endforeach
 </script>
 @endif
+
+<!-- Tambahkan script untuk handle delete gambar -->
+<script>
+    function deleteImage(productId, imageId) {
+        if (confirm('Apakah Anda yakin ingin menghapus gambar ini?')) {
+            const form = document.getElementById('deleteImageForm');
+            form.action = `/admin/products/${productId}/images/${imageId}`;
+            form.submit();
+        }
+    }
+</script>
 @endsection

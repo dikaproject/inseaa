@@ -9,6 +9,10 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Mews\Purifier\Facades\Purifier as FacadesPurifier;
+
 
 class SellerProductController extends Controller
 {
@@ -31,6 +35,105 @@ class SellerProductController extends Controller
         $categories = Category::all();
         return view('seller.products.create', compact('categories'));
     }
+
+    public function askAI(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'prompt' => 'required|string|max:255',
+    ]);
+
+    $prompt = $request->input('prompt');
+    Log::info('Received prompt for AI:', ['prompt' => $prompt]);
+
+    $apiKey = env('OPENAI_API_KEY');
+
+    try {
+        // Permintaan ke OpenAI GPT-3.5 Turbo menggunakan endpoint chat completions
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $apiKey,
+            'Content-Type' => 'application/json',
+        ])->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4',
+            'messages' => [
+                [
+                    'role' => 'system',
+                    'content' => 'You are a helpful assistant that generates well-structured product descriptions in HTML format for an e-commerce platform.'
+                ],
+                [
+                    'role' => 'user',
+                    'content' => "Generate a product description for: " . $prompt . ". Provide a plain JSON object with the following fields without any markdown or code blocks:
+                        {
+                            \"name\": \"Product Name\",
+                            \"description\": \"Short Description (under 150 characters)\",
+                            \"details_product\": \"Detailed product description in HTML format\",
+                            \"slug\": \"product-slug\",
+                            \"alt_text\": \"Alt text for images\"
+                        }"
+                ]
+            ],
+            'max_tokens' => 1500,
+            'temperature' => 0.7,
+        ]);
+
+        Log::info('Response from GPT-3.5 API:', ['response' => $response->body()]);
+
+        // Mendapatkan hasil dari API OpenAI
+        $aiResult = $response->json();
+
+        // Mengambil teks dari respons
+        if (!isset($aiResult['choices'][0]['message']['content'])) {
+            Log::error('Unexpected AI response structure');
+            return response()->json(['error' => 'Invalid AI response structure'], 500);
+        }
+
+        $outputText = $aiResult['choices'][0]['message']['content'];
+        Log::info('AI output before cleaning:', ['outputText' => $outputText]);
+
+        // Bersihkan outputText dari code blocks
+        $outputText = $this->cleanAIResponse($outputText);
+        Log::info('AI output after cleaning:', ['outputText' => $outputText]);
+
+        // Mengambil objek JSON dari respons AI
+        $data = json_decode($outputText, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            Log::error('Failed to decode AI JSON response:', ['error' => json_last_error_msg(), 'raw_output' => $outputText]);
+            return response()->json(['error' => 'Invalid AI response format'], 500);
+        }
+
+        // Memastikan semua bidang yang diperlukan ada
+        $requiredFields = ['name', 'description', 'details_product', 'slug', 'alt_text'];
+        foreach ($requiredFields as $field) {
+            if (!isset($data[$field])) {
+                Log::error("Missing field '{$field}' in AI response");
+                return response()->json(['error' => "Missing field '{$field}' in AI response"], 500);
+            }
+        }
+
+        // Membersihkan dan memproses bidang
+        $data['name'] = strip_tags(trim($data['name']));
+        $data['description'] = strip_tags(trim($data['description']));
+        $data['details_product'] = FacadesPurifier::clean(trim($data['details_product'])); // Sanitasi HTML
+        $data['slug'] = Str::slug(trim($data['slug']));
+        $data['alt_text'] = strip_tags(trim($data['alt_text']));
+
+        return response()->json($data);
+    } catch (\Exception $e) {
+        Log::error('Error while calling GPT-3.5 API:', ['error' => $e->getMessage()]);
+        return response()->json(['error' => 'AI request failed'], 500);
+    }
+}
+
+private function cleanAIResponse($content)
+{
+    // Hapus code block fencing jika ada
+    $content = preg_replace('/```json\s*/', '', $content);
+    $content = preg_replace('/\s*```/', '', $content);
+    return trim($content);
+}
+
+
 
     // Menyimpan produk baru ke database
     public function store(Request $request)
