@@ -52,7 +52,7 @@ class SellerProductController extends Controller
         if ($request->hasFile('pdf')) {
             $pdf = $request->file('pdf');
             $pdfName = time() . '.' . $pdf->extension();
-            $pdf->move(public_path('pdfs'), $pdfName);
+            $pdf->move(public_path('../../pdfs'), $pdfName);
         }
 
         // Simpan data produk
@@ -78,7 +78,7 @@ class SellerProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->move(public_path('images'), $imageName);
+                $image->move(public_path('../../images'), $imageName);
 
                 // Simpan data gambar ke tabel product_images
                 ProductImage::create([
@@ -125,14 +125,14 @@ class SellerProductController extends Controller
         $pdfName = $product->pdf;
         if ($request->hasFile('pdf')) {
             // Hapus PDF lama
-            $oldPdf = public_path('pdfs/' . $product->pdf);
+            $oldPdf = public_path('../../pdfs/' . $product->pdf);
             if (File::exists($oldPdf)) {
                 File::delete($oldPdf);
             }
 
             $pdf = $request->file('pdf');
             $pdfName = time() . '.' . $pdf->extension();
-            $pdf->move(public_path('pdfs'), $pdfName);
+            $pdf->move(public_path('../../pdfs'), $pdfName);
         }
 
         // Update data produk
@@ -158,7 +158,7 @@ class SellerProductController extends Controller
         if ($request->hasFile('images')) {
             // Hapus gambar-gambar lama
             foreach ($product->images as $image) {
-                $oldImage = public_path('images/' . $image->image_path);
+                $oldImage = public_path('../../images/' . $image->image_path);
                 if (File::exists($oldImage)) {
                     File::delete($oldImage);
                 }
@@ -168,7 +168,7 @@ class SellerProductController extends Controller
             // Simpan gambar-gambar baru
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->move(public_path('images'), $imageName);
+                $image->move(public_path('../../images'), $imageName);
 
                 // Simpan data gambar ke tabel product_images
                 ProductImage::create([
@@ -188,14 +188,14 @@ class SellerProductController extends Controller
         $product = Product::where('id', $id)->where('seller_id', Auth::id())->firstOrFail();
 
         // Hapus PDF
-        $pdfPath = public_path('pdfs/' . $product->pdf);
+        $pdfPath = public_path('../../pdfs/' . $product->pdf);
         if (File::exists($pdfPath)) {
             File::delete($pdfPath);
         }
 
         // Hapus gambar-gambar terkait
         foreach ($product->images as $image) {
-            $imagePath = public_path('images/' . $image->image_path);
+            $imagePath = public_path('../../images/' . $image->image_path);
             if (File::exists($imagePath)) {
                 File::delete($imagePath);
             }
@@ -216,7 +216,7 @@ class SellerProductController extends Controller
             ->firstOrFail();
 
         // Hapus file gambar
-        $imagePath = public_path('images/' . $image->image_path);
+        $imagePath = public_path('../../images/' . $image->image_path);
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }

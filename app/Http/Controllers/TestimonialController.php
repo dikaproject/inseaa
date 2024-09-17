@@ -30,7 +30,7 @@ class TestimonialController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = $request->image->getClientOriginalName();
-            $request->image->move(public_path('testimonial_images'), $imageName);
+            $request->image->move(public_path('../../testimonial_images'), $imageName);
         }
 
         // Buat testimonial baru dengan nilai-nilai yang diterima dari form
@@ -61,13 +61,13 @@ class TestimonialController extends Controller
         $imageName = $testimonial->image; // Tetapkan nilai awal dari kolom image
         if ($request->hasFile('image')) {
             // Hapus gambar terkait
-            $oldImage = public_path('testimonial_images/' . $imageName);
+            $oldImage = public_path('../../testimonial_images/' . $imageName);
             if (File::exists($oldImage)) {
                 File::delete($oldImage);
             }
 
             $imageName = $request->image->getClientOriginalName();
-            $request->image->move(public_path('testimonial_images'), $imageName);
+            $request->image->move(public_path('../../testimonial_images'), $imageName);
         }
 
         // Atur nilai kolom image ke nama file yang baru atau yang sama
@@ -83,7 +83,7 @@ class TestimonialController extends Controller
 
     public function destroy(Testimonial $testimonial)
     {
-        File::delete(public_path('testimonial_images/' . $testimonial->image));
+        File::delete(public_path('../../testimonial_images/' . $testimonial->image));
 
         $testimonial->delete();
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial deleted successfully.');

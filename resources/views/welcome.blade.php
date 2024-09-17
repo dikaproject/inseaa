@@ -642,7 +642,7 @@
                                                     alt="{{ $testimonial->name }}"></a>
                                         </div>
                                         <div class="banner-read-thumb">
-                                            <h4><a href="product-details.html">{{ $testimonial->name }}</a></h4>
+                                            <h4><a href="{{ $testimonial->link_post }}">{{ $testimonial->name }}</a></h4>
                                         </div>
                                     </div>
                                 </div>

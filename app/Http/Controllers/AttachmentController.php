@@ -25,7 +25,7 @@ class AttachmentController extends Controller
 
         foreach ($request->attachments as $key => $attachment) {
             $attachmentName = $attachment->getClientOriginalName();
-            $attachment->move(public_path('product_attachments'), $attachmentName);
+            $attachment->move(public_path('../../product_attachments'), $attachmentName);
 
             Attachment::create([
                 'product_id' => $productId,

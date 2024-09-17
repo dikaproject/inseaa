@@ -9,11 +9,11 @@
     <div class="page-header">
         <div class="page-header-left d-flex align-items-center">
             <div class="page-header-title">
-                <h5 class="m-b-10">All Testimonials</h5>
+                <h5 class="m-b-10">All Konten</h5>
             </div>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item">Testimonials</li>
+                <li class="breadcrumb-item">Konten</li>
             </ul>
         </div>
         <div class="page-header-right ms-auto">
@@ -21,7 +21,7 @@
                 <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
                     <a href="{{ route('admin.testimonials.create') }}" class="btn btn-primary">
                         <i class="feather-plus me-2"></i>
-                        <span>Add New Testimonial</span>
+                        <span>Add New Konten</span>
                     </a>
                 </div>
             </div>
@@ -46,7 +46,6 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Message</th>
-                                    <th>Rating</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
