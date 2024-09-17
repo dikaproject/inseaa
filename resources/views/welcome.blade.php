@@ -662,3 +662,59 @@
     <!-- Testimonial End -->
 
 @endsection
+
+@section('script-js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var shareModal = document.getElementById('shareModal');
+            shareModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var productUrl = button.getAttribute('data-product-url');
+                var productName = button.getAttribute('data-product-name');
+
+                var facebookShare = document.getElementById('facebook-share');
+                var twitterShare = document.getElementById('twitter-share');
+                var linkedinShare = document.getElementById('linkedin-share');
+                var whatsappShare = document.getElementById('whatsapp-share');
+
+                var encodedUrl = encodeURIComponent(productUrl);
+                var encodedName = encodeURIComponent(productName);
+
+                facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+                twitterShare.href =
+                `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
+                linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+                whatsappShare.href = `https://api.whatsapp.com/send?text=${encodedName}%20${encodedUrl}`;
+            });
+
+            // Copy Link Product functionality
+            document.addEventListener('click', function(event) {
+                if (event.target.matches('.copy-text')) {
+                    var button = event.target;
+                    var productUrl = button.getAttribute('data-product-url');
+
+                    navigator.clipboard.writeText(productUrl).then(function() {
+                        alert('Product link copied to clipboard!');
+                    }, function(err) {
+                        console.error('Could not copy text: ', err);
+                        alert('Failed to copy the product link.');
+                    });
+                }
+            });
+        });
+
+        // Replace alert with toast
+        var toastEl = document.getElementById('copyToast');
+        var toast = new bootstrap.Toast(toastEl);
+
+        navigator.clipboard.writeText(productUrl).then(function() {
+            toast.show();
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+            alert('Failed to copy the product link.');
+        });
+    </script>
+
+
+
+@endsection

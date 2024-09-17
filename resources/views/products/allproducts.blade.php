@@ -50,8 +50,9 @@
                         <div class="product-style-one no-overlay">
                             <div class="card-thumbnail">
                                 <a href="{{ route('products.show', $product) }}">
-                                    @if($product->images->isNotEmpty())
-                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}" alt="{{ $product->images->first()->alt_text }}">
+                                    @if ($product->images->isNotEmpty())
+                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
+                                            alt="{{ $product->images->first()->alt_text }}">
                                     @else
                                         <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
                                     @endif
@@ -71,13 +72,16 @@
 
                                     <div class="share-btn-setting dropdown-menu dropdown-menu-end">
                                         <button type="button" class="btn-setting-text share-text" data-bs-toggle="modal"
-                                            data-bs-target="#shareModal">
+                                            data-bs-target="#shareModal"
+                                            data-product-url="{{ route('products.show', $product) }}"
+                                            data-product-name="{{ $product->name }}">
                                             Share
                                         </button>
-                                        <button type="button" class="btn-setting-text report-text" data-bs-toggle="modal"
-                                            data-bs-target="#reportModal">
+                                        <button type="button" class="btn-setting-text copy-text"
+                                            data-product-url="{{ route('products.show', $product) }}">
                                             Copy Link Product
                                         </button>
+
                                     </div>
 
                                 </div>
@@ -103,54 +107,97 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div class="toast align-items-center text-bg-primary border-0 position-fixed bottom-0 end-0 m-3" role="alert"
+        aria-live="assertive" aria-atomic="true" id="copyToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                Product link copied to clipboard!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+
+
+    <!-- Share Modal -->
     <div class="rn-popup-modal share-modal-wrapper modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                 data-feather="x"></i></button>
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content share-wrapper">
                 <div class="modal-header share-area">
-                    <h5 class="modal-title">Share this NFT</h5>
+                    <h5 class="modal-title">Share this Product</h5>
                 </div>
                 <div class="modal-body">
                     <ul class="social-share-default">
-                        <li><a href="#"><span class="icon"><i data-feather="facebook"></i></span><span
-                                    class="text">facebook</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="twitter"></i></span><span
-                                    class="text">twitter</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="linkedin"></i></span><span
-                                    class="text">linkedin</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="instagram"></i></span><span
-                                    class="text">instagram</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="youtube"></i></span><span
-                                    class="text">youtube</span></a></li>
+                        <li><a href="#" id="facebook-share"><span class="icon"><i
+                                        data-feather="facebook"></i></span><span class="text">Facebook</span></a></li>
+                        <li><a href="#" id="twitter-share"><span class="icon"><i
+                                        data-feather="twitter"></i></span><span class="text">Twitter</span></a></li>
+                        <li><a href="#" id="linkedin-share"><span class="icon"><i
+                                        data-feather="linkedin"></i></span><span class="text">LinkedIn</span></a></li>
+                        <li><a href="#" id="whatsapp-share"><span class="icon"><i
+                                        data-feather="message-circle"></i></span><span class="text">WhatsApp</span></a>
+                        </li>
+                        <!-- Add more social media platforms as needed -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="rn-popup-modal report-modal-wrapper modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                data-feather="x"></i></button>
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content report-content-wrapper">
-                <div class="modal-header report-modal-header">
-                    <h5 class="modal-title">Why are you reporting?
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <p>Describe why you think this item should be removed from marketplace</p>
-                    <div class="report-form-box">
-                        <h6 class="title">Message</h6>
-                        <textarea name="message" placeholder="Write issues"></textarea>
-                        <div class="report-button">
-                            <button type="button" class="btn btn-primary mr--10 w-auto">Report</button>
-                            <button type="button" class="btn btn-primary-alta w-auto"
-                                data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@endsection
+
+@section('script-js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var shareModal = document.getElementById('shareModal');
+            shareModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var productUrl = button.getAttribute('data-product-url');
+                var productName = button.getAttribute('data-product-name');
+
+                var facebookShare = document.getElementById('facebook-share');
+                var twitterShare = document.getElementById('twitter-share');
+                var linkedinShare = document.getElementById('linkedin-share');
+                var whatsappShare = document.getElementById('whatsapp-share');
+
+                var encodedUrl = encodeURIComponent(productUrl);
+                var encodedName = encodeURIComponent(productName);
+
+                facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+                twitterShare.href =
+                `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
+                linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+                whatsappShare.href = `https://api.whatsapp.com/send?text=${encodedName}%20${encodedUrl}`;
+            });
+
+            // Copy Link Product functionality
+            document.addEventListener('click', function(event) {
+                if (event.target.matches('.copy-text')) {
+                    var button = event.target;
+                    var productUrl = button.getAttribute('data-product-url');
+
+                    navigator.clipboard.writeText(productUrl).then(function() {
+                        alert('Product link copied to clipboard!');
+                    }, function(err) {
+                        console.error('Could not copy text: ', err);
+                        alert('Failed to copy the product link.');
+                    });
+                }
+            });
+        });
+
+        // Replace alert with toast
+        var toastEl = document.getElementById('copyToast');
+        var toast = new bootstrap.Toast(toastEl);
+
+        navigator.clipboard.writeText(productUrl).then(function() {
+            toast.show();
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+            alert('Failed to copy the product link.');
+        });
+    </script>
+
 @endsection
