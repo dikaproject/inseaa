@@ -6,8 +6,8 @@
             <div class="m-header">
                 <a href="{{ url('dashboard') }}" class="b-brand">
                     <!-- ========   change your logo hear   ============ -->
-                    <img src="{{ asset('assets/img/logoinseaa.png') }}" width="120" height="70" alt="" class="logo logo-lg" />
-                    <img src="{{ asset('assets/img/logoinseaa.png') }}" width="120" height="70" alt="" class="logo logo-sm" />
+                    <img src="{{ asset('assets/images/inseaalogo.png') }}" width="120" height="120" alt="" class="logo logo-lg" />
+                    <img src="{{ asset('assets/images/inseaalogo.png') }}" width="120" height="120" alt="" class="logo logo-sm" />
                 </a>
             </div>
             <div class="navbar-content">

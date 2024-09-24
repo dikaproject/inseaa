@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <meta name="author" content="theme_ocean">
-    <title>Bukus-v2 || Login Admin</title>
+    <title>Inseaa Login Admin</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/vendors.min.css') }}">
@@ -27,7 +27,7 @@
                     <div class="card-body p-sm-5">
                         <h2 class="fs-20 fw-bolder mb-4">Login</h2>
                         <h4 class="fs-13 fw-bold mb-2">Login to your account</h4>
-                        <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p>
+                        <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Inseaa</strong> web applications, let's access our the best recommendation for you.</p>
                         <form action="{{ route('login') }}" method="POST" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="mb-4">

@@ -111,7 +111,6 @@
                                     </div>
                                 </div>
                                 <a href="javascript:void(0);" class="">
-                                    <i class="feather-more-vertical"></i>
                                 </a>
                             </div>
                         </div>
@@ -135,7 +134,6 @@
                                     </div>
                                 </div>
                                 <a href="javascript:void(0);" class="">
-                                    <i class="feather-more-vertical"></i>
                                 </a>
                             </div>
                         </div>

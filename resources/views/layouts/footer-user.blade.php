@@ -72,11 +72,10 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="copyright-right">
                     <ul class="social-copyright">
-                        <li><a href="#"><i data-feather="facebook"></i></a></li>
-                        <li><a href="#"><i data-feather="twitter"></i></a></li>
-                        <li><a href="#"><i data-feather="instagram"></i></a></li>
-                        <li><a href="#"><i data-feather="linkedin"></i></a></li>
-                        <li><a href="#"><i data-feather="mail"></i></a></li>
+                        <li><a href="#"target="blank"><i data-feather="facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/inseaa_id/"target="blank"><i data-feather="instagram"></i></a></li>
+                        <li><a href="#"target="blank"><i data-feather="linkedin"></i></a></li>
+                        <li><a href="#"target="blank"><i data-feather="mail"></i></a></li>
                     </ul>
                 </div>
             </div>
