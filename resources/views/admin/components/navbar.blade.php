@@ -86,7 +86,7 @@
 
                     <!-- Contact -->
                     <li class="nxl-item nxl-hasmenu">
-                        <a href="{{ url('contacts') }}" class="nxl-link">
+                        <a href="{{ route('admin.contacts.index') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-mail"></i></span>
                             <span class="nxl-mtext">Contact</span>
                         </a>

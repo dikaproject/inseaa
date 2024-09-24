@@ -376,23 +376,24 @@
 
             <div class="row g-5">
                 @foreach ($categories as $category)
-                    <!-- start single collention -->
-                    <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
-                        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
-                        <a href="product-details.html" class="rn-collection-inner-one">
-                            <div class="collection-wrapper">
-                                <div class="collection-big-thumbnail">
-                                    <img src="{{ asset('category_images/' . $category->image) }}" alt="Nft_Profile">
-                                </div>
-                                <div class="collection-deg">
-                                    <h6 class="title">{{ $category->name }}</h6>
-                                    <span class="items">{{ $category->products->count() }} Items</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End single collention -->
-                @endforeach
+    <!-- start single collection -->
+    <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
+        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('view.products.index') }}?category={{ $category->id }}" class="rn-collection-inner-one">
+            <div class="collection-wrapper">
+                <div class="collection-big-thumbnail">
+                    <img src="{{ asset('category_images/' . $category->image) }}" alt="{{ $category->name }}">
+                </div>
+                <div class="collection-deg">
+                    <h6 class="title">{{ $category->name }}</h6>
+                    <span class="items">{{ $category->products->count() }} Items</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- End single collection -->
+@endforeach
+
 
             </div>
         </div>

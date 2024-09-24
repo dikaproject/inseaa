@@ -19,27 +19,21 @@ class SellerManageController extends Controller
     }
 
     // Tampilkan detail seller
-    public function show(User $seller)
+    public function show($sellerId)
     {
-        // Pastikan user memiliki role 'seller'
-        if (!$seller->hasRole('seller')) {
-            return redirect()->route('admin.sellers.index')->withErrors('User bukan seller.');
-        }
+        // Find the seller by ID, eager load sellerProfile
+        $seller = User::with('sellerProfile')->findOrFail($sellerId);
 
-        $approvedProductsCount = Product::where('seller_id', $seller->id)
-            ->where('status', 'approved')
-            ->count();
-
-        // Menghitung jumlah produk yang sudah dibeli (berdasarkan order_items)
-        $soldProductsCount = OrderItem::whereHas('product', function ($query) use ($seller) {
-            $query->where('seller_id', $seller->id);
-        })->sum('quantity');
-
-        // Ambil profil seller
+        // Extract sellerProfile
         $sellerProfile = $seller->sellerProfile;
 
-        return view('admin.seller.detail', compact('seller', 'sellerProfile','approvedProductsCount', 'soldProductsCount'));
+        // Get additional data like approved and sold products count
+        $approvedProductsCount = $seller->products()->where('status', 'approved')->count();
+        $soldProductsCount = $seller->products()->where('status', 'sold')->count();
+
+        return view('admin.seller.detail', compact('seller', 'sellerProfile', 'approvedProductsCount', 'soldProductsCount'));
     }
+
 
     // Form untuk mengedit seller
     public function edit(User $seller)

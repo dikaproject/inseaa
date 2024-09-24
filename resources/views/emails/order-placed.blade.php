@@ -42,6 +42,7 @@
     <div class="container">
         <h2>Order Confirmation</h2>
         <p>Dear {{ $order->name }},</p>
+        <p>Your Email {{ $order->email }}</p>
         <p>Thank you for your order. Below are the details of your purchase:</p>
 
         @foreach($order->items as $item)
