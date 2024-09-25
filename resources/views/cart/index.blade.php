@@ -65,7 +65,7 @@
                             <label for="message">Message</label>
                             <textarea name="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Checkout</button>
+                        <button type="submit" class="btn btn-primary w-100">Request a Quote</button>
                     </form>
                 </div>
             </div>

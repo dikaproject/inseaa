@@ -348,7 +348,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 p-0">
-                    <img src="{{ asset('assets/images/fc3.png') }}" alt="Nuron" class="img-fluid w-100">
+                    <img src="{{ asset('assets/images/how to order.png') }}" alt="Nuron" class="img-fluid w-100">
                 </div>
             </div>
         </div>

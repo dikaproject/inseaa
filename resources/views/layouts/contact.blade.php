@@ -90,7 +90,7 @@
             <div class="col-lg-6" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
                 <div class="connect-thumbnail">
                     <div class="left-image">
-                        <img src="assets/images/contact/contact1.png" alt="Nft_Profile">
+                        <img src="{{asset('assets/images/contact.jpg')}}" alt="Nft_Profile">
                     </div>
                 </div>
             </div>

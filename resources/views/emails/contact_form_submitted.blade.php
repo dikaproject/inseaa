@@ -25,7 +25,7 @@
         <p>{{ $contact->message }}</p>
     </div>
     <div class="footer">
-        <p>This email was sent from your website's contact form.</p>
+        <p>This email was sent from your website's contact form.our be representative will reach you soon</p>
     </div>
 </body>
 </html>
