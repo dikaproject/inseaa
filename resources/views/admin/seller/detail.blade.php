@@ -139,8 +139,8 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <a href="javascript:void(0);" class="fs-14 fw-bold d-block">{{ Auth::user()->name }}</a>
-                                <a href="javascript:void(0);" class="fs-12 fw-normal text-muted d-block">{{ Auth::user()->email }}</a>
+                                <a href="javascript:void(0);" class="fs-14 fw-bold d-block">{{ $seller->name }}</a>
+                                <a href="javascript:void(0);" class="fs-12 fw-normal text-muted d-block">{{ $seller->email }}</a>
                             </div>
                             <div class="fs-12 fw-normal text-muted text-center d-flex flex-wrap gap-3 mb-4">
 
@@ -149,16 +149,15 @@
                         <ul class="list-unstyled mb-4">
                             <li class="hstack justify-content-between mb-4">
                                 <span class="text-muted fw-medium hstack gap-3"><i class="feather-mail"></i>Email</span>
-                                <span class="float-end">{{ Auth::user()->email }}</span>
+                                <span class="float-end">{{ $seller->email }}</span>
                             </li>
                             <li class="hstack justify-content-between mb-4">
                                 <span class="text-muted fw-medium hstack gap-3"><i class="feather-phone"></i>Nomer HP</span>
-                                <span class="float-end">{{ Auth::user()->sellerProfile->no_telepon ?? 'N/A' }}</span>
+                                <span class="float-end">{{ $seller->sellerProfile->no_telepon ?? 'N/A' }}</span>
                             </li>
                             <li class="hstack justify-content-between mb-4">
                                 <span class="text-muted fw-medium hstack gap-3"><i class="feather-clock"></i>Jumlah Produk Seller</span>
-                                <span class="float-end">
-                                    {{ $approvedProductsCount }}</span>
+                                <span class="float-end">{{ $approvedProductsCount }}</span>
                             </li>
                             <li class="hstack justify-content-between mb-4">
                                 <span class="text-muted fw-medium hstack gap-3"><i class="feather-map"></i>Jumlah Produk Terjual</span>

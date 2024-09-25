@@ -32,7 +32,7 @@ class ContactController extends Controller
 
         // Send email to admin
         try {
-            Mail::to('intechofficialteam@gmail.com')->send(new ContactFormSubmitted($contact));
+            Mail::to('inseaaid@gmail.com')->send(new ContactFormSubmitted($contact));
         } catch (\Exception $e) {
             // Log the error or handle it
             Log::error('Mail send failed: ' . $e->getMessage());

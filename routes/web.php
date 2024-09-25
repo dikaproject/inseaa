@@ -20,6 +20,7 @@ use App\Http\Controllers\TestimonialController;
 use Spatie\Analytics\Facades\Analytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,12 +104,6 @@ Route::middleware(['admin'])->group(function () {
         return view('admin.sliders.index', compact('sliders'));
     })->name('sliders');
 
-    // index Contacts Route
-    Route::get('/contacts', function () {
-        $contacts = App\Models\Contact::all();
-        return view('admin.contacts', compact('contacts'));
-    })->name('contacts');
-
     // index Testimonial Route
     Route::get('/testimonial', function () {
         $testimonials = App\Models\Testimonial::all();
@@ -144,7 +139,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/sellers', [SellerManageController::class, 'index'])->name('admin.sellers.index');
 
     // Route untuk melihat detail seller
-    Route::get('/admin/sellers/{seller}', [SellerManageController::class, 'show'])->name('admin.sellers.show');
+    Route::get('/admin/sellers/{id}', [SellerManageController::class, 'show'])->name('admin.sellers.show');
 
     // Route untuk mengedit seller (optional)
     Route::get('/admin/sellers/{seller}/edit', [SellerManageController::class, 'edit'])->name('admin.sellers.edit');
@@ -204,10 +199,15 @@ Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->n
 
 
 
-// Contact Delete Route
-Route::middleware(['admin'])->group(function () {
-    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
+// Admin contact routes
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/{id}', [AdminContactController::class, 'show'])->name('contacts.show');
+    Route::get('/contacts/{id}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('contacts.markAsRead');
+    Route::get('/contacts/mark-all-as-read', [AdminContactController::class, 'markAllAsRead'])->name('contacts.markAllAsRead');
+    Route::get('/contacts/{id}/delete', [AdminContactController::class, 'destroy'])->name('contacts.delete');
 });
+
 
 Route::get('/categories', [CategoryController::class, 'allcategory'])->name('category.allcategory');
 Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('category.detail');

@@ -310,79 +310,46 @@
                     <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-notifications-menu">
                         <div class="d-flex justify-content-between align-items-center notifications-head">
                             <h6 class="fw-bold text-dark mb-0">Notifications</h6>
-                            <a href="javascript:void(0);" class="fs-11 text-success text-end ms-auto"
-                                data-bs-toggle="tooltip" title="Make as Read">
+                            <a href="{{ route('admin.contacts.markAllAsRead') }}" class="fs-11 text-success text-end ms-auto" data-bs-toggle="tooltip" title="Mark all as read">
                                 <i class="feather-check"></i>
-                                <span>Make as Read</span>
+                                <span>Mark all as read</span>
                             </a>
                         </div>
-                        <div class="notifications-item">
-                            <img src="assets/images/avatar/2.png" alt="" class="rounded me-3 border" />
-                            <div class="notifications-desc">
-                                <a href="javascript:void(0);" class="font-body text-truncate-2-line"> <span
-                                        class="fw-semibold text-dark">Malanie Hanvey</span> We should talk about that
-                                    at lunch!</a>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="notifications-date text-muted border-bottom border-bottom-dashed">2
-                                        minutes ago</div>
-                                    <div class="d-flex align-items-center float-end gap-2">
-                                        <a href="javascript:void(0);"
-                                            class="d-block wd-8 ht-8 rounded-circle bg-gray-300"
-                                            data-bs-toggle="tooltip" title="Make as Read"></a>
-                                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="tooltip"
-                                            title="Remove">
-                                            <i class="feather-x fs-12"></i>
-                                        </a>
+
+                        @forelse($unreadContacts as $contact)
+                            <div class="notifications-item">
+                                <img src="{{ asset('assets/images/avatar/default.png') }}" alt="" class="rounded me-3 border" />
+                                <div class="notifications-desc">
+                                    <a href="{{ route('admin.contacts.show', $contact->id) }}" class="font-body text-truncate-2-line">
+                                        <span class="fw-semibold text-dark">{{ $contact->first_name }} {{ $contact->last_name }}</span>
+                                        {{ Str::limit($contact->message, 50) }}
+                                    </a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="notifications-date text-muted border-bottom border-bottom-dashed">
+                                            {{ $contact->created_at->diffForHumans() }}
+                                        </div>
+                                        <div class="d-flex align-items-center float-end gap-2">
+                                            <a href="{{ route('admin.contacts.markAsRead', $contact->id) }}" class="d-block wd-8 ht-8 rounded-circle bg-gray-300" data-bs-toggle="tooltip" title="Mark as read"></a>
+                                            <a href="{{ route('admin.contacts.delete', $contact->id) }}" class="text-danger" data-bs-toggle="tooltip" title="Remove">
+                                                <i class="feather-x fs-12"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="notifications-item">
-                            <img src="assets/images/avatar/3.png" alt="" class="rounded me-3 border" />
-                            <div class="notifications-desc">
-                                <a href="javascript:void(0);" class="font-body text-truncate-2-line"> <span
-                                        class="fw-semibold text-dark">Valentine Maton</span> You can download the
-                                    latest invoices now.</a>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="notifications-date text-muted border-bottom border-bottom-dashed">36
-                                        minutes ago</div>
-                                    <div class="d-flex align-items-center float-end gap-2">
-                                        <a href="javascript:void(0);"
-                                            class="d-block wd-8 ht-8 rounded-circle bg-gray-300"
-                                            data-bs-toggle="tooltip" title="Make as Read"></a>
-                                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="tooltip"
-                                            title="Remove">
-                                            <i class="feather-x fs-12"></i>
-                                        </a>
-                                    </div>
+                        @empty
+                            <div class="notifications-item">
+                                <div class="notifications-desc">
+                                    <p class="text-muted">No new notifications</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="notifications-item">
-                            <img src="assets/images/avatar/4.png" alt="" class="rounded me-3 border" />
-                            <div class="notifications-desc">
-                                <a href="javascript:void(0);" class="font-body text-truncate-2-line"> <span
-                                        class="fw-semibold text-dark">Archie Cantones</span> Don't forget to pickup
-                                    Jeremy after school!</a>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="notifications-date text-muted border-bottom border-bottom-dashed">53
-                                        minutes ago</div>
-                                    <div class="d-flex align-items-center float-end gap-2">
-                                        <a href="javascript:void(0);"
-                                            class="d-block wd-8 ht-8 rounded-circle bg-gray-300"
-                                            data-bs-toggle="tooltip" title="Make as Read"></a>
-                                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="tooltip"
-                                            title="Remove">
-                                            <i class="feather-x fs-12"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
+
                         <div class="text-center notifications-footer">
-                            <a href="javascript:void(0);" class="fs-13 fw-semibold text-dark">Alls Notifications</a>
+                            <a href="{{ route('admin.contacts.index') }}" class="fs-13 fw-semibold text-dark">All Notifications</a>
                         </div>
                     </div>
+
                 </div>
                 <div class="dropdown nxl-h-item">
                     <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"

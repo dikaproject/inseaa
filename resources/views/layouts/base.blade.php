@@ -137,8 +137,10 @@
                     'none'; // Sembunyikan dropdown jika input kosong
             }
         });
-        
+
     </script>
+
+    @yield('script-js')
 
 </body>
 

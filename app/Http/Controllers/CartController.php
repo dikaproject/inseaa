@@ -71,36 +71,37 @@ class CartController extends Controller
     }
 
     public function checkout(Request $request)
-{
-    $cart = session()->get('cart', []);
+    {
+        $cart = session()->get('cart', []);
 
-    // Simpan data order ke database
-    $order = Order::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'subject' => $request->subject,
-        'message' => $request->message,
-    ]);
-
-    // Simpan item cart ke order_items
-    foreach ($cart as $productId => $details) {
-        OrderItem::create([
-            'order_id' => $order->id,
-            'product_id' => $productId,
-            'quantity' => $details['quantity'],
+        // Simpan data order ke database
+        $order = Order::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
         ]);
+
+        // Simpan item cart ke order_items
+        foreach ($cart as $productId => $details) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $productId,
+                'quantity' => $details['quantity'],
+            ]);
+        }
+
+        // Reload the order with items and products and their images
+        $order->load('items.product.images');
+
+        // Hapus session cart
+        session()->forget('cart');
+
+        // Kirim email konfirmasi
+        Mail::to($request->email)->send(new OrderPlaced($order));
+
+        Mail::to('inseaaid@gmail.com')->send(new OrderPlaced($order));
+
+        return redirect()->route('view.products.index')->with('success', 'Your order has been placed. our be representative will reach you soon! Please check your email.');
     }
-
-    // Reload the order with items and products and their images
-    $order->load('items.product.images');
-
-    // Hapus session cart
-    session()->forget('cart');
-
-    // Kirim email konfirmasi
-    Mail::to($request->email)->send(new OrderPlaced($order));
-
-    return redirect()->route('view.products.index')->with('success', 'Your order has been placed! Please check your email.');
-}
-
 }
