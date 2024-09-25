@@ -29,7 +29,7 @@ class SliderController extends Controller
         ]);
 
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('slider_images'), $imageName);
+        $request->image->move(public_path('../../slider_images'), $imageName);
 
         Slider::create([
             'name' => $request->name,
@@ -56,13 +56,13 @@ class SliderController extends Controller
         $imageName = $slider->image; // Tetapkan nilai awal dari kolom image
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
-            $oldImage = public_path('slider_images/' . $slider->image);
+            $oldImage = public_path('../../slider_images/' . $slider->image);
             if (File::exists($oldImage)) {
                 File::delete($oldImage);
             }
 
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('slider_images'), $imageName);
+            $request->image->move(public_path('../../slider_images'), $imageName);
         }
 
         $slider->name = $request->name;
@@ -75,7 +75,7 @@ class SliderController extends Controller
 
     public function destroy(Slider $slider)
     {
-        $oldImage = public_path('slider_images/' . $slider->image);
+        $oldImage = public_path('../../slider_images/' . $slider->image);
         if (File::exists($oldImage)) {
             File::delete($oldImage);
         }

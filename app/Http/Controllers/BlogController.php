@@ -34,7 +34,7 @@ class BlogController extends Controller
         $imageName = null;
         if ($request->hasFile('image')) {
             $imageName = $request->image->getClientOriginalName();
-            $request->image->move(public_path('blog_images'), $imageName);
+            $request->image->move(public_path('../../blog_images'), $imageName);
         }
 
         $blog = new Blog();
@@ -67,13 +67,13 @@ class BlogController extends Controller
 
         $imageName = $blog->image;
         if ($request->hasFile('image')) {
-            $oldImage = public_path('blog_images/'.$blog->image);
+            $oldImage = public_path('../../blog_images/'.$blog->image);
             if (File::exists($oldImage)) {
                 File::delete($oldImage);
             }
 
             $imageName = $request->image->getClientOriginalName();
-            $request->image->move(public_path('blog_images'), $imageName);
+            $request->image->move(public_path('../../blog_images'), $imageName);
             $blog->image = $imageName;
         }
 
@@ -105,7 +105,7 @@ class BlogController extends Controller
     function destroy(Blog $blog)
     {
 
-        $oldImage = public_path('blog_images/'.$blog->image);
+        $oldImage = public_path('../../blog_images/'.$blog->image);
         if (File::exists($oldImage)) {
             File::delete($oldImage);
         }

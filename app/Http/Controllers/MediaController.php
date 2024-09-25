@@ -32,12 +32,12 @@ class MediaController extends Controller
             $fileName = $file->getClientOriginalName(); // Gunakan nama asli file
 
             // Pindahkan file ke lokasi penyimpanan yang diinginkan
-            $file->move(public_path('media'), $fileName);
+            $file->move(public_path('../../media'), $fileName);
 
             // Simpan informasi file ke dalam database
             Media::create([
                 'filename' => $fileName,
-                'path' => '/media/' . $fileName, // Path yang bisa digunakan di editor atau tampilan web
+                'path' => '../../media/' . $fileName, // Path yang bisa digunakan di editor atau tampilan web
             ]);
 
             return redirect()->route('admin.media.index')->with('success', 'Media uploaded successfully.');
@@ -49,7 +49,7 @@ class MediaController extends Controller
     public function destroy(Media $media)
     {
         // Path ke file di direktori public
-        $filePath = public_path('media/' . $media->filename);
+        $filePath = public_path('../../media/' . $media->filename);
 
         // Hapus file dari direktori public jika ada
         if (File::exists($filePath)) {

@@ -33,7 +33,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('category_images'), $imageName);
+            $request->image->move(public_path('../../category_images'), $imageName);
         }
 
         $category = new Category();
@@ -69,11 +69,11 @@ class CategoryController extends Controller
         $imageName = $category->image;
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('category_images'), $imageName);
+            $request->image->move(public_path('../../category_images'), $imageName);
             $category->update(['image' => $imageName]);
 
             // Hapus gambar lama jika ada
-            $oldImage = public_path('category_images/' . $category->image);
+            $oldImage = public_path('../../category_images/' . $category->image);
             if (File::exists($oldImage)) {
                 File::delete($oldImage);
             }
@@ -104,7 +104,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        $oldImage = public_path('category_images/' . $category->image);
+        $oldImage = public_path('../../category_images/' . $category->image);
         if (File::exists($oldImage)) {
             File::delete($oldImage);
         }
