@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5091c2ae57d2abd9008fc4c95c29cf99",
+    "content-hash": "af94f304f8fcf50771f8fc005eab5208",
     "packages": [
         {
             "name": "brick/math",
@@ -3785,16 +3785,16 @@
         },
         {
             "name": "spatie/laravel-analytics",
-            "version": "5.3.0",
+            "version": "5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-analytics.git",
-                "reference": "98e8c1ab8e858e781a087c87cdd0c34fd1524c06"
+                "reference": "f26179b166a824dcba5f62b990a6bb63f4b02bb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/98e8c1ab8e858e781a087c87cdd0c34fd1524c06",
-                "reference": "98e8c1ab8e858e781a087c87cdd0c34fd1524c06",
+                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/f26179b166a824dcba5f62b990a6bb63f4b02bb7",
+                "reference": "f26179b166a824dcba5f62b990a6bb63f4b02bb7",
                 "shasum": ""
             },
             "require": {
@@ -3851,7 +3851,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-analytics/tree/5.3.0"
+                "source": "https://github.com/spatie/laravel-analytics/tree/5.4.0"
             },
             "funding": [
                 {
@@ -3859,7 +3859,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-03-12T19:19:36+00:00"
+            "time": "2024-07-22T09:13:25+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

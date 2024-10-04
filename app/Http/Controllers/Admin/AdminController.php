@@ -11,9 +11,9 @@ use App\Models\Models\Admin as ModelsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Spatie\Analytics\Analytics;
 use Spatie\Analytics\AnalyticsClientFactory;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Facades\Analytics;
 
 class AdminController extends Controller
 {
@@ -32,39 +32,43 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
 {
-    // $period = $request->get('period', 'week');
-    // $periodMapping = [
-    //     'day' => Period::days(1),
-    //     'week' => Period::days(7),
-    //     'month' => Period::months(1),
-    //     'quarter' => Period::months(3),
-    //     'year' => Period::years(1),
-    // ];
+    // Determine the period based on the request or default to 'week'
+    $periodType = $request->get('period', 'week');
+    $periodMapping = [
+        'day' => Period::days(1),
+        'week' => Period::days(7),
+        'month' => Period::months(1),
+        'quarter' => Period::months(3),
+        'year' => Period::years(1),
+    ];
 
-    // $trafficPeriod = $periodMapping[$period] ?? Period::days(7);
+    $selectedPeriod = $periodMapping[$periodType] ?? Period::days(7);
 
-    // $trafficData = $this->analytics->fetchTotalVisitorsAndPageViews($trafficPeriod);
-    // $monthlyTraffic = $this->analytics->fetchTotalVisitorsAndPageViews(Period::months(1));
-    // $popularPages = $this->analytics->fetchMostVisitedPages(Period::days(30));
+    // Fetch total visitors and page views
+    $trafficData = Analytics::fetchTotalVisitorsAndPageViews($selectedPeriod);
 
-    // // Convert trafficData to JSON format for Chart.js
-    // $trafficData = $trafficData->map(function ($item) {
-    //     return [
-    //         'date' => $item['date']->format('Y-m-d'), // Format tanggal
-    //         'pageViews' => $item['screenPageViews'],
-    //         'visitors' => $item['activeUsers']
-    //     ];
-    // });
+    // Fetch total visitors and page views for the selected period
+    $totalTraffic = $trafficData;
 
-    return view('admin.dashboard');
-    // return view('admin.dashboard', [
-    //     'trafficData' => $trafficData,
-    //     'monthlyTraffic' => $monthlyTraffic,
-    //     'popularPages' => $popularPages,
-    //     'period' => $period
-    // ]);
+    // Fetch most visited pages
+    $popularPages = Analytics::fetchMostVisitedPages($selectedPeriod, 10);
+
+    // Map trafficData to use the correct keys
+    $trafficData = $trafficData->map(function ($item) {
+        return [
+            'date' => $item['date']->format('Y-m-d'),
+            'pageViews' => $item['screenPageViews'], // Correct key
+            'visitors' => $item['activeUsers'], // Correct key
+        ];
+    });
+
+    return view('admin.dashboard', [
+        'trafficData' => $trafficData,
+        'totalTraffic' => $totalTraffic,
+        'popularPages' => $popularPages,
+        'period' => $periodType,
+    ]);
 }
-
 
     public function login()
     {
@@ -85,7 +89,7 @@ class AdminController extends Controller
         ];
 
         if (Auth::guard('admin')->attempt($data)) {
-            return redirect()->route('admin_dashboard')->with('Success', 'Login Successfully.');
+            return redirect()->route('admin.dashboard')->with('Success', 'Login Successfully.');
         } else {
             return redirect()->route('admin_login')->with('Error', 'Invalid Credentials.');
         }

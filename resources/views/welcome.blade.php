@@ -28,7 +28,7 @@
                     <li><a href="about.html">About</a>
                     </li>
                     <li class="has-droupdown">
-                        <a class="nav-link its_new" href="{{  url('about') }}">Explore</a>
+                        <a class="nav-link its_new" href="{{ url('about') }}">Explore</a>
                         <ul class="submenu">
                             <li><a href="explore-one.html">Explore Filter<i class="feather-fast-forward"></i></a></li>
                             <li><a href="explore-two.html">Explore Isotop<i class="feather-fast-forward"></i></a></li>
@@ -155,7 +155,7 @@
                             <p class="pre-title">Inseaa</p>
                             <h1 class="title">#1 place to Acces Indonesian Suppliers Network</h1>
                             <p class="post-title">We are Young Proffesionals to help you procure your valuable demands</p>
-                            <a class="btn btn-primary-alta btn-large" href="{{  url('about') }}">Explore</a>
+                            <a class="btn btn-primary-alta btn-large" href="{{ url('about') }}">Explore</a>
                             <div class="wallet-image-wrapper">
                                 <a href="#" class="avatar" data-tooltip="PPI"><img src="assets/images/ppi.png"
                                         alt="wallet_image"></a>
@@ -366,13 +366,15 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i data-feather="arrow-right"></i></a>
+                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i
+                                data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="row g-5">
                 @foreach ($categories as $category)
+<<<<<<< HEAD
     <!-- start single collection -->
     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
         class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
@@ -391,6 +393,28 @@
     <!-- End single collection -->
 @endforeach
 
+=======
+                    <!-- start single collection -->
+                    <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
+                        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
+                        <a href="{{ route('view.products.index') }}?category={{ $category->id }}"
+                            class="rn-collection-inner-one">
+                            <div class="collection-wrapper">
+                                <div class="collection-big-thumbnail">
+                                    <img src="{{ asset('category_images/' . $category->image) }}"
+                                        alt="{{ $category->name }}">
+                                </div>
+                                <div class="collection-deg">
+                                    <h6 class="title">{{ $category->name }}</h6>
+                                    <span class="items">{{ $category->products->count() }} Items</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End single collection -->
+                @endforeach
+>>>>>>> production
+
 
             </div>
         </div>
@@ -406,7 +430,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i data-feather="arrow-right"></i></a>
+                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i
+                                data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -453,22 +478,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <button class="discover-filter-button discover-filter-activation btn btn-primary">Filter<i
-                                class="feather-filter"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="default-exp-wrapper default-exp-expand">
-                <div class="inner">
-                    <div class="filter-select-option">
-                        <label class="filter-leble">Category</label>
-                        <select onchange="alert('Sedang tahap Development')">
-                            <option data-display="Category">Category</option>
-                            @foreach ($categories->take(5) as $category)
-                                <option value="1">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i
+                                data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -568,7 +579,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <a class="btn-transparent" href="#">VIEW ALL<i data-feather="arrow-right"></i></a>
+                        <a class="btn-transparent" href="{{ url('/blog') }}">VIEW ALL<i
+                                data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -591,7 +603,7 @@
                                                     alt="{{ $testimonial->name }}"></a>
                                         </div>
                                         <div class="banner-read-thumb">
-                                            <h4><a href="product-details.html">{{ $testimonial->name }}</a></h4>
+                                            <h4><a href="{{ $testimonial->link_post }}">{{ $testimonial->name }}</a></h4>
                                         </div>
                                     </div>
                                 </div>

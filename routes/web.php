@@ -73,7 +73,7 @@ require __DIR__.'/auth.php';
 
 /* admin routes */
 Route::middleware('admin')->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/change-password', [AdminController::class, 'changePassword'])->name('admin.change_password');
 });
 
@@ -90,6 +90,8 @@ Route::middleware(['admin'])->group(function () {
         $products = App\Models\Product::all();
         return view('admin.dashboard', compact('products'));
     })->name('dashboard');
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     // index product Route
     Route::get('/products', function () {
@@ -260,9 +262,10 @@ Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->name('blogs.s
 
 Route::get('/blog', function () {
     $blogs = App\Models\Blog::paginate(10);
+    $testimonial = App\Models\Testimonial::all();
     $sliders = App\Models\Slider::all();
     $categories = App\Models\Category::all();
-    return view('blogs.index', compact('blogs', 'sliders', 'categories'));
+    return view('blogs.index', compact('blogs', 'sliders', 'categories', 'testimonial'));
 });
 
 Route::get('/detailcategory',function (){

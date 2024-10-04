@@ -11,18 +11,18 @@
                         <!-- Start Mainmanu Nav -->
                         <ul class="mainmenu">
                             <li class="has-menu-child-item">
-                                <a href="{{url('/')}}">Home</a>
+                                <a href="{{ url('/') }}">Home</a>
                             </li>
-                            <li><a href="{{url('/about')}}">About</a>
+                            <li><a href="{{ url('/about') }}">About</a>
                             </li>
                             <li class="has-menu-child-item">
                                 <a href="{{ route('view.products.index') }}">Product</a>
                             </li>
                             <li class="has-menu-child-item">
                             </li>
-                            <li><a href="{{url('/contact')}}">Contact</a></li>
+                            <li><a href="{{ url('/contact') }}">Contact</a></li>
                             <li class="has-menu-child-item">
-                                <a href="{{url('/blog')}}">Blog</a>
+                                <a href="{{ url('/blog') }}">Blog</a>
                             </li>
                         </ul>
                         <!-- End Mainmanu Nav -->
@@ -30,14 +30,18 @@
                 </div>
             </div>
             <div class="header-right">
-                <div class="setting-option d-none d-lg-block">
+                <!-- Existing search form -->
+                <div class="setting-option d-none d-lg-block" style="position: relative;">
                     <form class="search-form-wrapper" action="#">
                         <input type="search" placeholder="Search Here" aria-label="Search">
                         <div class="search-icon">
-                            <button><i class="feather-search"></i></button>
+                            <button type="button"><i class="feather-search"></i></button>
                         </div>
                     </form>
+                    <!-- Add the search results container -->
+                    <div class="search-results-dropdown"></div>
                 </div>
+
                 <div class="setting-option rn-icon-list d-block d-lg-none">
                     <div class="icon-box search-mobile-icon">
                         <button><i class="feather-search"></i></button>
@@ -74,7 +78,9 @@
                                     <ul class="product-list">
                                         <li class="single-product-list">
                                             <div class="thumbnail">
-                                                <a href="product-details.html"><img src="assets/images/portfolio/portfolio-07.jpg" alt="Nft Product Images"></a>
+                                                <a href="product-details.html"><img
+                                                        src="assets/images/portfolio/portfolio-07.jpg"
+                                                        alt="Nft Product Images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6 class="title"><a href="product-details.html">Balance</a></h6>
@@ -84,7 +90,9 @@
                                         </li>
                                         <li class="single-product-list">
                                             <div class="thumbnail">
-                                                <a href="product-details.html"><img src="assets/images/portfolio/portfolio-01.jpg" alt="Nft Product Images"></a>
+                                                <a href="product-details.html"><img
+                                                        src="assets/images/portfolio/portfolio-01.jpg"
+                                                        alt="Nft Product Images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6 class="title"><a href="product-details.html">Balance</a></h6>
