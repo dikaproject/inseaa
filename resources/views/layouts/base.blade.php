@@ -19,6 +19,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logoinseaa.png') }}">
 
+    
+
     <style>
         /* Styles for the search results container */
         .search-results-dropdown {

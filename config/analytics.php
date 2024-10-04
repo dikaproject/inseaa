@@ -1,33 +1,26 @@
 <?php
 
+
 return [
 
     /*
-     * The property id of which you want to display data.
+     * The property ID of which you want to display data.
      */
     'property_id' => env('ANALYTICS_PROPERTY_ID'),
 
-    'google_analytics_view_id' => '322008541',
-
     /*
-     * Path to the client secret json file. Take a look at the README of this package
-     * to learn how to get this file. You can also pass the credentials as an array
-     * instead of a file path.
+     * Path to the service account credentials JSON file.
      */
     'service_account_credentials_json' => storage_path(env('ANALYTICS_SERVICE_ACCOUNT_CREDENTIALS_PATH')),
 
     /*
      * The amount of minutes the Google API responses will be cached.
-     * If you set this to zero, the responses won't be cached at all.
+     * If set to zero, responses won't be cached.
      */
     'cache_lifetime_in_minutes' => 60 * 24,
 
     /*
-     * Here you may configure the "store" that the underlying Google_Client will
-     * use to store it's data.  You may also add extra parameters that will
-     * be passed on setCacheConfig (see docs for google-api-php-client).
-     *
-     * Optional parameters: "lifetime", "prefix"
+     * Cache configuration.
      */
     'cache' => [
         'store' => 'file',

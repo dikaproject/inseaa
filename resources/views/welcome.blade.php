@@ -479,22 +479,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <button class="discover-filter-button discover-filter-activation btn btn-primary">Filter<i
-                                class="feather-filter"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="default-exp-wrapper default-exp-expand">
-                <div class="inner">
-                    <div class="filter-select-option">
-                        <label class="filter-leble">Category</label>
-                        <select onchange="alert('Sedang tahap Development')">
-                            <option data-display="Category">Category</option>
-                            @foreach ($categories->take(5) as $category)
-                                <option value="1">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                        <a class="btn-transparent" href="{{ route('view.products.index') }}">VIEW ALL<i data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -509,7 +494,7 @@
                             <div class="card-thumbnail">
                                 <a href="{{ route('products.show', $product) }}">
                                     @if ($product->images->isNotEmpty())
-                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
+                                        <img  src="{{ asset('images/' . $product->images->first()->image_path) }}"
                                             alt="{{ $product->images->first()->alt_text }}">
                                     @else
                                         <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
@@ -619,7 +604,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
-                        <a class="btn-transparent" href="#">VIEW ALL<i data-feather="arrow-right"></i></a>
+                        <a class="btn-transparent" href="{{ url('/blog') }}">VIEW ALL<i data-feather="arrow-right"></i></a>
                     </div>
                 </div>
             </div>
