@@ -5,25 +5,14 @@
                 <div class="widget-content-wrapper">
                     <div class="footer-left">
                         <div class="logo-thumbnail logo-custom-css">
-                            <a class="logo-light" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
-                            <a class="logo-dark" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
+                            <a class="logo-light" href="index.html"><img src="{{asset('assets/images/extrajumbologo.png')}}" alt="nft-logo"></a>
+                            <a class="logo-dark" href="index.html"><img src="{{asset('assets/images/extrajumbologo.png')}}" alt="nft-logo"></a>
                         </div>
                         <p class="rn-footer-describe">
                             Created with the collaboration of over 60 of the world's best Inseaa Artists.
                         </p>
                     </div>
-                    <div class="widget-bottom mt--40 pt--40">
-                        <h6 class="title">Get The Latest Inseaa Updates </h6>
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-color--2" placeholder="Your username" aria-label="Recipient's username">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary-alta btn-outline-secondary" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="newsletter-dsc">
-                            <p>Email is safe. We don't spam.</p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
 

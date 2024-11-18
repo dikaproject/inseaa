@@ -4,6 +4,42 @@
 
 @section('contact')
 <!-- About Start -->
+<div class="popup-mobile-menu">
+    <div class="inner">
+        <div class="header-top">
+            <div class="logo logo-custom-css">
+                <a class="logo-light" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
+                <a class="logo-dark" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
+            </div>
+            <div class="close-menu">
+                <button class="close-button">
+                    <i class="feather-x"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <!-- Start Mainmanu Nav -->
+            <ul class="mainmenu">
+                <li class="has-menu-child-item">
+                    <a href="{{ url('/') }}">Home</a>
+                </li>
+                <li><a href="{{ url('/about') }}">About</a>
+                </li>
+                <li class="has-menu-child-item">
+                    <a href="{{ route('view.products.index') }}">Product</a>
+                </li>
+                <li class="has-menu-child-item">
+                </li>
+                <li><a href="{{ url('/contact') }}">Contact</a></li>
+                <li class="has-menu-child-item">
+                    <a href="{{ url('/blog') }}">Blog</a>
+                </li>
+            </ul>
+            <!-- End Mainmanu Nav -->
+        </nav>
+    </div>
+</div>
+
 <div class="rn-breadcrumb-inner ptb--30">
     <div class="container">
         <div class="row align-items-center">

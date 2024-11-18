@@ -43,18 +43,21 @@
                     <!-- start single product -->
                     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
                         class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="product-style-one no-overlay">
-                            <div class="card-thumbnail">
-                                <a href="{{ route('products.show', $product) }}">
+                        <div class="product-style-one no-overlay h-100 d-flex flex-column">
+                            <div class="card-thumbnail" style="position: relative; padding-top: 100%; overflow: hidden;">
+                                <a href="{{ route('products.show', $product) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                     @if ($product->images->isNotEmpty())
                                         <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
-                                            alt="{{ $product->images->first()->alt_text }}">
+                                            alt="{{ $product->images->first()->alt_text }}"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
+                                        <img src="{{ asset('images/placeholder.png') }}" 
+                                            alt="No image available"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
                                 </a>
                             </div>
-                            <div class="product-share-wrapper">
+                            <div class="product-share-wrapper mt-3">
                                 <div class="share-btn share-btn-activation dropdown">
                                     <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
@@ -64,20 +67,19 @@
                                                 fill="currentColor"></path>
                                         </svg>
                                     </button>
-
                                     <div class="share-btn-setting dropdown-menu dropdown-menu-end">
                                         <button type="button" class="btn-setting-text copy-text"
                                             data-product-url="{{ route('products.show', $product) }}">
                                             Copy Link
                                         </button>
                                     </div>
-
                                 </div>
                             </div>
-                            <a href="{{ route('products.show', $product) }}"><span
-                                    class="product-name">{{ $product->name }}</span></a>
-                            <span class="latest-bid">{{ $product->category->name }}</span>
-                            <div class="bid-react-area"></div>
+                            <a href="{{ route('products.show', $product) }}" class="d-block mb-2">
+                                <span class="product-name">{{ $product->name }}</span>
+                            </a>
+                            <span class="latest-bid mb-2">{{ $product->category->name }}</span>
+                            <div class="bid-react-area mt-auto"></div>
                         </div>
                     </div>
                     <!-- end single product -->

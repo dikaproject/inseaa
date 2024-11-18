@@ -20,122 +20,20 @@
             <nav>
                 <!-- Start Mainmanu Nav -->
                 <ul class="mainmenu">
-                    <li class="has-droupdown">
-                        <a class="nav-link its_new" href="#">Home</a>
-                        <ul class="submenu">
-                        </ul>
+                    <li class="has-menu-child-item">
+                        <a href="{{ url('/') }}">Home</a>
                     </li>
-                    <li><a href="about.html">About</a>
+                    <li><a href="{{ url('/about') }}">About</a>
                     </li>
-                    <li class="has-droupdown">
-                        <a class="nav-link its_new" href="{{ url('about') }}">Explore</a>
-                        <ul class="submenu">
-                            <li><a href="explore-one.html">Explore Filter<i class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-two.html">Explore Isotop<i class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-three.html">Explore Carousel<i class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-four.html">Explore Simple<i class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-five.html">Explore Place Bid<i class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-six.html">Place Bid With Filter<i class="feather-fast-forward"></i></a>
-                            </li>
-                            <li><a href="explore-seven.html">Place Bid With Isotop<i class="feather-fast-forward"></i></a>
-                            </li>
-                            <li><a href="explore-eight.html">Place Bid With Carousel<i class="feather-fast-forward"></i></a>
-                            </li>
-                            <li><a href="explore-list-style.html">Explore Style List<i class="feather-fast-forward"></i></a>
-                            </li>
-                            <li><a href="explore-list-column-two.html">Explore List Col-Two<i
-                                        class="feather-fast-forward"></i></a></li>
-                            <li><a href="explore-left-filter.html">Explore Left Filter<i
-                                        class="feather-fast-forward"></i></a></li>
-                            <li><a class="live-expo" href="explore-live.html">Live Explore</a></li>
-                            <li><a class="live-expo" href="explore-live-two.html">Live Explore Carousel</a></li>
-                            <li><a class="live-expo" href="explore-live-three.html">Live With Place Bid</a></li>
-                        </ul>
+                    <li class="has-menu-child-item">
+                        <a href="{{ route('view.products.index') }}">Product</a>
                     </li>
-                    <li class="with-megamenu">
-                        <a class="nav-link its_new" href="#">Pages</a>
-                        <div class="rn-megamenu">
-                            <div class="wrapper">
-                                <div class="row row--0">
-                                    <div class="col-lg-3 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li>
-                                                <a href="create.html">Create NFT<i data-feather="file-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="upload-variants.html">Upload Type<i data-feather="layers"></i></a>
-                                            </li>
-                                            <li><a href="activity.html">Activity<i data-feather="activity"></i></a></li>
-                                            <li>
-                                                <a href="creator.html">Creators<i data-feather="users"></i></a>
-                                            </li>
-                                            <li><a href="collection.html">Our Collection<i data-feather="package"></i></a>
-                                            </li>
-                                            <li><a href="upcoming_projects.html">Upcoming Projects<i
-                                                        data-feather="loader"></i></a></li>
-                                            <li><a href="create-collection.html">Create Collection<i
-                                                        data-feather="edit-3"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="login.html">Log In <i data-feather="log-in"></i></a></li>
-                                            <li><a href="sign-up.html">Registration <i data-feather="user-plus"></i></a>
-                                            </li>
-                                            <li><a href="forget.html">Forget Password <i data-feather="key"></i></a></li>
-                                            <li>
-                                                <a href="author.html">Author/Profile(User) <i data-feather="user"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="connect.html">Connect to Wallet <i data-feather="pocket"></i></a>
-                                            </li>
-                                            <li><a href="privacy-policy.html">Privacy Policy <i
-                                                        data-feather="file-text"></i></a></li>
-                                            <li><a href="newsletter.html">Newsletter<i data-feather="book-open"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 single-mega-item">
-                                        <ul class="mega-menu-item">
-
-                                            <li><a href="product.html">Product<i data-feather="folder"></i></a></li>
-                                            <li><a href="product-details.html">Product Details <i
-                                                        data-feather="layout"></i></a></li>
-                                            <li><a href="ranking.html">NFT Ranking<i data-feather="trending-up"></i></a>
-                                            </li>
-                                            <li><a href="blog.html">Our News <i data-feather="message-square"></i></a></li>
-                                            <li><a href="blog-details.html">Blog Details<i
-                                                        data-feather="book-open"></i></a></li>
-                                            <li><a href="404.html">404 <i data-feather="alert-triangle"></i></a></li>
-                                            <li><a href="forum-community.html">Forum & Community<i
-                                                        data-feather="message-circle"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ url('/about') }}">About Us<i data-feather="award"></i></a>
-                                            </li>
-                                            <li><a href="{{ url('/contact') }}">Contact <i
-                                                        data-feather="headphones"></i></a></li>
-                                            <li><a href="support.html">Support/FAQ <i data-feather="help-circle"></i></a>
-                                            </li>
-                                            <li><a href="terms-condition.html">Terms & Condition <i
-                                                        data-feather="list"></i></a></li>
-                                            <li><a href="coming-soon.html">Coming Soon <i data-feather="clock"></i></a>
-                                            </li>
-                                            <li><a href="maintenance.html">Maintenance <i data-feather="cpu"></i></a></li>
-                                            <li><a href="forum-details.html">Forum Details <i
-                                                        data-feather="message-circle"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <li class="has-menu-child-item">
                     </li>
-                    <li class=>
-                        <a class="nav-link its_new" href="{{ url('/blog') }}">Blog</a>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li class="has-menu-child-item">
+                        <a href="{{ url('/blog') }}">Blog</a>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <!-- End Mainmanu Nav -->
             </nav>
@@ -260,7 +158,7 @@
                         class="rn-service-one color-shape-1">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/atdag.png') }}" alt="Shape">
+                                <img src="{{ asset('assets/images/jumboatdag.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">02</div>
                             <div class="content">
@@ -418,19 +316,21 @@
                     <!-- start single product -->
                     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
                         class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="product-style-one no-overlay">
-                            <div class="card-thumbnail">
-                                <a href="{{ route('products.show', $product) }}">
+                        <div class="product-style-one no-overlay h-100 d-flex flex-column">
+                            <div class="card-thumbnail" style="position: relative; padding-top: 100%; overflow: hidden;">
+                                <a href="{{ route('products.show', $product) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                     @if ($product->images->isNotEmpty())
                                         <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
-                                            alt="{{ $product->images->first()->alt_text }}">
+                                            alt="{{ $product->images->first()->alt_text }}"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
+                                        <img src="{{ asset('images/placeholder.png') }}" 
+                                            alt="No image available"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
                                 </a>
                             </div>
-                            <div class="product-share-wrapper">
-
+                            <div class="product-share-wrapper mt-3">
                                 <div class="share-btn share-btn-activation dropdown">
                                     <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
@@ -440,21 +340,19 @@
                                                 fill="currentColor"></path>
                                         </svg>
                                     </button>
-
                                     <div class="share-btn-setting dropdown-menu dropdown-menu-end">
                                         <button type="button" class="btn-setting-text copy-text"
                                             data-product-url="{{ route('products.show', $product) }}">
                                             Copy Link
                                         </button>
                                     </div>
-
                                 </div>
                             </div>
-                            <a href="{{ route('products.show', $product) }}"><span
-                                    class="product-name">{{ $product->name }}</span></a>
-                            <span class="latest-bid">{{ $product->category->name }}</span>
-                            <div class="bid-react-area">
-
+                            <a href="{{ route('products.show', $product) }}" class="d-block mb-2">
+                                <span class="product-name">{{ $product->name }}</span>
+                            </a>
+                            <span class="latest-bid mb-2">{{ $product->category->name }}</span>
+                            <div class="bid-react-area mt-auto">
                             </div>
                         </div>
                     </div>
@@ -483,24 +381,25 @@
             </div>
 
             <div class="row g-5">
-
                 @foreach ($products->take(10) as $product)
                     <!-- start single product -->
                     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
                         class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="product-style-one no-overlay">
-                            <div class="card-thumbnail">
-                                <a href="{{ route('products.show', $product) }}">
+                        <div class="product-style-one no-overlay h-100 d-flex flex-column">
+                            <div class="card-thumbnail" style="position: relative; padding-top: 100%; overflow: hidden;">
+                                <a href="{{ route('products.show', $product) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                     @if ($product->images->isNotEmpty())
                                         <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
-                                            alt="{{ $product->images->first()->alt_text }}">
+                                            alt="{{ $product->images->first()->alt_text }}"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
+                                        <img src="{{ asset('images/placeholder.png') }}" 
+                                            alt="No image available"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
                                 </a>
                             </div>
-                            <div class="product-share-wrapper">
-
+                            <div class="product-share-wrapper mt-3">
                                 <div class="share-btn share-btn-activation dropdown">
                                     <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
@@ -510,21 +409,19 @@
                                                 fill="currentColor"></path>
                                         </svg>
                                     </button>
-
                                     <div class="share-btn-setting dropdown-menu dropdown-menu-end">
                                         <button type="button" class="btn-setting-text copy-text"
                                             data-product-url="{{ route('products.show', $product) }}">
                                             Copy Link
                                         </button>
                                     </div>
-
                                 </div>
                             </div>
-                            <a href="{{ route('products.show', $product) }}"><span
-                                    class="product-name">{{ $product->name }}</span></a>
-                            <span class="latest-bid">{{ $product->category->name }}</span>
-                            <div class="bid-react-area">
-
+                            <a href="{{ route('products.show', $product) }}" class="d-block mb-2">
+                                <span class="product-name">{{ $product->name }}</span>
+                            </a>
+                            <span class="latest-bid mb-2">{{ $product->category->name }}</span>
+                            <div class="bid-react-area mt-auto">
                             </div>
                         </div>
                     </div>
