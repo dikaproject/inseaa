@@ -347,13 +347,12 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 p-0">
-                    <img src="{{ asset('assets/images/how to order.png') }}" alt="Nuron" class="img-fluid w-100">
+                <div class="col-12 p-0 text-center">
+                    <img src="{{ asset('assets/images/flowcharttt.png') }}" alt="order-flowchart" class="img-fluid" style="max-width: 80%; height: auto;">
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- collection area Start -->
     <div class="rn-collection-area rn-section-gapTop">
@@ -374,26 +373,6 @@
 
             <div class="row g-5">
                 @foreach ($categories as $category)
-<<<<<<< HEAD
-    <!-- start single collection -->
-    <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
-        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
-        <a href="{{ route('view.products.index') }}?category={{ $category->id }}" class="rn-collection-inner-one">
-            <div class="collection-wrapper">
-                <div class="collection-big-thumbnail">
-                    <img src="{{ asset('category_images/' . $category->image) }}" alt="{{ $category->name }}">
-                </div>
-                <div class="collection-deg">
-                    <h6 class="title">{{ $category->name }}</h6>
-                    <span class="items">{{ $category->products->count() }} Items</span>
-                </div>
-            </div>
-        </a>
-    </div>
-    <!-- End single collection -->
-@endforeach
-
-=======
                     <!-- start single collection -->
                     <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
                         class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
@@ -413,7 +392,6 @@
                     </div>
                     <!-- End single collection -->
                 @endforeach
->>>>>>> production
 
 
             </div>
@@ -451,7 +429,27 @@
                                     @endif
                                 </a>
                             </div>
+                            <div class="product-share-wrapper">
 
+                                <div class="share-btn share-btn-activation dropdown">
+                                    <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
+                                            class="sc-bdnxRM sc-hKFxyN hOiKLt">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.5 2C3.5 2.82843 2.82843 3.5 2 3.5C1.17157 3.5 0.5 2.82843 0.5 2C0.5 1.17157 1.17157 0.5 2 0.5C2.82843 0.5 3.5 1.17157 3.5 2ZM8.5 2C8.5 2.82843 7.82843 3.5 7 3.5C6.17157 3.5 5.5 2.82843 5.5 2C5.5 1.17157 6.17157 0.5 7 0.5C7.82843 0.5 8.5 1.17157 8.5 2ZM11.999 3.5C12.8274 3.5 13.499 2.82843 13.499 2C13.499 1.17157 12.8274 0.5 11.999 0.5C11.1706 0.5 10.499 1.17157 10.499 2C10.499 2.82843 11.1706 3.5 11.999 3.5Z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div class="share-btn-setting dropdown-menu dropdown-menu-end">
+                                        <button type="button" class="btn-setting-text copy-text"
+                                            data-product-url="{{ route('products.show', $product) }}">
+                                            Copy Link
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
                             <a href="{{ route('products.show', $product) }}"><span
                                     class="product-name">{{ $product->name }}</span></a>
                             <span class="latest-bid">{{ $product->category->name }}</span>
@@ -501,6 +499,27 @@
                                     @endif
                                 </a>
                             </div>
+                            <div class="product-share-wrapper">
+
+                                <div class="share-btn share-btn-activation dropdown">
+                                    <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
+                                            class="sc-bdnxRM sc-hKFxyN hOiKLt">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.5 2C3.5 2.82843 2.82843 3.5 2 3.5C1.17157 3.5 0.5 2.82843 0.5 2C0.5 1.17157 1.17157 0.5 2 0.5C2.82843 0.5 3.5 1.17157 3.5 2ZM8.5 2C8.5 2.82843 7.82843 3.5 7 3.5C6.17157 3.5 5.5 2.82843 5.5 2C5.5 1.17157 6.17157 0.5 7 0.5C7.82843 0.5 8.5 1.17157 8.5 2ZM11.999 3.5C12.8274 3.5 13.499 2.82843 13.499 2C13.499 1.17157 12.8274 0.5 11.999 0.5C11.1706 0.5 10.499 1.17157 10.499 2C10.499 2.82843 11.1706 3.5 11.999 3.5Z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div class="share-btn-setting dropdown-menu dropdown-menu-end">
+                                        <button type="button" class="btn-setting-text copy-text"
+                                            data-product-url="{{ route('products.show', $product) }}">
+                                            Copy Link
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
                             <a href="{{ route('products.show', $product) }}"><span
                                     class="product-name">{{ $product->name }}</span></a>
                             <span class="latest-bid">{{ $product->category->name }}</span>
@@ -515,59 +534,6 @@
         </div>
     </div>
     <!-- end product area -->
-
-    <!-- collection area End -->
-    <!-- Modal -->
-    <div class="rn-popup-modal share-modal-wrapper modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                data-feather="x"></i></button>
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content share-wrapper">
-                <div class="modal-header share-area">
-                    <h5 class="modal-title">Share this NFT</h5>
-                </div>
-                <div class="modal-body">
-                    <ul class="social-share-default">
-                        <li><a href="#"><span class="icon"><i data-feather="facebook"></i></span><span
-                                    class="text">facebook</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="twitter"></i></span><span
-                                    class="text">twitter</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="linkedin"></i></span><span
-                                    class="text">linkedin</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="instagram"></i></span><span
-                                    class="text">instagram</span></a></li>
-                        <li><a href="#"><span class="icon"><i data-feather="youtube"></i></span><span
-                                    class="text">youtube</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="rn-popup-modal report-modal-wrapper modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                data-feather="x"></i></button>
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content report-content-wrapper">
-                <div class="modal-header report-modal-header">
-                    <h5 class="modal-title">Why are you reporting?
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <p>Describe why you think this item should be removed from marketplace</p>
-                    <div class="report-form-box">
-                        <h6 class="title">Message</h6>
-                        <textarea name="message" placeholder="Write issues"></textarea>
-                        <div class="report-button">
-                            <button type="button" class="btn btn-primary mr--10 w-auto">Report</button>
-                            <button type="button" class="btn btn-primary-alta w-auto"
-                                data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="rn-collection-area rn-section-gapTop">
         <div class="container">
@@ -598,7 +564,7 @@
                                 <div class="single-slide">
                                     <div class="inner">
                                         <div class="thumbnail">
-                                            <a href="{{ $testimonial->link_post }}" target="blank"><img
+                                            <a href="{{ $testimonial->link_post }}"><img
                                                     src="{{ asset('testimonial_images/' . $testimonial->image) }}"
                                                     alt="{{ $testimonial->name }}"></a>
                                         </div>
@@ -623,59 +589,23 @@
     <!-- Testimonial End -->
 
 @endsection
-
 @section('script-js')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var shareModal = document.getElementById('shareModal');
-            shareModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
+        // Copy Link Product functionality
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('.copy-text')) {
+                var button = event.target;
                 var productUrl = button.getAttribute('data-product-url');
-                var productName = button.getAttribute('data-product-name');
 
-                var facebookShare = document.getElementById('facebook-share');
-                var twitterShare = document.getElementById('twitter-share');
-                var linkedinShare = document.getElementById('linkedin-share');
-                var whatsappShare = document.getElementById('whatsapp-share');
-
-                var encodedUrl = encodeURIComponent(productUrl);
-                var encodedName = encodeURIComponent(productName);
-
-                facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-                twitterShare.href =
-                `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
-                linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-                whatsappShare.href = `https://api.whatsapp.com/send?text=${encodedName}%20${encodedUrl}`;
-            });
-
-            // Copy Link Product functionality
-            document.addEventListener('click', function(event) {
-                if (event.target.matches('.copy-text')) {
-                    var button = event.target;
-                    var productUrl = button.getAttribute('data-product-url');
-
-                    navigator.clipboard.writeText(productUrl).then(function() {
-                        alert('Product link copied to clipboard!');
-                    }, function(err) {
-                        console.error('Could not copy text: ', err);
-                        alert('Failed to copy the product link.');
-                    });
-                }
-            });
-        });
-
-        // Replace alert with toast
-        var toastEl = document.getElementById('copyToast');
-        var toast = new bootstrap.Toast(toastEl);
-
-        navigator.clipboard.writeText(productUrl).then(function() {
-            toast.show();
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-            alert('Failed to copy the product link.');
+                // Try to copy the product URL to clipboard
+                navigator.clipboard.writeText(productUrl).then(function() {
+                    // Show alert after successful copy
+                    alert('Product link copied to clipboard!');
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                    alert('Failed to copy the product link.');
+                });
+            }
         });
     </script>
-
-
-
 @endsection

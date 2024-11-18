@@ -83,22 +83,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="slider-style-2 slick-activation-01 slick-arrow-style-one slick-arrow-between">
-                    @foreach ($testimonials as $testimonial)
-                        <!-- Start Single Portfolio  -->
-                        <div class="single-slide">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="{{ $testimonial->link_post }}"><img
-                                            src="{{ asset('testimonial_images/' . $testimonial->image) }}"
-                                            alt="{{ $testimonial->name }}"></a>
-                                </div>
-                                <div class="banner-read-thumb">
-                                    <h4><a href="{{ $testimonial->link_post }}">{{ $testimonial->name }}</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Portfolio  -->
-                    @endforeach
                 </div>
             </div>
         </div>

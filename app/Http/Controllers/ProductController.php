@@ -232,12 +232,6 @@ class ProductController extends Controller
             ->where('product_id', $product->id)
             ->firstOrFail();
 
-<<<<<<< HEAD
-    // Hapus file gambar
-    $imagePath = public_path('../../images/' . $image->image_path);
-    if (File::exists($imagePath)) {
-        File::delete($imagePath);
-=======
         // Hapus file gambar
         $imagePath = public_path('../../images/' . $image->image_path);
         if (File::exists($imagePath)) {
@@ -247,7 +241,6 @@ class ProductController extends Controller
         $image->delete();
 
         return redirect()->back()->with('success', 'Gambar berhasil dihapus.');
->>>>>>> production
     }
 
     public function deleteAllAttachments($productId)

@@ -6,7 +6,6 @@ use App\Models\Admin;
 use App\Mail\Websitemail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
 use App\Models\Models\Admin as ModelsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,12 +22,6 @@ class AdminController extends Controller
     // {
     //     $this->analytics = $analytics;
     // }
-
-    public function __construct()
-    {
-        $unreadContacts = Contact::whereNull('read_at')->orderBy('created_at', 'desc')->get();
-        view()->share('unreadContacts', $unreadContacts);
-    }
 
     public function dashboard(Request $request)
 {
@@ -61,6 +54,7 @@ class AdminController extends Controller
             'visitors' => $item['activeUsers'], // Correct key
         ];
     });
+    
 
     return view('admin.dashboard', [
         'trafficData' => $trafficData,

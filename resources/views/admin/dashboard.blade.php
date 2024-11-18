@@ -58,13 +58,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Visitors ({{ ucfirst($period) }})</h3>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                                <a href="javascript:void(0);" class="">
-                                    
-=======
                                 <a href="javascript:void(0);">
                                     <i class="feather-more-vertical"></i>
->>>>>>> production
                                 </a>
                             </div>
                         </div>
@@ -88,13 +83,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Page Views ({{ ucfirst($period) }})</h3>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                                <a href="javascript:void(0);" class="">
-                                    
-=======
                                 <a href="javascript:void(0);">
                                     <i class="feather-more-vertical"></i>
->>>>>>> production
                                 </a>
                             </div>
                         </div>
@@ -118,13 +108,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Popular Pages ({{ ucfirst($period) }})</h3>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                                <a href="javascript:void(0);" class="">
-                                    
-=======
                                 <a href="javascript:void(0);">
                                     <i class="feather-more-vertical"></i>
->>>>>>> production
                                 </a>
                             </div>
                         </div>
@@ -148,13 +133,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Visitors on {{ $trafficData->last()['date'] ?? 'N/A' }}</h3>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                                <a href="javascript:void(0);" class="">
-                                    
-=======
                                 <a href="javascript:void(0);">
                                     <i class="feather-more-vertical"></i>
->>>>>>> production
                                 </a>
                             </div>
                         </div>

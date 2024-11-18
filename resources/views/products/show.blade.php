@@ -46,21 +46,30 @@
                 <div class="col-lg-7 col-md-12 col-sm-12">
                     <div class="product-tab-wrapper rbt-sticky-top-adjust">
                         <div class="pd-tab-inner">
-                            <div class="nav rn-pd-nav rn-pd-rt-content nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                @foreach($product->images as $key => $image)
-                                    <button class="nav-link {{ $key == 0 ? 'active' : '' }}" id="v-pills-{{ $key }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $key }}" type="button" role="tab" aria-controls="v-pills-{{ $key }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">
+                            <div class="nav rn-pd-nav rn-pd-rt-content nav-pills" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                @foreach ($product->images as $key => $image)
+                                    <button class="nav-link {{ $key == 0 ? 'active' : '' }}"
+                                        id="v-pills-{{ $key }}-tab" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-{{ $key }}" type="button" role="tab"
+                                        aria-controls="v-pills-{{ $key }}"
+                                        aria-selected="{{ $key == 0 ? 'true' : 'false' }}">
                                         <span class="rn-pd-sm-thumbnail">
-                                            <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->alt_text }}">
+                                            <img src="{{ asset('images/' . $image->image_path) }}"
+                                                alt="{{ $image->alt_text }}">
                                         </span>
                                     </button>
                                 @endforeach
                             </div>
 
                             <div class="tab-content rn-pd-content" id="v-pills-tabContent">
-                                @foreach($product->images as $key => $image)
-                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="v-pills-{{ $key }}" role="tabpanel" aria-labelledby="v-pills-{{ $key }}-tab">
+                                @foreach ($product->images as $key => $image)
+                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
+                                        id="v-pills-{{ $key }}" role="tabpanel"
+                                        aria-labelledby="v-pills-{{ $key }}-tab">
                                         <div class="rn-pd-thumbnail">
-                                            <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->alt_text }}">
+                                            <img src="{{ asset('images/' . $image->image_path) }}"
+                                                alt="{{ $image->alt_text }}">
                                         </div>
                                     </div>
                                 @endforeach
@@ -78,22 +87,23 @@
                             <div class="pd-react-area">
                                 <div class="count">
                                     <div class="share-btn share-btn-activation dropdown">
-                                        <button class="icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="icon" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
                                             <!-- SVG icon -->
                                         </button>
                                         <div class="share-btn-setting dropdown-menu dropdown-menu-end">
-                                        <button type="button" class="btn-setting-text share-text" data-bs-toggle="modal"
-                                            data-bs-target="#shareModal"
-                                            data-product-url="{{ route('products.show', $product) }}"
-                                            data-product-name="{{ $product->name }}">
-                                            Share
-                                        </button>
-                                        <button type="button" class="btn-setting-text copy-text"
-                                            data-product-url="{{ route('products.show', $product) }}">
-                                            Copy Link Product
-                                        </button>
+                                            <button type="button" class="btn-setting-text share-text"
+                                                data-bs-toggle="modal" data-bs-target="#shareModal"
+                                                data-product-url="{{ route('products.show', $product) }}"
+                                                data-product-name="{{ $product->name }}">
+                                                Share
+                                            </button>
+                                            <button type="button" class="btn-setting-text copy-text"
+                                                data-product-url="{{ route('products.show', $product) }}">
+                                                Copy Link Product
+                                            </button>
 
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,25 +116,36 @@
                         <!-- Nama penjual dan deskripsi lengkap -->
                         <div class="seller-info mt-4">
                             <h6 class="pd-property-title">Seller:</h6>
-                            <p>{{ $product->seller->name }}</p>
+                            @if ($product->seller)
+                                <p>{{ $product->seller->name }}</p>
+                            @else
+                                <p>Admin</p>
+                            @endif
+
 
                             <h6 class="pd-property-title">Product Description:</h6>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat doloribus quis, earum reiciendis vitae omnis esse quia ducimus, modi laboriosam rerum! Qui, quo ut minima nihil culpa dolor accusantium laborum fugiat unde autem. Consectetur, omnis culpa laudantium nisi nihil fugit!</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat doloribus quis, earum
+                                reiciendis vitae omnis esse quia ducimus, modi laboriosam rerum! Qui, quo ut minima nihil
+                                culpa dolor accusantium laborum fugiat unde autem. Consectetur, omnis culpa laudantium nisi
+                                nihil fugit!</p>
                         </div>
 
                         <div class="rn-bid-details">
                             <div class="tab-wrapper-one">
                                 <nav class="tab-button-one">
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a href="{{ asset('pdfs/' . $product->pdf) }}" download="{{ $product->slug }}.pdf">
-                                            <button class="nav-link active" id="nav-profile-tab" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">
+                                        <a href="{{ asset('pdfs/' . $product->pdf) }}"
+                                            download="{{ $product->slug }}.pdf">
+                                            <button class="nav-link active" id="nav-profile-tab" type="button"
+                                                role="tab" aria-controls="nav-profile" aria-selected="true">
                                                 Download PDF Product
                                             </button>
                                         </a>
                                     </div>
                                 </nav>
                                 <div class="tab-content rn-bid-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                                        aria-labelledby="nav-profile-tab">
                                         <!-- single -->
                                         <div class="rn-pd-bd-wrapper">
                                             <!-- single -->
@@ -133,7 +154,8 @@
                                                 <div class="catagory-wrapper">
                                                     <!-- single property -->
                                                     <div class="pd-property-inner">
-                                                        <span class="color-white value">{{ $product->category->name }}</span>
+                                                        <span
+                                                            class="color-white value">{{ $product->category->name }}</span>
                                                     </div>
                                                     <!-- single property End -->
                                                 </div>
@@ -293,8 +315,9 @@
                         <div class="product-style-one no-overlay">
                             <div class="card-thumbnail">
                                 <a href="{{ route('products.show', $product) }}">
-                                    @if($product->images->isNotEmpty())
-                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}" alt="{{ $product->images->first()->alt_text }}">
+                                    @if ($product->images->isNotEmpty())
+                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
+                                            alt="{{ $product->images->first()->alt_text }}">
                                     @else
                                         <img src="{{ asset('images/placeholder.png') }}" alt="No image available">
                                     @endif
@@ -360,7 +383,7 @@
 
                 facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
                 twitterShare.href =
-                `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
+                    `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
                 linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
                 whatsappShare.href = `https://api.whatsapp.com/send?text=${encodedName}%20${encodedUrl}`;
             });

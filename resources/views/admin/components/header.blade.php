@@ -305,7 +305,6 @@
                     <a class="nxl-head-link me-3" data-bs-toggle="dropdown" href="#" role="button"
                         data-bs-auto-close="outside">
                         <i class="feather-bell"></i>
-                        <span class="badge bg-danger nxl-h-badge">3</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-notifications-menu">
                         <div class="d-flex justify-content-between align-items-center notifications-head">
@@ -423,7 +422,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="dropdown-divider"></div>
                         <a href="javascript:void(0);" class="dropdown-item">
                             <i class="feather-user"></i>

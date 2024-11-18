@@ -19,7 +19,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logoinseaa.png') }}">
 
-    
+
 
     <style>
         /* Styles for the search results container */
@@ -168,6 +168,7 @@
     <script src="{{ asset('assets/js/vendor/web3.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/maralis.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/nft.js') }}"></script>
+    @yield('script-js')
 
     <script>
         document.querySelector('.search-form-wrapper input[type="search"]').addEventListener('input', function() {
@@ -224,15 +225,8 @@
                 searchResults.style.display = 'none'; // Hide dropdown if input is empty
             }
         });
-<<<<<<< HEAD
-
     </script>
 
-    @yield('script-js')
-=======
-    </script>
-
->>>>>>> production
 
 </body>
 

@@ -202,12 +202,12 @@ Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->n
 
 
 // Admin contact routes
-Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
-    Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
-    Route::get('/contacts/{id}', [AdminContactController::class, 'show'])->name('contacts.show');
-    Route::get('/contacts/{id}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('contacts.markAsRead');
-    Route::get('/contacts/mark-all-as-read', [AdminContactController::class, 'markAllAsRead'])->name('contacts.markAllAsRead');
-    Route::get('/contacts/{id}/delete', [AdminContactController::class, 'destroy'])->name('contacts.delete');
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{id}', [AdminContactController::class, 'show'])->name('admin.contacts.show');
+    Route::get('/contacts/{id}/delete', [AdminContactController::class, 'destroy'])->name('admin.contacts.delete');
+    Route::get('/contacts/{id}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('admin.contacts.markAsRead');
+    Route::get('/contacts/mark-all-as-read', [AdminContactController::class, 'markAllAsRead'])->name('admin.contacts.markAllAsRead');
 });
 
 
@@ -262,10 +262,10 @@ Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->name('blogs.s
 
 Route::get('/blog', function () {
     $blogs = App\Models\Blog::paginate(10);
-    $testimonial = App\Models\Testimonial::all();
+    $testimonials = App\Models\Testimonial::all();
     $sliders = App\Models\Slider::all();
     $categories = App\Models\Category::all();
-    return view('blogs.index', compact('blogs', 'sliders', 'categories', 'testimonial'));
+    return view('blogs.index', compact('blogs', 'sliders', 'categories', 'testimonials'));
 });
 
 Route::get('/detailcategory',function (){

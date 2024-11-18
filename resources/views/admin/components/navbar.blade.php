@@ -19,7 +19,7 @@
 
                     <!-- Dashboard -->
                     <li class="nxl-item nxl-hasmenu">
-                        <a href="{{ url('dashboard') }}" class="nxl-link">
+                        <a href="{{ route('admin.dashboard') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
                             <span class="nxl-mtext">Dashboards</span>
                         </a>

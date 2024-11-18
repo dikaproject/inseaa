@@ -20,9 +20,7 @@
 
             <div class="default-exp-wrapper default-exp-expand">
                 <div class="inner">
-
-                    <!-- Pastikan form ini mengirimkan data GET -->
-                    <!-- Pastikan form ini mengirimkan data GET -->
+                    <!-- Form filter untuk kategori -->
                     <form method="GET" action="{{ route('view.products.index') }}">
                         <div class="filter-select-option">
                             <label class="filter-label">Category</label>
@@ -37,8 +35,6 @@
                             </select>
                         </div>
                     </form>
-
-
                 </div>
             </div>
 
@@ -59,7 +55,6 @@
                                 </a>
                             </div>
                             <div class="product-share-wrapper">
-
                                 <div class="share-btn share-btn-activation dropdown">
                                     <button class="icon" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg viewBox="0 0 14 4" fill="none" width="16" height="16"
@@ -71,17 +66,10 @@
                                     </button>
 
                                     <div class="share-btn-setting dropdown-menu dropdown-menu-end">
-                                        <button type="button" class="btn-setting-text share-text" data-bs-toggle="modal"
-                                            data-bs-target="#shareModal"
-                                            data-product-url="{{ route('products.show', $product) }}"
-                                            data-product-name="{{ $product->name }}">
-                                            Share
-                                        </button>
                                         <button type="button" class="btn-setting-text copy-text"
                                             data-product-url="{{ route('products.show', $product) }}">
-                                            Copy Link Product
+                                            Copy Link
                                         </button>
-
                                     </div>
 
                                 </div>
@@ -89,9 +77,7 @@
                             <a href="{{ route('products.show', $product) }}"><span
                                     class="product-name">{{ $product->name }}</span></a>
                             <span class="latest-bid">{{ $product->category->name }}</span>
-                            <div class="bid-react-area">
-
-                            </div>
+                            <div class="bid-react-area"></div>
                         </div>
                     </div>
                     <!-- end single product -->
@@ -118,86 +104,25 @@
                 aria-label="Close"></button>
         </div>
     </div>
-
-
-    <!-- Share Modal -->
-    <div class="rn-popup-modal share-modal-wrapper modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                data-feather="x"></i></button>
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content share-wrapper">
-                <div class="modal-header share-area">
-                    <h5 class="modal-title">Share this Product</h5>
-                </div>
-                <div class="modal-body">
-                    <ul class="social-share-default">
-                        <li><a href="#" id="facebook-share"><span class="icon"><i
-                                        data-feather="facebook"></i></span><span class="text">Facebook</span></a></li>
-                        <li><a href="#" id="twitter-share"><span class="icon"><i
-                                        data-feather="twitter"></i></span><span class="text">Twitter</span></a></li>
-                        <li><a href="#" id="linkedin-share"><span class="icon"><i
-                                        data-feather="linkedin"></i></span><span class="text">LinkedIn</span></a></li>
-                        <li><a href="#" id="whatsapp-share"><span class="icon"><i
-                                        data-feather="message-circle"></i></span><span class="text">WhatsApp</span></a>
-                        </li>
-                        <!-- Add more social media platforms as needed -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('script-js')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var shareModal = document.getElementById('shareModal');
-            shareModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
+        // Copy Link Product functionality
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('.copy-text')) {
+                var button = event.target;
                 var productUrl = button.getAttribute('data-product-url');
-                var productName = button.getAttribute('data-product-name');
 
-                var facebookShare = document.getElementById('facebook-share');
-                var twitterShare = document.getElementById('twitter-share');
-                var linkedinShare = document.getElementById('linkedin-share');
-                var whatsappShare = document.getElementById('whatsapp-share');
-
-                var encodedUrl = encodeURIComponent(productUrl);
-                var encodedName = encodeURIComponent(productName);
-
-                facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-                twitterShare.href =
-                `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedName}`;
-                linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-                whatsappShare.href = `https://api.whatsapp.com/send?text=${encodedName}%20${encodedUrl}`;
-            });
-
-            // Copy Link Product functionality
-            document.addEventListener('click', function(event) {
-                if (event.target.matches('.copy-text')) {
-                    var button = event.target;
-                    var productUrl = button.getAttribute('data-product-url');
-
-                    navigator.clipboard.writeText(productUrl).then(function() {
-                        alert('Product link copied to clipboard!');
-                    }, function(err) {
-                        console.error('Could not copy text: ', err);
-                        alert('Failed to copy the product link.');
-                    });
-                }
-            });
-        });
-
-        // Replace alert with toast
-        var toastEl = document.getElementById('copyToast');
-        var toast = new bootstrap.Toast(toastEl);
-
-        navigator.clipboard.writeText(productUrl).then(function() {
-            toast.show();
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-            alert('Failed to copy the product link.');
+                // Try to copy the product URL to clipboard
+                navigator.clipboard.writeText(productUrl).then(function() {
+                    // Show alert after successful copy
+                    alert('Product link copied to clipboard!');
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                    alert('Failed to copy the product link.');
+                });
+            }
         });
     </script>
-
 @endsection
