@@ -108,7 +108,7 @@ class CartController extends Controller
         Mail::to($seller->email)->send(new SellerOrderPlaced($order, $seller));
     }
 
-    return redirect()->route('view.products.index')->with('success', 'Your order has been placed.');
+    return redirect()->route('view.products.index')->with('success', 'Your order has been placed. our representative will reach you soon');
 }
 
 }

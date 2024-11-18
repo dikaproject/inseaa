@@ -55,7 +55,7 @@
                                 <input value="{{ $product->description }}" type="text" name="description" id="description" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="details_product" class="form-label">Details Full Product</label>
+                                <label for="details_product" class="form-label">Product And Order Information</label>
                                 <textarea name="details_product" id="tinymce" class="form-control">{{ $product->details_product }}</textarea>
                             </div>
                             <div class="mb-3">

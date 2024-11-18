@@ -246,7 +246,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 p-0 text-center">
-                    <img src="{{ asset('assets/images/flowcharttt.png') }}" alt="order-flowchart" class="img-fluid" style="max-width: 80%; height: auto;">
+                    <img src="{{ asset('assets/images/flowchart fix.png') }}" alt="order-flowchart" class="img-fluid" style="max-width: 80%; height: auto;">
                 </div>
             </div>
         </div>
@@ -324,7 +324,7 @@
                                             alt="{{ $product->images->first()->alt_text }}"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}" 
+                                        <img src="{{ asset('images/placeholder.png') }}"
                                             alt="No image available"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
@@ -393,7 +393,7 @@
                                             alt="{{ $product->images->first()->alt_text }}"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}" 
+                                        <img src="{{ asset('images/placeholder.png') }}"
                                             alt="No image available"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif

@@ -223,33 +223,14 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs flex-wrap w-100 text-center customers-nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item flex-fill border-top" role="presentation">
-                                    <a href="javascript:void(0);" class="nav-link active" data-bs-toggle="tab" data-bs-target="#overviewTab" role="tab">Overview</a>
-                                </li>
-
-                                <li class="nav-item flex-fill border-top" role="presentation">
                                     <a href="javascript:void(0);" class="nav-link" data-bs-toggle="tab" data-bs-target="#activityTab" role="tab">Activity</a>
                                 </li>
 
                             </ul>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active p-4" id="overviewTab" role="tabpanel">
-                                <div class="profile-details mb-5">
-                                    <div class="mb-4 d-flex align-items-center justify-content-between">
-                                        <h5 class="fw-bold mb-0">Profile Details:</h5>
-                                    </div>
-                                    <div class="row g-0 mb-4">
-                                        <div class="col-sm-6 text-muted">Full Name:</div>
-                                        <div class="col-sm-6 fw-semibold"></div>
-                                    </div>
-                                    <div class="row g-0 mb-4">
-                                        <div class="col-sm-6 text-muted">Email Address:</div>
-                                        <div class="col-sm-6 fw-semibold"></div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="tab-pane fade" id="activityTab" role="tabpanel">
+                            <div class="tab-pane fade show active" id="activityTab" role="tabpanel">
                                 <div class="recent-activity p-4 pb-0">
                                     <div class="mb-4 pb-2 d-flex justify-content-between">
                                         <h5 class="fw-bold">Recent Activity:</h5>

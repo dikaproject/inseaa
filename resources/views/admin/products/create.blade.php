@@ -49,11 +49,11 @@
                                 <input type="text" name="name" id="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Short Description</label>
+                                <label for="description" class="form-label">Product Description</label>
                                 <input type="text" name="description" id="description" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="details_product" class="form-label">Details Full Product</label>
+                                <label for="details_product" class="form-label">Product And Order Information</label>
                                 <textarea name="details_product" id="tinymce" class="form-control"></textarea>
                             </div>
                             <div class="mb-3">

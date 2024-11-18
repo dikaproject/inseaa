@@ -104,7 +104,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Success!',
-            text: 'Your order has been placed successfully.',
+            text: 'Your order has been placed successfully. our representative will reach you soon',
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
