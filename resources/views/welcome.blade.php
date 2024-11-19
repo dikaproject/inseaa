@@ -253,7 +253,7 @@
     </div>
 
     <!-- collection area Start -->
-    <div class="rn-collection-area rn-section-gapTop">
+        <div class="rn-collection-area rn-section-gapTop">
         <div class="container">
             <div class="row mb--50 align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
@@ -348,10 +348,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('products.show', $product) }}" class="d-block mb-2">
-                                <span class="product-name">{{ $product->name }}</span>
-                            </a>
-                            <span class="latest-bid mb-2">{{ $product->category->name }}</span>
+                            <div class="collection-deg">
+                                <a href="{{ route('products.show', $product) }}" class="d-block">
+                                    <h6 class="title">{{ $product->name }}</h6>
+                                </a>
+                                <span class="items">{{ $product->category->name }}</span>
+                            </div>
                             <div class="bid-react-area mt-auto">
                             </div>
                         </div>
@@ -379,7 +381,7 @@
                     </div>
                 </div>
             </div>
-
+        
             <div class="row g-5">
                 @foreach ($products->take(10) as $product)
                     <!-- start single product -->
@@ -417,10 +419,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('products.show', $product) }}" class="d-block mb-2">
-                                <span class="product-name">{{ $product->name }}</span>
-                            </a>
-                            <span class="latest-bid mb-2">{{ $product->category->name }}</span>
+                            <div class="collection-deg">
+                                <a href="{{ route('products.show', $product) }}" class="d-block">
+                                    <h6 class="title">{{ $product->name }}</h6>
+                                </a>
+                                <span class="items">{{ $product->category->name }}</span>
+                            </div>
                             <div class="bid-react-area mt-auto">
                             </div>
                         </div>
