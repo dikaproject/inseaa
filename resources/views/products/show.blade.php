@@ -7,8 +7,8 @@
     <div class="inner">
         <div class="header-top">
             <div class="logo logo-custom-css">
-                <a class="logo-light" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
-                <a class="logo-dark" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
+                <a class="logo-light" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
+                <a class="logo-dark" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
             </div>
             <div class="close-menu">
                 <button class="close-button">
@@ -48,9 +48,11 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-list">
-                        <li class="item"><a href="index.html">Home</a></li>
+                        <li class="item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="separator"><i class="feather-chevron-right"></i></li>
-                        <li class="item current">Product Details</li>
+                        <li class="item">Product</li>
+                        <li class="separator"><i class="feather-chevron-right"></i></li>
+                        <li class="item">{{ $product->name }}</li>
                     </ul>
                 </div>
             </div>

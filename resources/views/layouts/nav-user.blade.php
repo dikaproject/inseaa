@@ -129,12 +129,12 @@
                     <ul>
                         <li>
                             <a href="javascript: void(0);" data-theme="light" class="setColor light">
-                                <img class="sun-image" src="assets/images/icons/sun-01.svg" alt="Sun images">
+                                <img class="sun-image" src="{{asset('assets/images/icons/sun-01.svg')}}" alt="Sun images">
                             </a>
                         </li>
                         <li>
                             <a href="javascript: void(0);" data-theme="dark" class="setColor dark">
-                                <img class="Victor Image" src="assets/images/icons/vector.svg" alt="Vector Images">
+                                <img class="Victor Image" src="{{asset('assets/images/icons/vector.svg')}}" alt="Vector Images">
                             </a>
                         </li>
                     </ul>
