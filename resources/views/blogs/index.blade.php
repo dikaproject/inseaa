@@ -8,8 +8,8 @@
         <div class="inner">
             <div class="header-top">
                 <div class="logo logo-custom-css">
-                    <a class="logo-light" href="index.html"><img src="assets/images/logo/logo-white.png" alt="nft-logo"></a>
-                    <a class="logo-dark" href="index.html"><img src="assets/images/logo/logo-dark.png" alt="nft-logo"></a>
+                    <a class="logo-light" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
+                    <a class="logo-dark" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
                 </div>
                 <div class="close-menu">
                     <button class="close-button">
@@ -17,6 +17,26 @@
                     </button>
                 </div>
             </div>
+            <nav>
+                <!-- Start Mainmanu Nav -->
+                <ul class="mainmenu">
+                    <li class="has-menu-child-item">
+                        <a href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li><a href="{{ url('/about') }}">About</a>
+                    </li>
+                    <li class="has-menu-child-item">
+                        <a href="{{ route('view.products.index') }}">Product</a>
+                    </li>
+                    <li class="has-menu-child-item">
+                    </li>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li class="has-menu-child-item">
+                        <a href="{{ url('/blog') }}">Blog</a>
+                    </li>
+                </ul>
+                <!-- End Mainmanu Nav -->
+            </nav>
         </div>
     </div>
     <!-- start page title area -->
@@ -28,9 +48,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-list">
-                        <li class="item"><a href="index.html">Home</a></li>
-                        <li class="separator"><i class="feather-chevron-right"></i></li>
-                        <li class="item current">Our Blog</li>
+                        <li class="item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="separator"><i class="feather-chevron-right"></i></li>
+                    <li class="item"><a href="{{ url('/blog') }}">Our Blog</a></li>
                     </ul>
                 </div>
             </div>

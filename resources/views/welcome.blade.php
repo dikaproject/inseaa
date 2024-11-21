@@ -8,8 +8,8 @@
         <div class="inner">
             <div class="header-top">
                 <div class="logo logo-custom-css">
-                    <a class="logo-light" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
-                    <a class="logo-dark" href="index.html"><img src="assets/images/logoinseaa.png" alt="nft-logo"></a>
+                    <a class="logo-light" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
+                    <a class="logo-dark" href="index.html"><img src="assets/images/logoINSEAA.png" alt="nft-logo"></a>
                 </div>
                 <div class="close-menu">
                     <button class="close-button">
@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <div class="banner-xii-wrapper">
                         <div class="banner-content-wrapper">
-                            <p class="pre-title">Inseaa</p>
+                            <p class="pre-title">INSEAA</p>
                             <h1 class="title">#1 place to Acces Indonesian Suppliers Network</h1>
                             <p class="post-title">We are Young Proffesionals to help you procure your valuable demands</p>
                             <a class="btn btn-primary-alta btn-large" href="{{ url('about') }}">Explore</a>
@@ -240,9 +240,9 @@
         <div class="container-fluid">
             <div class="row mb--40">
                 <div class="title-area text-center">
-                    <h3 class="title mb--15">How to order at inseaa</h3>
-                    <p class="subtitle">Following are the procedures for ordering at Inseaa. For those of you who want to
-                        buy products at Inseaa but don't understand the process, you can check below</p>
+                    <h3 class="title mb--15">How to order at INSEAA</h3>
+                    <p class="subtitle">Following are the procedures for ordering at INSEAA. For those of you who want to
+                        buy products at INSEAA but don't understand the process, you can check below</p>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -442,7 +442,7 @@
             <div class="row mb--50 align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Gallery
-                        Inseaa</h3>
+                        INSEAA</h3>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
                     <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
