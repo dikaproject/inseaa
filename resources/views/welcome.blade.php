@@ -74,9 +74,10 @@
 
         <div class="video-background">
             <span>
-                <video autoplay="true" loop="true" controls muted style="width: 100%;">
-                    <source src="assets/images/bannervideo(1).mp4">
-                </video>
+                <!-- 3. Optimize video loading -->
+<video autoplay loop muted playsinline preload="none" style="width: 100%;">
+    <source src="{{ asset('assets/images/bannervideo(1).mp4') }}" type="video/mp4">
+</video>
             </span>
         </div>
 
@@ -90,7 +91,7 @@
                 <!-- banner left -->
                 <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12">
                     <div class="left-thumbnail-image tilt">
-                        <img src="{{ asset('assets/images/inseaarakornis.png') }}" alt="">
+                        <img loading="lazy" src="{{ asset('assets/images/inseaarakornis.png') }}" alt="">
                     </div>
                 </div>
                 <!-- banner left end -->
@@ -139,7 +140,7 @@
                         class="rn-service-one color-shape-7">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/ppi.png') }}" alt="Shape">
+                                <img loading="lazy" src="{{ asset('assets/images/ppi.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">01</div>
                             <div class="content">
@@ -158,7 +159,7 @@
                         class="rn-service-one color-shape-1">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/jumboatdag.png') }}" alt="Shape">
+                                <img loading="lazy" src="{{ asset('assets/images/jumboatdag.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">02</div>
                             <div class="content">
@@ -177,7 +178,7 @@
                         class="rn-service-one color-shape-5">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/import.png') }}" alt="Shape">
+                                <img loading="lazy" src="{{ asset('assets/images/import.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">03</div>
                             <div class="content">
@@ -197,7 +198,7 @@
                         class="rn-service-one color-shape-6">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/bea cukai.png') }}" alt="Shape">
+                                <img loading="lazy" src="{{ asset('assets/images/bea cukai.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">04</div>
                             <div class="content">
@@ -217,7 +218,7 @@
                         class="rn-service-one color-shape-6">
                         <div class="inner">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/inbis.png') }}" alt="Shape">
+                                <img loading="lazy" src="{{ asset('assets/images/inbis.png') }}" alt="Shape">
                             </div>
                             <div class="subtitle">05</div>
                             <div class="content">
@@ -246,7 +247,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 p-0 text-center">
-                    <img src="{{ asset('assets/images/flowchart fix.png') }}" alt="order-flowchart" class="img-fluid" style="max-width: 80%; height: auto;">
+                    <img loading="lazy" src="{{ asset('assets/images/flowchart fix.png') }}" alt="order-flowchart" class="img-fluid" style="max-width: 80%; height: auto;">
                 </div>
             </div>
         </div>
@@ -278,7 +279,7 @@
                             class="rn-collection-inner-one">
                             <div class="collection-wrapper">
                                 <div class="collection-big-thumbnail">
-                                    <img src="{{ asset('category_images/' . $category->image) }}"
+                                    <img loading="lazy" src="{{ asset('category_images/' . $category->image) }}"
                                         alt="{{ $category->name }}">
                                 </div>
                                 <div class="collection-deg">
@@ -320,11 +321,11 @@
                             <div class="card-thumbnail" style="position: relative; padding-top: 100%; overflow: hidden;">
                                 <a href="{{ route('products.show', $product) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                     @if ($product->images->isNotEmpty())
-                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
+                                        <img loading="lazy" src="{{ asset('images/' . $product->images->first()->image_path) }}"
                                             alt="{{ $product->images->first()->alt_text }}"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}"
+                                        <img loading="lazy" src="{{ asset('images/placeholder.png') }}"
                                             alt="No image available"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
@@ -381,7 +382,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="row g-5">
                 @foreach ($products->take(10) as $product)
                     <!-- start single product -->
@@ -391,11 +392,11 @@
                             <div class="card-thumbnail" style="position: relative; padding-top: 100%; overflow: hidden;">
                                 <a href="{{ route('products.show', $product) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                     @if ($product->images->isNotEmpty())
-                                        <img src="{{ asset('images/' . $product->images->first()->image_path) }}"
+                                        <img loading="lazy" src="{{ asset('images/' . $product->images->first()->image_path) }}"
                                             alt="{{ $product->images->first()->alt_text }}"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('images/placeholder.png') }}"
+                                        <img loading="lazy" src="{{ asset('images/placeholder.png') }}"
                                             alt="No image available"
                                             style="width: 100%; height: 100%; object-fit: cover;">
                                     @endif
@@ -465,7 +466,7 @@
                                 <div class="single-slide">
                                     <div class="inner">
                                         <div class="thumbnail">
-                                            <a href="{{ $testimonial->link_post }}"><img
+                                            <a href="{{ $testimonial->link_post }}"><img loading="lazy"
                                                     src="{{ asset('testimonial_images/' . $testimonial->image) }}"
                                                     alt="{{ $testimonial->name }}"></a>
                                         </div>

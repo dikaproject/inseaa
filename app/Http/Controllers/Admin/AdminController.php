@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Models\Admin as ModelsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Analytics\AnalyticsClientFactory;
 use Spatie\Analytics\Period;
@@ -24,45 +25,53 @@ class AdminController extends Controller
     // }
 
     public function dashboard(Request $request)
-{
-    // Determine the period based on the request or default to 'week'
-    $periodType = $request->get('period', 'week');
-    $periodMapping = [
-        'day' => Period::days(1),
-        'week' => Period::days(7),
-        'month' => Period::months(1),
-        'quarter' => Period::months(3),
-        'year' => Period::years(1),
-    ];
+    {
+        try {
+            // Determine the period
+            $periodType = $request->get('period', 'week');
+            $periodMapping = [
+                'day' => Period::days(1),
+                'week' => Period::days(7),
+                'month' => Period::months(1),
+                'quarter' => Period::months(3),
+                'year' => Period::years(1),
+            ];
 
-    $selectedPeriod = $periodMapping[$periodType] ?? Period::days(7);
+            $selectedPeriod = $periodMapping[$periodType] ?? Period::days(7);
 
-    // Fetch total visitors and page views
-    $trafficData = Analytics::fetchTotalVisitorsAndPageViews($selectedPeriod);
+            // Fetch analytics data with error handling
+            $trafficData = Analytics::fetchTotalVisitorsAndPageViews($selectedPeriod);
+            $popularPages = Analytics::fetchMostVisitedPages($selectedPeriod, 10);
 
-    // Fetch total visitors and page views for the selected period
-    $totalTraffic = $trafficData;
+            // Map traffic data
+            $trafficData = $trafficData->map(function ($item) {
+                return [
+                    'date' => $item['date']->format('Y-m-d'),
+                    'pageViews' => $item['screenPageViews'],
+                    'visitors' => $item['activeUsers'],
+                ];
+            });
 
-    // Fetch most visited pages
-    $popularPages = Analytics::fetchMostVisitedPages($selectedPeriod, 10);
+            return view('admin.dashboard', [
+                'trafficData' => $trafficData,
+                'totalTraffic' => $trafficData,
+                'popularPages' => $popularPages,
+                'period' => $periodType,
+            ]);
 
-    // Map trafficData to use the correct keys
-    $trafficData = $trafficData->map(function ($item) {
-        return [
-            'date' => $item['date']->format('Y-m-d'),
-            'pageViews' => $item['screenPageViews'], // Correct key
-            'visitors' => $item['activeUsers'], // Correct key
-        ];
-    });
-    
+        } catch (\Exception $e) {
+            // Log error and return view with error message
+            Log::error('Google Analytics Error: ' . $e->getMessage());
 
-    return view('admin.dashboard', [
-        'trafficData' => $trafficData,
-        'totalTraffic' => $totalTraffic,
-        'popularPages' => $popularPages,
-        'period' => $periodType,
-    ]);
-}
+            return view('admin.dashboard', [
+                'trafficData' => collect([]),
+                'totalTraffic' => collect([]),
+                'popularPages' => collect([]),
+                'period' => $periodType,
+                'error' => 'Unable to fetch analytics data. Please check configuration.'
+            ]);
+        }
+    }
 
     public function login()
     {

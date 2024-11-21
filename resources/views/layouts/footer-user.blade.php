@@ -5,14 +5,16 @@
                 <div class="widget-content-wrapper">
                     <div class="footer-left">
                         <div class="logo-thumbnail logo-custom-css">
-                            <a class="logo-light" href="index.html"><img src="{{asset('assets/images/extrajumbologo.png')}}" alt="nft-logo"></a>
-                            <a class="logo-dark" href="index.html"><img src="{{asset('assets/images/extrajumbologo.png')}}" alt="nft-logo"></a>
+                            <a class="logo-light" href="index.html"><img
+                                    src="{{ asset('assets/images/extrajumbologo.png') }}" alt="nft-logo"></a>
+                            <a class="logo-dark" href="index.html"><img
+                                    src="{{ asset('assets/images/extrajumbologo.png') }}" alt="nft-logo"></a>
                         </div>
                         <p class="rn-footer-describe">
                             Created with the collaboration of over 60 of the world's best Inseaa Artists.
                         </p>
                     </div>
-                   
+
                 </div>
             </div>
 
@@ -21,7 +23,10 @@
                     <h6 class="widget-title">Inseaa Category</h6>
                     <ul class="footer-list-one">
                         @foreach ($categories->take(4) as $category)
-                        <li class="single-list"><a href="{{ route('category.detail', $category->slug) }}">{{ $category->name }}</a></li>
+                            <li class="single-list">
+                                <a
+                                    href="{{ route('view.products.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -62,7 +67,8 @@
                 <div class="copyright-right">
                     <ul class="social-copyright">
                         <li><a href="#"target="blank"><i data-feather="facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/inseaa_id/"target="blank"><i data-feather="instagram"></i></a></li>
+                        <li><a href="https://www.instagram.com/inseaa_id/"target="blank"><i
+                                    data-feather="instagram"></i></a></li>
                         <li><a href="#"target="blank"><i data-feather="linkedin"></i></a></li>
                         <li><a href="#"target="blank"><i data-feather="mail"></i></a></li>
                     </ul>
